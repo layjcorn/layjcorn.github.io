@@ -7,31 +7,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-menu-btn" id="menuToggle">☰</button>
+
     <!-- Navigation -->
-    <nav>
+    <nav id="sidebar">
         <div class="logo">RT.</div>
         <ul class="nav-links">
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="Resume.pdf" target="_blank">Resume</a></li>
+            <li>
+                <a href="#projects" class="icon-link">
+                    <span class="icon">⚙️</span>
+                    <span class="tooltip">Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="#about" class="icon-link">
+                    <span class="icon">👤</span>
+                    <span class="tooltip">About</span>
+                </a>
+            </li>
+            <li>
+                <a href="Richard_Townsley_Resume_2026.pdf" target="_blank" class="icon-link">
+                    <span class="icon">📄</span>
+                    <span class="tooltip">Resume</span>
+                </a>
+            </li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero" id="home">
-        <h1>Richard Townsley</h1>
-        <h2>Mechanical Engineer specializing in multidisciplinary design, systems analysis, and hardware-software integration.</h2>
-        <a href="#projects" class="cta-button">View Engineering Projects</a>
-    </header>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <header class="hero" id="home">
+            <h1>Richard Townsley</h1>
+            <h2>Mechanical Engineer specializing in multidisciplinary design, systems analysis, and hardware-software integration.</h2>
+            <a href="#projects" class="cta-button">View Engineering Projects</a>
+        </header>
 
-    <!-- Project Grid Placeholder -->
-    <section id="projects">
-        <h2>Selected Works</h2>
-        <div class="grid-container">
-            <!-- Project Cards Will Go Here -->
-            <p>Project grid pending...</p>
-        </div>
-    </section>
+        <!-- Project Grid Placeholder -->
+        <section id="projects">
+            <h2>Selected Works</h2>
+            <div class="grid-container">
+                <p>Project grid pending...</p>
+            </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
