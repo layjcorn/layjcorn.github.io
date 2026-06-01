@@ -1,8 +1,16 @@
 /* CSS Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+/* --- Custom Fonts --- */
+@font-face {
+    font-family: 'Science'; /* You can name this whatever you want */
+    src: url('assets/fonts/Science.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* Added Gradient Background */
 body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Moved here! */
     background: linear-gradient(to bottom right, #ffffff, #e9ecef);
     background-attachment: fixed;
     color: #333; 
@@ -30,12 +38,12 @@ body {
 
 /* Thinner Sidebar Navigation */
 nav {
-    width: 80px; /* Reduced from 250px */
+    width: 80px;
     height: 100vh;
     position: fixed;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers content horizontally */
+    align-items: center;
     padding: 2rem 0;
     background-color: #111; 
     color: #fff;
@@ -45,8 +53,8 @@ nav {
 
 /* Adjusted Logo */
 .logo { 
-    font-family: Impact, 'Arial Black', sans-serif; 
-    font-size: 1.8rem; /* Scaled down for thinner bar */
+    font-family: 'Science', sans-serif; 
+    font-size: 1.8rem;
     letter-spacing: -1px;
     margin-bottom: 3rem; 
     color: #fff; 
@@ -73,7 +81,7 @@ nav {
 
 .tooltip {
     position: absolute;
-    left: 100%; /* Positions it directly to the right of the nav bar */
+    left: 100%;
     margin-left: 15px;
     background-color: #333;
     color: #fff;
@@ -108,40 +116,220 @@ nav {
 
 /* Main Content Area */
 main {
-    margin-left: 80px; /* Matches new sidebar width */
+    margin-left: 80px;
     width: calc(100% - 80px);
     min-height: 100vh;
 }
 
-/* Hero Section */
-.hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 5rem; }
-.hero h1 { font-size: 3.5rem; margin-bottom: 1rem; color: #1a1a1a; }
-.hero h2 { font-size: 1.2rem; font-weight: 400; max-width: 600px; margin-bottom: 2rem; color: #555; }
-
-.cta-button { 
-    padding: 10px 20px; background-color: #0056b3; color: white; text-decoration: none; 
-    border-radius: 5px; font-weight: bold; transition: background-color 0.3s; width: max-content;
-}
-.cta-button:hover { background-color: #004494; }
-
 #projects { padding: 4rem 5rem; }
+
+/* SVG Icon Styling */
+.svg-icon {
+    width: 24px;
+    height: 24px;
+    filter: invert(70%);
+    transition: filter 0.2s;
+}
+
+.icon-link:hover .svg-icon {
+    filter: invert(100%);
+}
+
+/* Hide mobile text on desktop */
+.mobile-label {
+    display: none;
+}
+
+/* Portfolio Header (Replaces Hero) */
+.portfolio-header {
+    margin-bottom: 3rem;
+}
+.portfolio-header h1 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+}
+.portfolio-header p {
+    color: #555;
+    font-size: 1.1rem;
+}
+
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Project Cards */
+.project-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #eaeaea;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-image-placeholder {
+    height: 200px;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #111;
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.tech-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    background: #f0f4f8;
+    color: #0056b3;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+/* --- 3D Hero Banner --- */
+#hero-3d {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.hero-text-container {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    /* Flexbox keeps the split text centered on the Y axis */
+    display: flex; 
+    flex-direction: column;
+}
+
+/* Layer 1: Behind */
+.bg-text {
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-100%); /* Pushes first name up */
+}
+
+/* Layer 3: In Front */
+.fg-text {
+    z-index: 3;
+    top: 50%; /* Pushes last name down */
+    pointer-events: none; /* CRITICAL: Allows scrolling through the text */
+}
+
+.hero-text-container h1 {
+    font-family: 'Science', sans-serif;
+    font-size: 8rem;
+    line-height: 0.9;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    margin: 0;
+}
+
+/* Layer 2: The Model */
+model-viewer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2; 
+    pointer-events: none; 
+    /* The floating animation: 4 seconds total, smooth ease, repeating forever */
+    animation: floatIdle 4s ease-in-out infinite;
+}
+
+/* --- Idle Float Animation --- */
+@keyframes floatIdle {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); } /* Floats up 20 pixels */
+    100% { transform: translateY(0px); }
+}
+
+/* --- Dynamic Letter Animation Styles --- */
+.letter {
+    display: inline-block;
+    position: relative;
+    opacity: 0; /* Starts hidden */
+    filter: blur(10px); /* Starts blurred */
+    transform: translateY(30px); /* Starts slightly lower */
+    will-change: opacity, transform, filter; /* Hardware acceleration */
+    /* cubic-bezier adds a snappy, professional easing curve */
+    animation: revealLetter 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes revealLetter {
+    to {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateY(0px);
+    }
+}
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
     .mobile-menu-btn { display: block; }
 
-    nav { transform: translateX(-100%); }
+    .hero-text-container h1 { font-size: 4rem; }
+
+    nav { transform: translateX(-100%); width: 250px; align-items: flex-start; padding-left: 2rem; }
     nav.active { transform: translateX(0); }
+    
+    /* Reveal original logo spacing on mobile */
+    .logo { margin-top: 3rem; }
 
     main {
         margin-left: 0;
         width: 100%;
     }
 
-    .hero { padding: 0 2rem; }
-    .hero h1 { font-size: 2.5rem; }
     #projects { padding: 4rem 2rem; }
     
-    /* Disable tooltips on mobile to prevent clipping/tapping issues */
     .tooltip { display: none; }
+    
+    .icon.svg-icon { display: none; }
+    
+    .mobile-label { 
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #fff;
+    }
 }

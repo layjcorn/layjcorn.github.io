@@ -12,24 +12,27 @@
 
     <!-- Navigation -->
     <nav id="sidebar">
-        <div class="logo">RT.</div>
+        <div class="logo">RT</div>
         <ul class="nav-links">
             <li>
                 <a href="#projects" class="icon-link">
-                    <span class="icon">⚙️</span>
+                    <img src="assets/icons/project-icon.svg" alt="Projects" class="icon svg-icon">
                     <span class="tooltip">Projects</span>
+                    <span class="mobile-label">Projects</span>
                 </a>
             </li>
             <li>
                 <a href="#about" class="icon-link">
-                    <span class="icon">👤</span>
+                    <img src="assets/icons/user-icon.svg" alt="About" class="icon svg-icon">
                     <span class="tooltip">About</span>
+                    <span class="mobile-label">About</span>
                 </a>
             </li>
             <li>
-                <a href="Richard_Townsley_Resume_2026.pdf" target="_blank" class="icon-link">
-                    <span class="icon">📄</span>
+                <a href="assets/documents/Richard_Townsley_Resume_2026.pdf" target="_blank" class="icon-link">
+                    <img src="assets/icons/doc-icon.svg" alt="Resume" class="icon svg-icon">
                     <span class="tooltip">Resume</span>
+                    <span class="mobile-label">Resume</span>
                 </a>
             </li>
         </ul>
@@ -37,18 +40,68 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <header class="hero" id="home">
-            <h1>Richard Townsley</h1>
-            <h2>Mechanical Engineer specializing in multidisciplinary design, systems analysis, and hardware-software integration.</h2>
-            <a href="#projects" class="cta-button">View Engineering Projects</a>
-        </header>
+
+        <section id="hero-3d">
+            <div class="hero-text-container bg-text animate-text">
+                <h1>RICHARD</h1>
+            </div>
+            
+            <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+            
+            <model-viewer 
+                id="hero-model"
+                src="assets/models/pawn.glb" 
+                interaction-prompt="none"
+                camera-controls="false"
+                disable-zoom
+                disable-pan
+                environment-image="neutral"
+                exposure="1"
+                bounds="tight"
+                camera-orbit="0deg 80deg 400%" 
+                orientation="0deg 0deg 0deg"
+                field-of-view="7.5deg">
+            </model-viewer>
+
+            <div class="hero-text-container fg-text animate-text">
+                <h1>TOWNSLEY</h1>
+            </div>
+        </section>
 
         <!-- Project Grid Placeholder -->
         <section id="projects">
-            <h2>Selected Works</h2>
+            <div class="portfolio-header">
+                <h1>Richard Townsley | Mechanical Engineering</h1>
+                <p>Specializing in CAD/CAM, finite element analysis, and hardware-software integration.</p>
+            </div>
+            
             <div class="grid-container">
-                <p>Project grid pending...</p>
+                <a href="mower-guard.html" class="project-card">
+                    <div class="card-image-placeholder">Hardware Image / CAD Render</div>
+                    <div class="card-content">
+                        <h3>Radar-Actuated Mower Guard</h3>
+                        <p>Mechatronic safety mechanism design, SOLIDWORKS prototyping, and millimeter-wave radar integration.</p>
+                        <span class="tech-tag">Hardware + Analysis</span>
+                    </div>
+                </a>
+
+                <a href="uva-dine.html" class="project-card">
+                    <div class="card-image-placeholder">Julia Plot / Data Visualization</div>
+                    <div class="card-content">
+                        <h3>Life-Cycle Cost Modeling</h3>
+                        <p>Financial impact forecasting and structural integrity analysis for 5,000+ reusable assets using Julia.</p>
+                        <span class="tech-tag">Data + Logistics</span>
+                    </div>
+                </a>
+
+                <a href="topology-bracket.html" class="project-card">
+                    <div class="card-image-placeholder">FEA Stress Map</div>
+                    <div class="card-content">
+                        <h3>Bracket Topology Optimization</h3>
+                        <p>Mass reduction and structural analysis of load-bearing hardware optimized for 100N force.</p>
+                        <span class="tech-tag">FEA + CAD</span>
+                    </div>
+                </a>
             </div>
         </section>
     </main>
