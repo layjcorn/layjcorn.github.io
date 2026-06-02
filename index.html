@@ -40,68 +40,55 @@
 
     <!-- Main Content -->
     <main>
-
-        <section id="hero-3d">
+        <div id="scrolly-track">
+            
             <div class="hero-text-container bg-text animate-text">
                 <h1>RICHARD</h1>
             </div>
-            
-            <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-            
-            <model-viewer 
-                id="hero-model"
-                src="assets/models/pawn.glb" 
-                interaction-prompt="none"
-                camera-controls="false"
-                disable-zoom
-                disable-pan
-                environment-image="neutral"
-                exposure="1"
-                bounds="tight"
-                camera-orbit="0deg 80deg 400%" 
-                orientation="0deg 0deg 0deg"
-                field-of-view="7.5deg">
-            </model-viewer>
+
+            <div class="sticky-model-container">
+                <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+                <model-viewer 
+                    id="hero-model"
+                    src="assets/models/pawn.glb" 
+                    interaction-prompt="none"
+                    camera-controls="false"
+                    disable-zoom
+                    disable-pan
+                    environment-image="neutral"
+                    exposure="1"
+                    bounds="tight"
+                    field-of-view="7.5deg"
+                    scale="0.3 0.3 0.3"
+                    camera-orbit="0deg 80deg 150%" 
+                    orientation="0deg 0deg 0deg">
+                </model-viewer>
+            </div>
 
             <div class="hero-text-container fg-text animate-text">
                 <h1>TOWNSLEY</h1>
             </div>
-        </section>
 
-        <!-- Project Grid Placeholder -->
-        <section id="projects">
-            <div class="portfolio-header">
-                <h1>Richard Townsley | Mechanical Engineering</h1>
-                <p>Specializing in CAD/CAM, finite element analysis, and hardware-software integration.</p>
-            </div>
-            
-            <div class="grid-container">
-                <a href="mower-guard.html" class="project-card">
-                    <div class="card-image-placeholder">Hardware Image / CAD Render</div>
-                    <div class="card-content">
-                        <h3>Radar-Actuated Mower Guard</h3>
-                        <p>Mechatronic safety mechanism design, SOLIDWORKS prototyping, and millimeter-wave radar integration.</p>
+            <section id="project-mower">
+                <div class="landing-grid">
+                    <div class="landing-left">
+                        <h2>Radar-Actuated<br>Mower Guard</h2>
                         <span class="tech-tag">Hardware + Analysis</span>
                     </div>
-                </a>
-
-                <a href="uva-dine.html" class="project-card">
-                    <div class="card-image-placeholder">Julia Plot / Data Visualization</div>
-                    <div class="card-content">
-                        <h3>Life-Cycle Cost Modeling</h3>
-                        <p>Financial impact forecasting and structural integrity analysis for 5,000+ reusable assets using Julia.</p>
-                        <span class="tech-tag">Data + Logistics</span>
+                    
+                    <div class="landing-center"></div> 
+                    
+                    <div class="landing-right">
+                        <p>Engineered a retrofit safety mechanism for riding mowers to prevent traumatic amputation injuries, adhering to ANSI safety standards. Designed mechanical assemblies in SOLIDWORKS and created a solenoid-actuated guard activated by millimeter-wave radar sensors.</p>
+                        <a href="mower-guard.html" class="cta-button">View Engineering Case Study</a>
                     </div>
-                </a>
-
-                <a href="topology-bracket.html" class="project-card">
-                    <div class="card-image-placeholder">FEA Stress Map</div>
-                    <div class="card-content">
-                        <h3>Bracket Topology Optimization</h3>
-                        <p>Mass reduction and structural analysis of load-bearing hardware optimized for 100N force.</p>
-                        <span class="tech-tag">FEA + CAD</span>
-                    </div>
-                </a>
+                </div>
+            </section>
+            
+        </div> <section id="projects">
+            <h2>Additional Work</h2>
+            <div class="grid-container">
+                <p>Grid cards go here...</p>
             </div>
         </section>
     </main>

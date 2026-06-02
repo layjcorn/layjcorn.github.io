@@ -3,7 +3,7 @@
 /* --- Custom Fonts --- */
 @font-face {
     font-family: 'Science'; /* You can name this whatever you want */
-    src: url('assets/fonts/Science.otf') format('opentype');
+    src: url('assets/fonts/Ransom.ttf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -219,41 +219,39 @@ main {
     border-radius: 4px;
 }
 
-/* --- 3D Hero Banner --- */
-#hero-3d {
+/* --- Scrollytelling Architecture --- */
+#scrolly-track {
     position: relative;
     width: 100%;
-    height: 85vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-bottom: 1px solid #eaeaea;
 }
 
+.sticky-model-container {
+    position: sticky;
+    top: 0;
+    height: 100vh; /* Takes up the whole screen height */
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hero Text Layers */
 .hero-text-container {
     position: absolute;
-    text-align: center;
     width: 100%;
-    /* Flexbox keeps the split text centered on the Y axis */
-    display: flex; 
+    height: 110vh; /* Locks the text layer exactly to the first screen height */
+    top: 0;        /* Anchors it to the absolute top of the track */
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
-/* Layer 1: Behind */
-.bg-text {
-    z-index: 1;
-    top: 50%;
-    transform: translateY(-100%); /* Pushes first name up */
-}
-
-/* Layer 3: In Front */
-.fg-text {
-    z-index: 3;
-    top: 50%; /* Pushes last name down */
-    pointer-events: none; /* CRITICAL: Allows scrolling through the text */
-}
+/* We use transform instead of margin to safely push the text up/down from the true center */
+.bg-text { z-index: 1; transform: translateY(-15vh); }
+.fg-text { z-index: 3; transform: translateY(5vh); pointer-events: none; }
 
 .hero-text-container h1 {
     font-family: 'Science', sans-serif;
@@ -265,23 +263,33 @@ main {
     margin: 0;
 }
 
-/* Layer 2: The Model */
 model-viewer {
     width: 100%;
     height: 100%;
-    position: relative;
-    z-index: 2; 
-    pointer-events: none; 
-    /* The floating animation: 4 seconds total, smooth ease, repeating forever */
-    animation: floatIdle 4s ease-in-out infinite;
 }
 
-/* --- Idle Float Animation --- */
-@keyframes floatIdle {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); } /* Floats up 20 pixels */
-    100% { transform: translateY(0px); }
+/* --- Project 1: The Landing Zone --- */
+#project-mower {
+    position: relative;
+    z-index: 3;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5rem;
+    /* This pushes the landing zone exactly 1 screen below your name */
+    margin-top: 0vh; 
 }
+
+.landing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 Equal Columns */
+    gap: 2rem;
+    width: 100%;
+    align-items: center;
+}
+
+.landing-left h2 { font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #111; }
+.landing-right p { font-size: 1.1rem; color: #555; margin-bottom: 1.5rem; }
 
 /* --- Dynamic Letter Animation Styles --- */
 .letter {

@@ -15,18 +15,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3D Hero Scroll Animation ---
+    // --- 3D Hero Kinematic Render Loop ---
     const modelViewer = document.getElementById('hero-model');
     
     if (modelViewer) {
+        let scrollY = window.scrollY;
+        
+        // Passively track the scroll position without forcing immediate renders
         window.addEventListener('scroll', () => {
-            // Map scroll Y position to a rotation angle. 
-            // Adjust the 0.25 multiplier to make it spin faster or slower.
-            const rotation = window.scrollY * 0.25; 
-            
-            // Update the model's physical Y-axis orientation: "X Y Z"
-            modelViewer.setAttribute('orientation', `0deg ${rotation}deg 0deg`);
+            scrollY = window.scrollY;
         });
+
+        function renderLoop() {
+            const time = performance.now() / 1000; 
+            
+            // 1. Calculate Progress FIRST (0 at top, exactly 1.0 when docked)
+            const scrollProgress = Math.min(scrollY / window.innerHeight, 1);
+            
+            // 2. Base Rotations (Now strictly tied to our clamped progress limit)
+            // Multiplying by 360 means it does exactly 1 full spin before docking.
+            const scrollRotation = scrollProgress * 360; 
+            
+            const pitch = Math.sin(time * 1.5) * 1.5;  
+            const idleYaw = Math.sin(time * 1.0) * 3;   
+            const roll = Math.sin(time * 1.2) * 1.5;   
+            
+            const finalYaw = scrollRotation + idleYaw;
+            modelViewer.setAttribute('orientation', `${pitch}deg ${finalYaw}deg ${roll}deg`);
+            
+            // 3. Dynamic Scaling (The "Landing" effect)
+            const startScale = 0.3; 
+            const endScale = 0.15;  
+            
+            const currentScale = startScale - (scrollProgress * (startScale - endScale));
+            modelViewer.setAttribute('scale', `${currentScale} ${currentScale} ${currentScale}`);
+            
+            requestAnimationFrame(renderLoop);
+        }
+        
+        // Ignite the loop
+        renderLoop();
     }
 
     // --- Dynamic Text Reveal Animation ---
