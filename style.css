@@ -1,4 +1,5 @@
 /* CSS Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 /* --- Custom Fonts --- */
 @font-face {
@@ -36,16 +37,26 @@ body {
     border-radius: 5px;
 }
 
-/* Thinner Sidebar Navigation */
+/* Floating "Pill" Sidebar Navigation */
 nav {
     width: 80px;
-    height: 100vh;
+    height: auto; /* Let the icons dictate the height */
     position: fixed;
+    top: 50%;
+    left: 20px; /* Floats 20px off the left edge */
+    transform: translateY(-50%); /* Perfectly centers it vertically */
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem 0;
-    background-color: #111; 
+    
+    /* Glass-morphism effect */
+    background-color: rgba(17, 17, 17, 0.85); 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle inner glow */
+    border-radius: 40px; /* Creates the pill shape */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    
     color: #fff;
     z-index: 500;
     transition: transform 0.3s ease-in-out;
@@ -123,16 +134,16 @@ main {
 
 #projects { padding: 4rem 5rem; }
 
-/* SVG Icon Styling */
-.svg-icon {
-    width: 24px;
-    height: 24px;
-    filter: invert(70%);
-    transition: filter 0.2s;
+/* Letter Icon Styling */
+.letter-icon {
+    font-family: 'Science', sans-serif;
+    font-size: 1.5rem;
+    color: #aaa;
+    transition: color 0.2s;
 }
 
-.icon-link:hover .svg-icon {
-    filter: invert(100%);
+.icon-link:hover .letter-icon {
+    color: #fff;
 }
 
 /* Hide mobile text on desktop */
@@ -269,15 +280,26 @@ model-viewer {
 }
 
 /* --- Project 1: The Landing Zone --- */
+/* --- Project 1: The Landing Zone --- */
 #project-mower {
     position: relative;
-    z-index: 3;
+    /* Lowered from 3 to 1 so the 3D model (z-index: 2) sits ON TOP of it */
+    z-index: 1; 
     min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 0 5rem;
-    /* This pushes the landing zone exactly 1 screen below your name */
-    margin-top: 0vh; 
+    margin-top: 30vh; 
+}
+
+/* The 3D Model Bounding Box */
+.landing-center {
+    height: 500px; 
+    background-color: #e9ecef; /* Solid light grey filling */
+    border: 2px solid #d1d5db; /* Clean, solid border */
+    border-radius: 16px;
+    box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.05); /* Subtle inner shadow for depth */
+    /* Removed the blur filter entirely! */
 }
 
 .landing-grid {
@@ -317,7 +339,17 @@ model-viewer {
 
     .hero-text-container h1 { font-size: 4rem; }
 
-    nav { transform: translateX(-100%); width: 250px; align-items: flex-start; padding-left: 2rem; }
+    nav { 
+        height: 100vh; 
+        top: 0; 
+        left: 0; 
+        transform: translateX(-100%); 
+        width: 250px; 
+        align-items: flex-start; 
+        padding-left: 2rem; 
+        border-radius: 0; /* Removes the pill shape on mobile */
+        border: none;
+    }
     nav.active { transform: translateX(0); }
     
     /* Reveal original logo spacing on mobile */
@@ -332,7 +364,7 @@ model-viewer {
     
     .tooltip { display: none; }
     
-    .icon.svg-icon { display: none; }
+    .icon.letter-icon { display: none; }
     
     .mobile-label { 
         display: block;
