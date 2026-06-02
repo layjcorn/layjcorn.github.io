@@ -86,9 +86,27 @@ nav {
     transition: color 0.2s; 
 }
 
-.icon { font-size: 1.5rem; }
+/* --- Sidebar Icon Jiggle Animation --- */
+.icon { 
+    font-size: 1.5rem; 
+    display: inline-block; /* Crucial: Allows CSS transforms to apply to the text/image */
+    transition: color 0.2s; 
+}
 
 .icon-link:hover { color: #fff; }
+
+/* Triggers the jiggle ONLY on the icon itself, keeping the nav bar totally still */
+.icon-link:hover .icon {
+    animation: iconJiggle 0.4s cubic-bezier(0.25, -0.25, 0.75, 1.25) forwards;
+}
+
+@keyframes iconJiggle {
+    0% { transform: scale(1) rotate(0deg) translateY(0px); }
+    25% { transform: scale(1.2) rotate(-10deg) translateY(-2px); } /* Pops up and tilts left */
+    50% { transform: scale(1.2) rotate(10deg) translateY(-2px); }  /* Tilts right */
+    75% { transform: scale(1.2) rotate(-5deg) translateY(-2px); }  /* Settles left */
+    100% { transform: scale(1.1) rotate(0deg) translateY(-2px); }  /* Rests slightly larger */
+}
 
 .tooltip {
     position: absolute;
@@ -223,8 +241,8 @@ main {
 .tech-tag {
     display: inline-block;
     padding: 4px 8px;
-    background: #f0f4f8;
-    color: #0056b3;
+    background: #e8f5e9; /* Very light green background */
+    color: #1e7e34;      /* Deep green text */
     font-size: 0.8rem;
     font-weight: bold;
     border-radius: 4px;
@@ -252,15 +270,16 @@ main {
 .hero-text-container {
     position: absolute;
     width: 100%;
-    height: 110vh; /* Locks the text layer exactly to the first screen height */
-    top: 0;        /* Anchors it to the absolute top of the track */
+    height: 110vh; 
+    top: 0;        
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    /* MOVE IT HERE: The container now mathematically blends with the 3D model below it */
+    mix-blend-mode: difference; 
 }
 
-/* We use transform instead of margin to safely push the text up/down from the true center */
 .bg-text { z-index: 1; transform: translateY(-15vh); }
 .fg-text { z-index: 3; transform: translateY(5vh); pointer-events: none; }
 
@@ -268,10 +287,11 @@ main {
     font-family: 'Science', sans-serif;
     font-size: 8rem;
     line-height: 0.9;
-    color: #1a1a1a;
+    color: #ffffff; /* Keep this pure white! */
     text-transform: uppercase;
     letter-spacing: -2px;
     margin: 0;
+    /* Removed mix-blend-mode from here */
 }
 
 model-viewer {
@@ -280,10 +300,8 @@ model-viewer {
 }
 
 /* --- Project 1: The Landing Zone --- */
-/* --- Project 1: The Landing Zone --- */
 #project-mower {
     position: relative;
-    /* Lowered from 3 to 1 so the 3D model (z-index: 2) sits ON TOP of it */
     z-index: 1; 
     min-height: 100vh;
     display: flex;
@@ -295,23 +313,96 @@ model-viewer {
 /* The 3D Model Bounding Box */
 .landing-center {
     height: 500px; 
-    background-color: #e9ecef; /* Solid light grey filling */
-    border: 2px solid #d1d5db; /* Clean, solid border */
+    /* Subtle diagonal gradient: White to Light Green */
+    background: linear-gradient(to bottom right, #ffffff, #ebebeb); 
+    border: 1px solid #111; 
     border-radius: 16px;
-    box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.05); /* Subtle inner shadow for depth */
-    /* Removed the blur filter entirely! */
+    box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.05); 
 }
 
+/* Grid setup mapping to the 500px height of the center box */
 .landing-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* 3 Equal Columns */
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 3rem;
     width: 100%;
+    align-items: stretch; /* Forces left/right columns to match center box height */
+}
+
+/* Left Column: Right-Aligned */
+.landing-left {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers text vertically next to the box */
+    align-items: flex-end;   /* Pushes the tech-tag to the right */
+}
+
+.pre-header {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1e7e34; /* Deep engineering green */
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.landing-left h2 { 
+    font-size: 2.2rem; /* Shrunk from 3rem */
+    line-height: 1.1; 
+    margin-bottom: 1rem; 
+    color: #111; 
+}
+
+/* Right Column: Flex layout to push buttons to the bottom */
+.landing-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes top text up, bottom buttons down */
+    padding: 1rem 0; /* Slight padding to match inner visual bounds of the 500px box */
+}
+
+.landing-right h3 {
+    font-size: 1.1rem;
+    color: #111;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.landing-right p { 
+    font-size: 1rem; /* Shrunk from 1.1rem */
+    color: #555; 
+    margin-bottom: 1.5rem; 
+}
+
+/* Button Layout */
+.action-row {
+    display: flex;
+    gap: 1rem;
     align-items: center;
 }
 
-.landing-left h2 { font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #111; }
-.landing-right p { font-size: 1.1rem; color: #555; margin-bottom: 1.5rem; }
+.icon-btn {
+    background: #e9ecef;
+    border: 1px solid #d1d5db;
+    color: #333;
+    font-size: 1.5rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-btn:hover {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+    transform: rotate(90deg); /* Playful hover effect */
+}
 
 /* --- Dynamic Letter Animation Styles --- */
 .letter {

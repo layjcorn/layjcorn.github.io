@@ -50,7 +50,7 @@
                 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
                 <model-viewer 
                     id="hero-model"
-                    src="assets/models/pawn.glb" 
+                    src="assets/models/can.glb" 
                     interaction-prompt="none"
                     camera-controls="false"
                     disable-zoom
@@ -61,7 +61,7 @@
                     field-of-view="7.5deg"
                     scale="0.3 0.3 0.3"
                     camera-orbit="0deg 80deg 150%" 
-                    orientation="0deg 0deg 0deg">
+                    orientation="0deg 0deg 145deg"> 
                 </model-viewer>
             </div>
 
@@ -72,6 +72,7 @@
             <section id="project-mower">
                 <div class="landing-grid">
                     <div class="landing-left">
+                        <p class="pre-header">SENIOR CAPSTONE</p>
                         <h2>Radar-Actuated<br>Mower Guard</h2>
                         <span class="tech-tag">Hardware + Analysis</span>
                     </div>
@@ -79,8 +80,14 @@
                     <div class="landing-center"></div> 
                     
                     <div class="landing-right">
-                        <p>Engineered a retrofit safety mechanism for riding mowers to prevent traumatic amputation injuries, adhering to ANSI safety standards. Designed mechanical assemblies in SOLIDWORKS and created a solenoid-actuated guard activated by millimeter-wave radar sensors.</p>
-                        <a href="mower-guard.html" class="cta-button">View Engineering Case Study</a>
+                        <div class="right-text-content">
+                            <h3>System Overview</h3>
+                            <p>Engineered a retrofit safety mechanism for riding mowers to prevent traumatic amputation injuries, adhering to ANSI safety standards. Designed mechanical assemblies in SOLIDWORKS and created a solenoid-actuated guard activated by millimeter-wave radar sensors.</p>
+                        </div>
+                        
+                        <div class="action-row">
+                            <button id="spin-btn" class="icon-btn" title="Spin Model">⟳</button>
+                        </div>
                     </div>
                 </div>
             </section>
