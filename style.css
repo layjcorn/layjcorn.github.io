@@ -255,15 +255,34 @@ main {
 }
 
 .sticky-model-container {
-    position: sticky;
+    /* Follows the user as they scroll */
+    /* position: sticky;
     top: 0;
-    height: 100vh; /* Takes up the whole screen height */
+    height: 100vh;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+
+    /* Changed from sticky to absolute to lock it in place */
+    position: absolute; 
+    top: 0;
+    /* Matched the text container height to keep it perfectly centered */
+    height: 110vh; 
     width: 100%;
     z-index: 2;
     pointer-events: none;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.hero-layout-strut {
+    width: 100%;
+    height: 110vh; 
+    pointer-events: none;
 }
 
 /* Hero Text Layers */
@@ -276,8 +295,9 @@ main {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+
     /* MOVE IT HERE: The container now mathematically blends with the 3D model below it */
-    mix-blend-mode: difference; 
+    /* mix-blend-mode: difference;  */
 }
 
 .bg-text { z-index: 1; transform: translateY(-15vh); }
@@ -285,18 +305,81 @@ main {
 
 .hero-text-container h1 {
     font-family: 'Science', sans-serif;
-    font-size: 8rem;
+    font-size: 10rem;
     line-height: 0.9;
-    color: #ffffff; /* Keep this pure white! */
+    color: #000000;
+    /* color: #ffffff; */
     text-transform: uppercase;
     letter-spacing: -2px;
     margin: 0;
-    /* Removed mix-blend-mode from here */
 }
 
 model-viewer {
     width: 100%;
     height: 100%;
+}
+
+/* --- Scrolling Divider & Caption --- */
+.hero-divider-bg {
+    position: absolute;
+    /* Anchors to the top of the track, pushing it just below your name */
+    top: 75vh; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    max-width: 800px;
+    z-index: 1; /* Sits behind the 3D Model (z-index: 2) */
+    pointer-events: none;
+}
+
+.hero-divider-fg {
+    position: absolute;
+    /* Pushes the text just slightly below the scrolling dotted line */
+    top: 77vh; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 3; /* Sits in front of the 3D Model */
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+
+    /* mix-blend-mode: difference; */
+}
+
+.scrolling-line {
+  width: 100%;
+  height: 2px;
+  display: block; /* Prevents unwanted bottom spacing */
+}
+
+.scrolling-line line {
+  stroke: #000000;              /* Change color here */
+  stroke-width: 4px;            /* Change thickness here */
+  stroke-dasharray: 50px 15px;  /* First number = dash length, Second = gap */
+  animation: scrollDashes 30s linear infinite;
+}
+
+@keyframes scrollDashes {
+    to { stroke-dashoffset: -1000; }
+}
+
+.hero-caption {
+    font-family: 'Noto Sans Mono', monospace; /* Implementation of the Code Font */
+    font-size: 1.1rem;
+    color: #000000; 
+    /* color: #ffffff; */
+    
+    font-weight: 400; 
+    letter-spacing: 1px;
+    margin: 0;
+    text-align: center;
+    
+    /* Reveal Animation Logic */
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(30px);
+    animation: revealLetter 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.6s;
 }
 
 /* --- Project 1: The Landing Zone --- */
@@ -314,10 +397,10 @@ model-viewer {
 .landing-center {
     height: 500px; 
     /* Subtle diagonal gradient: White to Light Green */
-    background: linear-gradient(to bottom right, #ffffff, #ebebeb); 
+    background: linear-gradient(to bottom right, #ffffff, #ffffff); 
     border: 1px solid #111; 
     border-radius: 16px;
-    box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.05); 
+    /* box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.05);  */
 }
 
 /* Grid setup mapping to the 500px height of the center box */
