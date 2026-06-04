@@ -305,3 +305,184 @@ model-viewer {
         transform: translate(-50%, -50%);
     }
 }
+
+/* --- Skills Matrix Architecture --- */
+.skills-matrix {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    width: 100%;
+}
+
+.skill-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-title {
+    font-size: 1.1rem;
+    color: #111;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #111;
+    padding-bottom: 0.5rem;
+}
+
+.skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* --- Evidence-Linked Skill Tags --- */
+.skill-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.skill-name {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.proof-icon {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 1rem;
+    color: #999;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Hover States */
+.skill-link:hover {
+    background: #111;
+    border-color: #111;
+    transform: translateX(5px); /* Snappy slide to the right */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.skill-link:hover .skill-name,
+.skill-link:hover .proof-icon {
+    color: #fff;
+}
+
+.skill-link:hover .proof-icon {
+    transform: translate(2px, -2px); /* Pushes the arrow up and right */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1024px) {
+    .skills-matrix {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 4rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .skills-matrix {
+        grid-template-columns: 1fr;
+        row-gap: 3rem;
+    }
+}
+
+/* --- Compact Contact Strip Architecture --- */
+.contact-strip {
+    min-height: auto; 
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eaeaea;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 1rem;
+    align-items: center; /* Vertically aligns the left text with the right links */
+}
+
+.contact-title {
+    font-family: 'Science', sans-serif;
+    font-size: 2rem; /* Scaled down from 2.5rem */
+    color: #111;
+    letter-spacing: -1px;
+    margin-bottom: -0.25rem;
+}
+
+.status-line {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 0.65rem; /* Scaled down */
+    color: #c53f3f; 
+    font-weight: 600;
+}
+
+.contact-right {
+    display: flex;
+    justify-content: flex-end; /* Pushes the links flush to the right edge */
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+}
+
+/* Minimalist, Compact Link Styling */
+.contact-link {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 0.95rem;
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: all 0.2s ease;
+}
+
+.contact-link:hover {
+    color: #888;
+    border-bottom: 1px solid #111;
+    transform: translateY(-2px); /* Subtle lift on hover */
+}
+
+.footer-copyright {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 0.75rem;
+    color: #999;
+    border-top: 1px solid #eaeaea;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end; /* Aligns copyright with the right column */
+}
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr; /* Stacks vertically on phones */
+        gap: 2rem;
+        align-items: start;
+    }
+    
+    .contact-right {
+        justify-content: flex-start; /* Re-aligns links to the left on mobile */
+    }
+    
+    .contact-links {
+        gap: 1.5rem;
+        flex-direction: column; /* Stacks links vertically for tap targets */
+    }
+
+    .footer-copyright {
+        justify-content: flex-start;
+    }
+}
