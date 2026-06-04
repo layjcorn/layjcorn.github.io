@@ -1,317 +1,116 @@
 /* CSS Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
-/* --- Custom Fonts --- */
 @font-face {
-    font-family: 'Science'; /* You can name this whatever you want */
+    font-family: 'Science'; 
     src: url('assets/fonts/Ransom.ttf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
-/* Added Gradient Background */
 body { 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Moved here! */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     background: linear-gradient(to bottom right, #ffffff, #e9ecef);
     background-attachment: fixed;
     color: #333; 
     line-height: 1.6; 
-    display: flex; 
     overflow-x: hidden; 
-    min-height: 100vh;
 }
 
-/* Mobile Menu Button */
-.mobile-menu-btn {
-    display: none;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: #111;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-/* Floating "Pill" Sidebar Navigation */
-nav {
-    width: 80px;
-    height: auto; /* Let the icons dictate the height */
-    position: fixed;
-    top: 50%;
-    left: 20px; /* Floats 20px off the left edge */
-    transform: translateY(-50%); /* Perfectly centers it vertically */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 0;
-    
-    /* Glass-morphism effect */
-    background-color: rgba(17, 17, 17, 0.85); 
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle inner glow */
-    border-radius: 40px; /* Creates the pill shape */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    
-    color: #fff;
-    z-index: 500;
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Adjusted Logo */
-.logo { 
-    font-family: 'Science', sans-serif; 
-    font-size: 1.8rem;
-    letter-spacing: -1px;
-    margin-bottom: 3rem; 
-    color: #fff; 
-}
-
-.nav-links { list-style: none; display: flex; flex-direction: column; gap: 2rem; width: 100%; }
-
-/* Icon Rail & Tooltip Logic */
-.icon-link { 
+/* --- Hero Layout Architecture --- */
+.hero-container {
     position: relative;
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    text-decoration: none; 
-    color: #aaa; 
-    width: 100%;
-    padding: 10px 0;
-    transition: color 0.2s; 
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
-/* --- Sidebar Icon Jiggle Animation --- */
-.icon { 
-    font-size: 1.5rem; 
-    display: inline-block; /* Crucial: Allows CSS transforms to apply to the text/image */
-    transition: color 0.2s; 
-}
-
-.icon-link:hover { color: #fff; }
-
-/* Triggers the jiggle ONLY on the icon itself, keeping the nav bar totally still */
-.icon-link:hover .icon {
-    animation: iconJiggle 0.4s cubic-bezier(0.25, -0.25, 0.75, 1.25) forwards;
-}
-
-@keyframes iconJiggle {
-    0% { transform: scale(1) rotate(0deg) translateY(0px); }
-    25% { transform: scale(1.2) rotate(-10deg) translateY(-2px); } /* Pops up and tilts left */
-    50% { transform: scale(1.2) rotate(10deg) translateY(-2px); }  /* Tilts right */
-    75% { transform: scale(1.2) rotate(-5deg) translateY(-2px); }  /* Settles left */
-    100% { transform: scale(1.1) rotate(0deg) translateY(-2px); }  /* Rests slightly larger */
-}
-
-.tooltip {
+.corner {
     position: absolute;
-    left: 100%;
-    margin-left: 15px;
-    background-color: #333;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 10;
 }
 
-/* CSS Tooltip Triangle */
-.tooltip::before {
-    content: "";
+/* Top Left */
+.top-left {
+    top: 2.5rem;
+    left: 3rem;
+}
+
+.top-left h1 {
+    font-family: 'Science', sans-serif;
+    font-size: 3rem;
+    line-height: 0.9;
+    color: #000;
+    letter-spacing: -1px;
+}
+
+/* Top Right */
+.top-right {
+    top: 2.5rem;
+    right: 3rem;
+    display: flex;
+    gap: 2.5rem;
+}
+
+.top-right a {
+    font-family: 'Noto Sans Mono', monospace;
+    text-decoration: none;
+    color: #000;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s ease;
+}
+
+.top-right a:hover {
+    opacity: 0.5;
+}
+
+/* Bottom Left */
+.bottom-left {
+    bottom: 2.5rem;
+    left: 3rem;
+    max-width: 450px;
+}
+
+.bottom-left p {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 0.85rem;
+    color: #000;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+
+/* Bottom Right */
+.bottom-right {
+    bottom: 2.3rem;
+    right: 3rem;
+}
+
+.bottom-right p {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 0.65rem;
+    color: #000;
+    letter-spacing: 0.5px;
+    will-change: opacity;
+}
+
+/* --- 3D Model Centering & Bounding Box --- */
+.model-wrapper {
     position: absolute;
     top: 50%;
-    right: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #333 transparent transparent;
-}
-
-.icon-link:hover .tooltip {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Main Content Area */
-main {
-    margin-left: 80px;
-    width: calc(100% - 80px);
-    min-height: 100vh;
-}
-
-#projects { padding: 4rem 5rem; }
-
-/* Letter Icon Styling */
-.letter-icon {
-    font-family: 'Science', sans-serif;
-    font-size: 1.5rem;
-    color: #aaa;
-    transition: color 0.2s;
-}
-
-.icon-link:hover .letter-icon {
-    color: #fff;
-}
-
-/* Hide mobile text on desktop */
-.mobile-label {
-    display: none;
-}
-
-/* Portfolio Header (Replaces Hero) */
-.portfolio-header {
-    margin-bottom: 3rem;
-}
-.portfolio-header h1 {
-    font-size: 2.5rem;
-    color: #1a1a1a;
-    letter-spacing: -0.5px;
-}
-.portfolio-header p {
-    color: #555;
-    font-size: 1.1rem;
-}
-
-/* Grid Layout */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-/* Project Cards */
-.project-card {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    text-decoration: none;
-    color: #333;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    border: 1px solid #eaeaea;
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.card-image-placeholder {
-    height: 200px;
-    background: #e9ecef;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #888;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border-bottom: 1px solid #eaeaea;
-}
-
-.card-content {
-    padding: 1.5rem;
-    flex-grow: 1;
-}
-
-.card-content h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-    color: #111;
-}
-
-.card-content p {
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 1rem;
-}
-
-.tech-tag {
-    display: inline-block;
-    padding: 4px 8px;
-    background: #e8f5e9; /* Very light green background */
-    color: #1e7e34;      /* Deep green text */
-    font-size: 0.8rem;
-    font-weight: bold;
-    border-radius: 4px;
-}
-
-/* --- Scrollytelling Architecture --- */
-#scrolly-track {
-    position: relative;
-    width: 100%;
-}
-
-.sticky-model-container {
-    /* Follows the user as they scroll */
-    /* position: sticky;
-    top: 0;
-    height: 100vh;
-    width: 100%;
-    z-index: 2;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
-
-    /* Changed from sticky to absolute to lock it in place */
-    position: absolute; 
-    top: 0;
-    /* Matched the text container height to keep it perfectly centered */
-    height: 110vh; 
-    width: 100%;
-    z-index: 2;
-    pointer-events: none;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;  
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.hero-layout-strut {
-    width: 100%;
-    height: 110vh; 
-    pointer-events: none;
-}
-
-/* Hero Text Layers */
-.hero-text-container {
-    position: absolute;
-    width: 100%;
-    height: 110vh; 
-    top: 0;        
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-
-    /* MOVE IT HERE: The container now mathematically blends with the 3D model below it */
-    /* mix-blend-mode: difference;  */
-}
-
-.bg-text { z-index: 1; transform: translateY(-15vh); }
-.fg-text { z-index: 3; transform: translateY(5vh); pointer-events: none; }
-
-.hero-text-container h1 {
-    font-family: 'Science', sans-serif;
-    font-size: 10rem;
-    line-height: 0.9;
-    color: #000000;
-    /* color: #ffffff; */
-    text-transform: uppercase;
-    letter-spacing: -2px;
-    margin: 0;
+    z-index: 1;
 }
 
 model-viewer {
@@ -319,231 +118,190 @@ model-viewer {
     height: 100%;
 }
 
-/* --- Scrolling Divider & Caption --- */
-.hero-divider-bg {
-    position: absolute;
-    /* Anchors to the top of the track, pushing it just below your name */
-    top: 75vh; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30%;
-    max-width: 800px;
-    z-index: 1; /* Sits behind the 3D Model (z-index: 2) */
-    pointer-events: none;
-}
-
-.hero-divider-fg {
-    position: absolute;
-    /* Pushes the text just slightly below the scrolling dotted line */
-    top: 77vh; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    z-index: 3; /* Sits in front of the 3D Model */
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-
-    /* mix-blend-mode: difference; */
-}
-
-.scrolling-line {
-  width: 100%;
-  height: 2px;
-  display: block; /* Prevents unwanted bottom spacing */
-}
-
-.scrolling-line line {
-  stroke: #000000;              /* Change color here */
-  stroke-width: 4px;            /* Change thickness here */
-  stroke-dasharray: 50px 15px;  /* First number = dash length, Second = gap */
-  animation: scrollDashes 30s linear infinite;
-}
-
-@keyframes scrollDashes {
-    to { stroke-dashoffset: -1000; }
-}
-
-.hero-caption {
-    font-family: 'Noto Sans Mono', monospace; /* Implementation of the Code Font */
-    font-size: 1.1rem;
-    color: #000000; 
-    /* color: #ffffff; */
-    
-    font-weight: 400; 
-    letter-spacing: 1px;
-    margin: 0;
-    text-align: center;
-    
-    /* Reveal Animation Logic */
-    opacity: 0;
-    filter: blur(10px);
-    transform: translateY(30px);
-    animation: revealLetter 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.6s;
-}
-
-/* --- Project 1: The Landing Zone --- */
-#project-mower {
-    position: relative;
-    z-index: 1; 
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 0 5rem;
-    margin-top: 30vh; 
-}
-
-/* The 3D Model Bounding Box */
-.landing-center {
-    height: 500px; 
-    /* Subtle diagonal gradient: White to Light Green */
-    background: linear-gradient(to bottom right, #ffffff, #ffffff); 
-    border: 1px solid #111; 
-    border-radius: 16px;
-    /* box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.05);  */
-}
-
-/* Grid setup mapping to the 500px height of the center box */
-.landing-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
-    gap: 3rem;
-    width: 100%;
-    align-items: stretch; /* Forces left/right columns to match center box height */
-}
-
-/* Left Column: Right-Aligned */
-.landing-left {
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centers text vertically next to the box */
-    align-items: flex-end;   /* Pushes the tech-tag to the right */
-}
-
-.pre-header {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #1e7e34; /* Deep engineering green */
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
-}
-
-.landing-left h2 { 
-    font-size: 2.2rem; /* Shrunk from 3rem */
-    line-height: 1.1; 
-    margin-bottom: 1rem; 
-    color: #111; 
-}
-
-/* Right Column: Flex layout to push buttons to the bottom */
-.landing-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Pushes top text up, bottom buttons down */
-    padding: 1rem 0; /* Slight padding to match inner visual bounds of the 500px box */
-}
-
-.landing-right h3 {
-    font-size: 1.1rem;
-    color: #111;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.landing-right p { 
-    font-size: 1rem; /* Shrunk from 1.1rem */
-    color: #555; 
-    margin-bottom: 1.5rem; 
-}
-
-/* Button Layout */
-.action-row {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.icon-btn {
-    background: #e9ecef;
-    border: 1px solid #d1d5db;
-    color: #333;
-    font-size: 1.5rem;
-    width: 45px;
-    height: 45px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.icon-btn:hover {
-    background: #111;
-    color: #fff;
-    border-color: #111;
-    transform: rotate(90deg); /* Playful hover effect */
-}
-
-/* --- Dynamic Letter Animation Styles --- */
-.letter {
-    display: inline-block;
-    position: relative;
-    opacity: 0; /* Starts hidden */
-    filter: blur(10px); /* Starts blurred */
-    transform: translateY(30px); /* Starts slightly lower */
-    will-change: opacity, transform, filter; /* Hardware acceleration */
-    /* cubic-bezier adds a snappy, professional easing curve */
-    animation: revealLetter 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
-@keyframes revealLetter {
-    to {
-        opacity: 1;
-        filter: blur(0px);
-        transform: translateY(0px);
-    }
-}
-
-/* --- MOBILE RESPONSIVENESS --- */
+/* Mobile Adjustments for Hero */
 @media (max-width: 768px) {
-    .mobile-menu-btn { display: block; }
-
-    .hero-text-container h1 { font-size: 4rem; }
-
-    nav { 
-        height: 100vh; 
-        top: 0; 
-        left: 0; 
-        transform: translateX(-100%); 
-        width: 250px; 
-        align-items: flex-start; 
-        padding-left: 2rem; 
-        border-radius: 0; /* Removes the pill shape on mobile */
-        border: none;
+    .top-left { top: 1.5rem; left: 1.5rem; }
+    .top-right { top: 1.5rem; right: 1.5rem; gap: 1rem; }
+    .bottom-left { bottom: 1.5rem; left: 1.5rem; max-width: 60%; }
+    .bottom-right { bottom: 1.5rem; right: 1.5rem; }
+    
+    .model-wrapper {
+        width: 80vw;
+        height: 50vh;
     }
-    nav.active { transform: translateX(0); }
-    
-    /* Reveal original logo spacing on mobile */
-    .logo { margin-top: 3rem; }
+}
 
-    main {
-        margin-left: 0;
-        width: 100%;
+/* --- Section Globals --- */
+.section-container {
+    padding: 6rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-family: 'Science', sans-serif;
+    font-size: 3rem;
+    color: #000;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* --- Tech Tags --- */
+.tag-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.tech-tag {
+    font-family: 'Noto Sans Mono', monospace;
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.9); /* Brightened to contrast with dark card background */
+    color: #111;      
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+}
+
+/* --- Expanding Gallery Architecture --- */
+.expanding-gallery {
+    display: flex;
+    width: 100%;
+    height: 500px; 
+    gap: 1rem;
+    overflow: hidden;
+}
+
+.gallery-card {
+    position: relative;
+    flex: 1; 
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #333;
+    background: #111;
+    cursor: pointer;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Expanded State Width */
+.gallery-card.active {
+    flex: 4; 
+}
+
+/* Background Image Placeholders */
+.card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f9fa;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+}
+
+/* Simulated Image Colors for Testing */
+.card-bg.tall { background: linear-gradient(to bottom, #e2e8f0, #cbd5e1); }
+.card-bg.wide { background: linear-gradient(to bottom, #f1f5f9, #e2e8f0); }
+.card-bg.square { background: linear-gradient(to bottom, #f8fafc, #f1f5f9); }
+
+.gallery-card:hover .card-bg,
+.gallery-card.active .card-bg {
+    opacity: 0.9;
+}
+
+/* --- Card Content (Visible only when expanded) --- */
+.card-content {
+    position: relative;
+    z-index: 3;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    min-width: 400px; 
+}
+
+.gallery-card.active .card-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s; 
+}
+
+.card-text h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.card-text p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+    max-width: 80%;
+}
+
+/* --- Vertical Title (Visible only when collapsed) --- */
+.vertical-title {
+    position: absolute;
+    z-index: 2;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(-90deg);
+    transform-origin: bottom left;
+    font-family: 'Science', sans-serif;
+    color: #fff;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-card.active .vertical-title {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* --- Mobile Responsiveness for Gallery --- */
+@media (max-width: 992px) {
+    .expanding-gallery {
+        flex-direction: column;
+        height: 800px; 
     }
-
-    #projects { padding: 4rem 2rem; }
     
-    .tooltip { display: none; }
+    .card-content {
+        min-width: 100%;
+    }
     
-    .icon.letter-icon { display: none; }
-    
-    .mobile-label { 
-        display: block;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #fff;
+    .vertical-title {
+        transform: translateX(-50%); 
+        bottom: center;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 }
