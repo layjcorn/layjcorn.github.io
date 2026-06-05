@@ -45,35 +45,102 @@ document.addEventListener('DOMContentLoaded', () => {
         renderLoop();
     }
 
-    // --- Expanding Gallery Logic ---
+    // --- 1. Expanding Gallery & Shared 3D Stage Logic (Tier 1) ---
     const gallery = document.getElementById('project-gallery');
     const cards = document.querySelectorAll('.gallery-card');
+    const sharedModelViewer = document.getElementById('shared-model-viewer');
     
     if (gallery && cards.length > 0) {
-        // Find the card we designated as the default
         const defaultCard = document.querySelector('.gallery-card[data-default="true"]');
 
         cards.forEach(card => {
-            // When mouse enters a card, make it active and deactivate others
             card.addEventListener('mouseenter', () => {
+                // 1. Handle accordion expansion
                 cards.forEach(c => c.classList.remove('active'));
                 card.classList.add('active');
+
+                // 2. Handle 3D model swapping
+                if (sharedModelViewer) {
+                    const newModel = card.getAttribute('data-model');
+                    // Only update if it's a different model to prevent reloading flashes
+                    if (newModel && sharedModelViewer.getAttribute('src') !== newModel) {
+                        sharedModelViewer.setAttribute('src', newModel);
+                    }
+                }
             });
         });
 
-        // When the mouse leaves the entire gallery area, return to the default card
         gallery.addEventListener('mouseleave', () => {
+            // Revert to default card and default model when mouse leaves gallery
             cards.forEach(c => c.classList.remove('active'));
             if (defaultCard) {
                 defaultCard.classList.add('active');
+                
+                if (sharedModelViewer) {
+                    const defaultModel = defaultCard.getAttribute('data-model');
+                    if (defaultModel) {
+                        sharedModelViewer.setAttribute('src', defaultModel);
+                    }
+                }
             }
         });
     }
+
+    // --- 2. Tag Overflow Logic (Tier 2 Grid) ---
+    const MAX_TAGS = 4;
+    const tagContainers = document.querySelectorAll('.tag-container');
+    
+    tagContainers.forEach(container => {
+        const tags = Array.from(container.querySelectorAll('.skill-tag'));
+        
+        if (tags.length > MAX_TAGS) {
+            let hiddenCount = 0;
+            
+            tags.forEach((tag, index) => {
+                if (index >= MAX_TAGS) {
+                    tag.style.display = 'none';
+                    hiddenCount++;
+                }
+            });
+            
+            if (hiddenCount > 0) {
+                const overflowTag = document.createElement('span');
+                overflowTag.classList.add('skill-tag');
+                overflowTag.textContent = `+${hiddenCount} more`;
+                container.appendChild(overflowTag);
+            }
+        }
+    });
 });
 
-
-
-
-
-// MOWER-GUARD.HTML INTERACTIVE SCHEMATIC LOGIC
+// Handles tag overflow for the project cards
+document.addEventListener("DOMContentLoaded", () => {
+  const MAX_TAGS = 4;
+  
+  const tagContainers = document.querySelectorAll('.tag-container');
+  
+  tagContainers.forEach(container => {
+    const tags = Array.from(container.querySelectorAll('.skill-tag'));
+    
+    if (tags.length > MAX_TAGS) {
+      let hiddenCount = 0;
+      
+      // Hide tags beyond the maximum threshold
+      tags.forEach((tag, index) => {
+        if (index >= MAX_TAGS) {
+          tag.style.display = 'none';
+          hiddenCount++;
+        }
+      });
+      
+      // Create and append the '+N more' pill
+      if (hiddenCount > 0) {
+        const overflowTag = document.createElement('span');
+        overflowTag.classList.add('skill-tag');
+        overflowTag.textContent = `+${hiddenCount} more`;
+        container.appendChild(overflowTag);
+      }
+    }
+  });
+});
 

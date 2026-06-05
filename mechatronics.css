@@ -1,0 +1,461 @@
+/* --- Mechatronics Page Specific Variables --- */
+:root {
+    /* Mapped strictly to the homepage established color palette */
+    --stat-bg: #111111; 
+    --stat-text: #ffffff;
+    --border-color: #eaeaea; 
+    --code-bg: #111111;
+    --callout-bg: #e8f5e9; 
+    --callout-border: #1e7e34; 
+    
+    /* Diagram & Chart variables */
+    --svg-stroke: #111111;
+    --svg-fill: #ffffff;
+    --svg-hover: #e9ecef; 
+    --chart-target: #aaaaaa;
+    --chart-servo: #555555;
+    --chart-stepper: #1e7e34; 
+}
+
+/* Base Page Layout - Matching Homepage Spacing */
+main.project-page {
+    padding: 4rem 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Header & Stats --- */
+.back-nav {
+    display: inline-block;
+    font-family: 'Noto Sans Mono', monospace;
+    color: #555;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.back-nav:hover {
+    color: #111;
+    transform: translateX(-5px);
+}
+
+.project-header { 
+    margin-bottom: 2.5rem; 
+    text-align: left; /* Centered */
+}
+
+.project-header h1 { 
+    font-family: 'Science', sans-serif; 
+    font-size: 3.5rem; 
+    line-height: 1;
+    margin-bottom: 1rem; 
+    color: #111;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.framing-statement { 
+    font-size: 1.1rem; 
+    color: #555; 
+    margin: 0 0 2rem 0; /* Centered with auto margins */ 
+}
+
+.dark-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem; /* Tightened gap */
+    background-color: var(--stat-bg);
+    color: var(--stat-text);
+    padding: 1.5rem 2rem; /* Shrunk vertical padding */
+    border-radius: 8px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+}
+
+.stat-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+.stat-value { 
+    font-size: 1.4rem; /* Shrunk from 1.8rem */
+    font-weight: 600; 
+    font-family: 'Noto Sans Mono', monospace; 
+    margin-bottom: 0.25rem; /* Tighter spacing */
+    color: #ffffff;
+}
+
+.stat-label { 
+    font-size: 0.75rem; /* Shrunk for sleeker profile */
+    color: #aaaaaa; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}
+
+/* --- In-Page Nav --- */
+.in-page-nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center; /* Centered the nav links to match header */
+    gap: 3rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+    margin-bottom: 4rem;
+}
+
+.in-page-nav a {
+    font-family: 'Noto Sans Mono', monospace;
+    text-decoration: none;
+    color: #888;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.in-page-nav a:hover { color: #111; }
+
+/* --- Sections --- */
+/* Removed max-width: 900px so it fills the 1200px main container */
+.project-section { margin-bottom: 6rem; width: 100%; } 
+.project-section h2 { 
+    font-size: 2.2rem; 
+    line-height: 1.1;
+    margin-bottom: 1.5rem; 
+    color: #111; 
+}
+.project-section h3 { 
+    font-size: 1.1rem; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 3rem 0 1rem; 
+    color: #111; 
+}
+.project-section p { 
+    margin-bottom: 1.5rem; 
+    color: #555; 
+}
+
+/* --- SVGs & Diagrams --- */
+.svg-container {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #ffffff;
+    margin-bottom: 2rem;
+    position: relative;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.borderless-svg {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.architecture-diagram {
+    margin: 0 auto 3rem auto;
+}
+
+.diagram-instruction { 
+    font-family: 'Noto Sans Mono', monospace; 
+    font-size: 0.85rem; 
+    color: #888; 
+    margin-bottom: 1rem !important; 
+}
+
+.eng-diagram { width: 100%; height: auto; }
+.eng-diagram rect { fill: var(--svg-fill); stroke: var(--svg-stroke); stroke-width: 2; transition: fill 0.2s; }
+.eng-diagram text { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 12px; font-weight: 600; fill: var(--svg-stroke); text-anchor: middle; pointer-events: none; }
+.eng-diagram .diagram-label { font-size: 10px; fill: #555; font-weight: normal; }
+.signal-line { stroke: var(--svg-stroke); stroke-width: 2; fill: none; }
+.decision-node { fill: var(--svg-fill); stroke: var(--svg-stroke); stroke-width: 2; }
+.recovery-node { stroke-dasharray: 4; stroke: var(--callout-border); }
+
+.interactive-node { cursor: pointer; }
+.interactive-node:hover rect { fill: var(--svg-hover); }
+
+/* Tooltip */
+.svg-tooltip {
+    position: absolute;
+    background: #111;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: 'Noto Sans Mono', monospace;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+    white-space: pre-line;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.svg-tooltip::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #111 transparent transparent;
+}
+
+/* Side-by-side grid for the flowchart and code block */
+.logic-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 2.5rem;
+    align-items: center; 
+    margin-bottom: 2rem;
+}
+
+/* Code layout utilities */
+.split-code { 
+    margin: 0; 
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+}
+.split-code pre { 
+    padding: 1.25rem; 
+    flex-grow: 1; /* Pushes the block to fill height */
+}
+.split-code code { 
+    font-size: 0.75rem; 
+    line-height: 1.5; 
+}
+.split-code .code-header { 
+    font-size: 0.75rem; 
+    padding: 0.5rem 1rem; 
+}
+
+/* JavaScript Interaction Classes */
+.hidden-code {
+    display: none;
+}
+.active-code {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- Code Blocks --- */
+.code-wrapper { margin: 2rem 0; border-radius: 8px; overflow: hidden; background: var(--code-bg); border: 1px solid #333; }
+.code-header { background: #222; color: #aaa; padding: 0.75rem 1.5rem; font-family: 'Noto Sans Mono', monospace; font-size: 0.85rem; border-bottom: 1px solid #333; }
+pre { margin: 0; padding: 1.5rem; overflow-x: auto; }
+code { font-family: 'Noto Sans Mono', monospace; font-size: 0.9rem; color: #eee; line-height: 1.6; }
+
+/* Custom Syntax Highlighting mapped to global accent colors */
+.comment { color: #888; font-style: italic; }
+.keyword { color: #fff; font-weight: 600; }
+.function { color: var(--callout-bg); }
+.number { color: var(--callout-border); }
+
+/* --- Placeholders --- */
+.asset-placeholder {
+    width: 100%;
+    background: #e9ecef; 
+    border: 1px dashed #aaaaaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    color: #333;
+    font-family: 'Noto Sans Mono', monospace;
+    font-weight: 600;
+    padding: 3rem 2rem;
+}
+.video-placeholder { height: 400px; }
+.diagram-placeholder { height: 300px; }
+.asset-placeholder span { display: block; font-weight: normal; font-size: 0.85rem; margin-top: 0.5rem; color: #666; font-family: 'Segoe UI', Tahoma, sans-serif;}
+.media-caption { font-size: 0.9rem !important; color: #666 !important; text-align: center; font-style: italic; margin-top: 1rem;}
+
+/* --- Table & Data --- */
+.chart-wrapper { width: 100%; margin-bottom: 2rem; padding: 2rem; background: #fff; border: 1px solid var(--border-color); border-radius: 8px; }
+.data-table { width: 100%; border-collapse: collapse; margin-bottom: 3rem; text-align: left; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+.data-table th, .data-table td { padding: 15px 20px; border-bottom: 1px solid var(--border-color); }
+.data-table th { background: #f9fafb; font-weight: 600; color: #111; font-family: 'Noto Sans Mono', monospace; font-size: 0.85rem; text-transform: uppercase; }
+.data-table td { color: #555; }
+
+.callout-block {
+    background-color: var(--callout-bg);
+    border-left: 4px solid var(--callout-border);
+    padding: 2rem;
+    margin: 3rem 0;
+    color: var(--callout-border);
+    border-radius: 0 8px 8px 0;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+/* --- Code Link --- */
+.code-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Noto Sans Mono', monospace;
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid #111;
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+}
+.code-link:hover {
+    color: var(--callout-border);
+    border-color: var(--callout-border);
+}
+
+/* --- Footer --- */
+.page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 4rem;
+}
+.footer-nav-link { 
+    font-family: 'Noto Sans Mono', monospace;
+    color: #555; 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 0.9rem; 
+    transition: color 0.2s; 
+}
+.footer-nav-link:hover { color: #111; }
+.center-link { color: #aaaaaa; font-weight: 400; }
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+    .logic-split-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    main.project-page { padding: 3rem 2rem; }
+    .project-header h1 { font-size: 2.5rem; }
+    .dark-strip { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; }
+    .in-page-nav { flex-direction: column; gap: 1rem; padding: 1rem; text-align: center; }
+    .page-footer { flex-direction: column; gap: 2rem; text-align: center; }
+}
+
+
+/* --- Full-Bleed Inverted Dark Section (Section B) --- */
+.inverted-section {
+    /* Full-bleed viewport breakout trick */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    
+    /* Diagonal gradient from black to dark gray */
+    background: linear-gradient(to bottom right, #050505, #1c1c1c);
+    padding: 5rem 0; /* Vertical padding only, inner wrapper handles horizontal */
+    border-radius: 0; /* Flush edge-to-edge */
+    color: #bbbbbb;
+    box-shadow: inset 0 1px 0 #333, inset 0 -1px 0 #333; /* Subtle top/bottom definition */
+}
+
+/* Restricts the text back to the global grid bounds */
+.inverted-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5rem;
+    box-sizing: border-box;
+}
+
+/* Invert Typography */
+.inverted-inner h2 { 
+    color: #ffffff; 
+    border-bottom-color: #333333; 
+}
+.inverted-inner h3 { 
+    color: #ffffff; 
+}
+.inverted-inner p { 
+    color: #aaaaaa; 
+}
+
+/* Force Table and Chart to remain brilliant white */
+.inverted-inner .chart-wrapper { 
+    width: 100%; 
+    height: 400px; /* An explicit height anchors the canvas bounds */
+    display: block; /* Forces full width */
+    margin-bottom: 2rem; 
+    padding: 2rem; 
+    background: #ffffff; 
+    border: 1px solid var(--border-color); 
+    border-radius: 8px; 
+    position: relative; 
+}
+
+.inverted-inner .chart-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.inverted-inner .data-table {
+    background-color: #ffffff;
+    border-color: #eaeaea;
+}
+
+/* Ensure table text remains high-contrast against the white background */
+.inverted-inner .data-table th,
+.inverted-inner .data-table td {
+    color: #555555;
+    border-bottom-color: #eaeaea;
+}
+.inverted-inner .data-table th {
+    color: #111111;
+    background-color: #f9fafb;
+}
+
+/* Adjust callout and placeholders for dark mode */
+.inverted-inner .callout-block {
+    background-color: rgba(30, 126, 52, 0.1); 
+    color: #4ade80; 
+    border-left-color: #4ade80;
+}
+
+.inverted-inner .asset-placeholder {
+    background-color: #111111;
+    border-color: #333333;
+    color: #eeeeee;
+}
+.inverted-inner .asset-placeholder span,
+.inverted-inner .media-caption {
+    color: #777777 !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .inverted-section {
+        padding: 4rem 0;
+    }
+    .inverted-inner {
+        padding: 0 2rem;
+    }
+}
