@@ -1,58 +1,18 @@
 /* --- Project Page Architecture --- */
 .project-page {
-    background: #ffffff; /* Clean white background for a technical report feel */
+    background: #ffffff;
     color: #111;
 }
 
 .project-container {
-    max-width: 1000px; /* Tighter width for optimal reading line length */
+    max-width: 1000px; 
     margin: 0 auto;
     padding: 0 3rem 6rem 3rem;
 }
 
-.project-nav {
-    padding: 2.5rem 3rem;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.back-link {
-    font-family: 'Noto Sans Mono', monospace;
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: #555;
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: color 0.2s ease;
-}
-
-.back-link:hover {
-    color: #111;
-}
-
-/* --- Hero & Header --- */
-.project-hero {
-    margin-top: 2rem;
-    margin-bottom: 5rem;
-    border-bottom: 2px solid #111;
-    padding-bottom: 3rem;
-}
-
-.project-title {
-    font-family: 'Science', sans-serif;
-    font-size: 4rem;
-    line-height: 0.9;
-    letter-spacing: -1px;
-    margin-bottom: 1.5rem;
-    color: #000;
-}
-
-.project-summary {
-    font-size: 1.25rem;
-    color: #333;
-    max-width: 800px;
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
+/* --- Intro Stats (Relocated Below Hero) --- */
+.intro-stats {
+    margin-top: 4rem; /* Adds breathing room after scrolling past the hero */
 }
 
 .doi-link {
@@ -60,12 +20,12 @@
     font-family: 'Noto Sans Mono', monospace;
     font-size: 0.9rem;
     font-weight: 700;
-    color: #1e7e34; /* Green highlights credibility */
+    color: #1e7e34;
     text-decoration: none;
     padding: 8px 16px;
     background: #e8f5e9;
     border-radius: 4px;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     transition: background 0.2s ease;
 }
 
@@ -126,28 +86,6 @@
     margin-bottom: 1.5rem;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .project-container {
-        padding: 0 1.5rem 4rem 1.5rem;
-    }
-    .project-nav {
-        padding: 1.5rem;
-    }
-    .project-title {
-        font-size: 2.5rem;
-    }
-    .stat-strip {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-}
-
-
-
-
-
-
 /* --- Split Content Architecture --- */
 .content-split {
     display: grid;
@@ -158,11 +96,11 @@
 
 .reverse-split {
     grid-template-columns: 1fr 1fr;
-    direction: rtl; /* Flips the columns visually */
+    direction: rtl;
 }
 
 .reverse-split > * {
-    direction: ltr; /* Resets text direction */
+    direction: ltr;
 }
 
 .split-visuals {
@@ -171,21 +109,24 @@
     gap: 1.5rem;
 }
 
-.image-placeholder {
+/* --- Responsive Model Bounding Boxes --- */
+.model-box {
     background: #f8f9fa;
     border: 1px solid #eaeaea;
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #999;
-    font-family: 'Noto Sans Mono', monospace;
-    font-size: 0.85rem;
+    overflow: hidden;
 }
 
-.image-placeholder.tall { height: 400px; }
-.image-placeholder.wide { height: 250px; }
-.image-placeholder.square { height: 450px; }
+.model-box.tall { height: 450px; }
+.model-box.square { height: 400px; }
+
+.model-box model-viewer {
+    width: 100%;
+    height: 100%;
+}
 
 /* --- Testing Grid & Tables --- */
 .testing-grid {
@@ -280,7 +221,7 @@
     .reverse-split,
     .testing-grid {
         grid-template-columns: 1fr;
-        direction: ltr; /* Resets the RTL trick on mobile */
+        direction: ltr; 
     }
     
     .downloads-section {
@@ -288,77 +229,12 @@
     }
 }
 
-
-
-
-/* --- Hero Layout Update --- */
-.project-hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    margin-top: 2rem;
-    margin-bottom: 5rem;
-    border-bottom: 2px solid #111;
-    padding-bottom: 3rem;
-}
-
-.hero-text-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.hero-model-container {
-    width: 100%;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-model-container model-viewer {
-    width: 100%;
-    height: 100%;
-}
-
-.stat-strip {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1.5rem;
-    background: #f8f9fa;
-    padding: 2rem;
-    border-radius: 4px;
-    border: 1px solid #eaeaea;
-}
-
-/* --- Responsive Model Bounding Boxes --- */
-.model-box {
-    background: #f8f9fa;
-    border: 1px solid #eaeaea;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Contains the 3D canvas tightly */
-}
-
-.model-box.tall { height: 450px; }
-.model-box.square { height: 400px; }
-
-.model-box model-viewer {
-    width: 100%;
-    height: 100%;
-}
-
-/* --- Mobile Adjustments --- */
-@media (max-width: 992px) {
-    .project-hero {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+@media (max-width: 768px) {
+    .project-container {
+        padding: 0 1.5rem 4rem 1.5rem;
     }
-    
-    .hero-model-container {
-        height: 350px;
-        order: -1; /* Pushes the 3D model above the text on mobile */
+    .stat-strip {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }

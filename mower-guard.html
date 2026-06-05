@@ -14,51 +14,64 @@
 </head>
 <body class="project-page">
 
-    <nav class="project-nav">
-        <a href="index.html" class="back-link">← BACK TO PORTFOLIO</a>
-    </nav>
+    <div class="hero-container">
+        <div class="corner top-left">
+            <h1>RADAR-ACTUATED<br>MOWER GUARD</h1>
+        </div>
+
+        <nav class="corner top-right">
+            <a href="index.html">← BACK TO PORTFOLIO</a>
+        </nav>
+
+        <div class="corner bottom-left">
+            <p>ANSI B71.1-compliant retrofit safety mechanism for riding mowers using millimeter-wave radar and solenoid actuation.</p>
+        </div>
+
+        <div class="corner bottom-right" id="scroll-indicator">
+            <p>SCROLL DOWN</p>
+        </div>
+
+        <div class="model-wrapper">
+            <model-viewer 
+                class="idle-model"
+                id="hero-model"
+                src="assets/models/master.glb"
+                tone-mapping="commerce"
+                exposure="0.5"
+                shadow-intensity="0"
+                interaction-prompt="none"
+                camera-controls="false"
+                disable-zoom
+                disable-pan
+                environment-image="neutral"
+                bounds="tight"
+                field-of-view="10deg"
+                camera-orbit="45deg 60deg 100%" 
+                orientation="0deg 0deg 15deg"> 
+            </model-viewer>
+        </div>
+    </div>
 
     <main class="project-container">
         
-        <header class="project-hero">
-            <div class="hero-text-content">
-                <h1 class="project-title">RADAR-ACTUATED<br>MOWER GUARD</h1>
-                <p class="project-summary">ANSI B71.1-compliant retrofit safety mechanism for riding mowers using millimeter-wave radar and solenoid actuation.</p>
-                
-                <a href="https://doi.org/10.18130/pec5-5015" target="_blank" class="doi-link">DOI: 10.18130/pec5-5015 ↗</a>
+        <section class="project-section intro-stats">
+            <a href="https://doi.org/10.18130/pec5-5015" target="_blank" class="doi-link">DOI: 10.18130/pec5-5015 ↗</a>
 
-                <div class="stat-strip">
-                    <div class="stat-box">
-                        <span class="stat-label">RESPONSE TIME</span>
-                        <span class="stat-value">284 ms</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">PROTOTYPE COST</span>
-                        <span class="stat-value">&lt;20% Base</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">STANDARD</span>
-                        <span class="stat-value">ANSI B71.1</span>
-                    </div>
+            <div class="stat-strip">
+                <div class="stat-box">
+                    <span class="stat-label">RESPONSE TIME</span>
+                    <span class="stat-value">284 ms</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">PROTOTYPE COST</span>
+                    <span class="stat-value">&lt;20% Base</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">STANDARD</span>
+                    <span class="stat-value">ANSI B71.1</span>
                 </div>
             </div>
-            
-            <div class="hero-model-container">
-                <model-viewer 
-                    class="idle-model"
-                    src="assets/models/master.glb" 
-                    interaction-prompt="none"
-                    camera-controls="false"
-                    disable-zoom
-                    disable-pan
-                    environment-image="neutral"
-                    exposure="1"
-                    bounds="tight"
-                    camera-orbit="45deg 60deg 100%" 
-                    orientation="0deg 0deg 15deg"> 
-                </model-viewer>
-            </div>
-        </header>
+        </section>
 
         <section class="project-section content-split">
             <div class="split-text">
@@ -120,9 +133,9 @@
             <h2 class="section-title">TESTING & ITERATION</h2>
             <div class="testing-grid">
                 <div class="testing-text text-content">
-                    <p>Performance was validated using high-speed camera analysis across multiple dynamic scenarios[cite: 470, 482]. The mechanical drop time averaged 46ms, well within the required safety threshold[cite: 472]. Total system latency—from the moment a human enters the 1.0m detection zone to the guard impacting the ground—averaged 284ms[cite: 473, 475, 452]. The system correctly biased toward false positives, safely deploying when a subject walked perpendicular to the mower, and correctly remaining idle when the mower moved away from a stationary subject[cite: 487, 488, 489, 491].</p>
+                    <p>Performance was validated using high-speed camera analysis across multiple dynamic scenarios. The mechanical drop time averaged 46ms, well within the required safety threshold. Total system latency—from the moment a human enters the 1.0m detection zone to the guard impacting the ground—averaged 284ms. The system correctly biased toward false positives, safely deploying when a subject walked perpendicular to the mower, and correctly remaining idle when the mower moved away from a stationary subject.</p>
                     
-                    <p><strong>Engineering Iteration:</strong> During assembly, the off-center placement of the retraction motor introduced a severe moment, causing the guard to bind (rack) on the linear rails during upward travel[cite: 414, 545]. While we temporarily removed the downforce springs to allow the prototype to retract during testing[cite: 549], this failure highlighted a critical design flaw. Future revisions will utilize a centrally mounted belt-drive system or dual synchronized stepper motors to ensure symmetrical load distribution during reset[cite: 417, 551, 552].</p>
+                    <p><strong>Engineering Iteration:</strong> During assembly, the off-center placement of the retraction motor introduced a severe moment, causing the guard to bind (rack) on the linear rails during upward travel. While we temporarily removed the downforce springs to allow the prototype to retract during testing, this failure highlighted a critical design flaw. Future revisions will utilize a centrally mounted belt-drive system or dual synchronized stepper motors to ensure symmetrical load distribution during reset.</p>
                 </div>
                 
                 <div class="testing-stats">
