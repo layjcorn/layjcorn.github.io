@@ -1,42 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    const modelViewer = document.getElementById('hero-model');
-    const scrollIndicator = document.getElementById('scroll-indicator');
+    // --- Universal 3D Kinematic Render Loop ---
+    const idleModels = document.querySelectorAll('.idle-model');
+    const spinBtn = document.getElementById('spin-btn');
+    
+    if (idleModels.length > 0) {
+        
+        let burstRotation = 0;
+        let burstVelocity = 0;
+        
+        if (spinBtn) {
+            spinBtn.addEventListener('click', () => {
+                burstVelocity = 35; 
+            });
+        }
 
-    // --- Scroll Fade Logic for Indicator ---
-    if (scrollIndicator) {
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            // Map scroll position (0 to 300px) to an opacity value (1 to 0)
-            const opacity = Math.max(1 - (scrollY / 300), 0);
-            scrollIndicator.style.opacity = opacity.toFixed(2);
-        });
-    }
-
-    // --- 3D Hero Idle Render Loop ---
-    if (modelViewer) {
         function renderLoop() {
             const time = performance.now() / 1000; 
             
-            // Base Idle Rotations (The "breathing" effect)
+            // Process Burst Physics
+            burstRotation += burstVelocity;
+            burstVelocity *= 0.92; 
+            if (burstVelocity < 0.1) burstVelocity = 0; 
+            
+            // Base Idle Rotations
             const idleX = Math.sin(time * 1.5) * 1.5;  
             const idleY = Math.sin(time * 1.0) * 3;   
             const idleZ = Math.sin(time * 1.2) * 1.5;   
             
-            // The starting angle offset
             const baseZOffset = 15; 
             
             const pitchX = idleX;   
             const tumbleY = idleY;  
-            const topSpinZ = baseZOffset + idleZ; 
+            const topSpinZ = baseZOffset + burstRotation + idleZ; 
             
-            // Inject back into the 3D engine: "Pitch(X) Yaw(Y) Roll(Z)"
-            modelViewer.setAttribute('orientation', `${pitchX}deg ${tumbleY}deg ${topSpinZ}deg`);
+            // Inject into EVERY model on the page
+            idleModels.forEach(model => {
+                model.setAttribute('orientation', `${pitchX}deg ${tumbleY}deg ${topSpinZ}deg`);
+            });
             
             requestAnimationFrame(renderLoop);
         }
         
-        // Ignite the loop
         renderLoop();
     }
 
@@ -65,3 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+
+
+
+// MOWER-GUARD.HTML INTERACTIVE SCHEMATIC LOGIC
+

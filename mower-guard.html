@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar-Actuated Mower Guard | Richard Townsley</title>
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mower.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body class="project-page">
+
+    <nav class="project-nav">
+        <a href="index.html" class="back-link">← BACK TO PORTFOLIO</a>
+    </nav>
+
+    <main class="project-container">
+        
+        <header class="project-hero">
+            <div class="hero-text-content">
+                <h1 class="project-title">RADAR-ACTUATED<br>MOWER GUARD</h1>
+                <p class="project-summary">ANSI B71.1-compliant retrofit safety mechanism for riding mowers using millimeter-wave radar and solenoid actuation.</p>
+                
+                <a href="#" target="_blank" class="doi-link">DOI: [Insert Your DOI Here] ↗</a>
+
+                <div class="stat-strip">
+                    <div class="stat-box">
+                        <span class="stat-label">RESPONSE TIME</span>
+                        <span class="stat-value">284 ms</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">PROTOTYPE COST</span>
+                        <span class="stat-value">&lt;20% Base</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">STANDARD</span>
+                        <span class="stat-value">ANSI B71.1</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-model-container">
+                <model-viewer 
+                    class="idle-model"
+                    src="assets/models/master-bater.glb" 
+                    interaction-prompt="none"
+                    camera-controls="false"
+                    disable-zoom
+                    disable-pan
+                    environment-image="neutral"
+                    exposure="1"
+                    bounds="tight"
+                    camera-orbit="45deg 60deg 100%" 
+                    orientation="0deg 0deg 15deg"> 
+                </model-viewer>
+            </div>
+        </header>
+
+        <section class="project-section content-split">
+            <div class="split-text">
+                <h2 class="section-title">MECHANICAL DESIGN & FABRICATION</h2>
+                <div class="text-content">
+                    <p>The structural foundation of the mockup mower deck was constructed using 3/4" MDF to ensure rigidity and prevent bowing under the dynamic load of the guard deployment. The guard itself was fabricated from a 30" x 5" sheet of 1/8" polycarbonate. While 1/4" aluminum was calculated to be the optimal material for a production environment to resist a 1143N dynamic impact (simulating an adult kick), polycarbonate was selected for the prototype to provide internal visibility of the rail mechanisms during demonstrations.</p>
+                    
+                    <p>Vertical travel is guided by 7mm linear rails and ball-bearing carriages. Because the rails required exacting precision to prevent binding during the 46ms drop, the M2 mounting holes were precision-machined using a mill rather than hand-drilled. Custom PETG standoffs, spring housings, and mechanical stops were 3D printed to manage spacing and prevent the carriages from derailing on uneven terrain.</p>
+                </div>
+            </div>
+            <div class="split-visuals">
+                <div class="model-box tall">
+                    <model-viewer 
+                        class="idle-model"
+                        src="assets/models/retraction2.glb" 
+                        interaction-prompt="none"
+                        camera-controls="false"
+                        disable-zoom
+                        disable-pan
+                        environment-image="neutral"
+                        exposure="1"
+                        bounds="tight"
+                        camera-orbit="30deg 70deg 100%" 
+                        orientation="0deg 0deg 15deg"> 
+                    </model-viewer>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section content-split reverse-split">
+            <div class="split-text">
+                <h2 class="section-title">ELECTRONICS & CONTROLS</h2>
+                <div class="text-content">
+                    <p>To accurately simulate a commercial retrofit, the entire system is powered by a standard 12V riding mower battery. Buck and boost converters distribute power across the system: stepping down to 5V for the ESP32 microcontroller and 3.3V for the sensor array, and stepping up to 24V for the stepper motor.</p>
+                    
+                    <p>The retraction mechanism relies on a NEMA 17 stepper motor driving an 8mm ballscrew. To optimize torque and precise positional control, the motor is driven by a TMC2209 breakout board. Utilizing the UART interface, we disabled the default 'StealthChop' mode in favor of 'SpreadCycle' to maximize pulling force against the 55.7N spring load. Once the electronic rotary latch secures the guard, a limit switch triggers the ESP32 to reverse the motor and disengage the nut.</p>
+                </div>
+            </div>
+            <div class="split-visuals">
+                <div class="model-box square">
+                    <model-viewer 
+                        class="idle-model"
+                        src="assets/models/sensor-mount2.glb" 
+                        interaction-prompt="none"
+                        camera-controls="false"
+                        disable-zoom
+                        disable-pan
+                        environment-image="neutral"
+                        exposure="1"
+                        bounds="tight"
+                        camera-orbit="-45deg 60deg 100%" 
+                        orientation="0deg 0deg 15deg"> 
+                    </model-viewer>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">TESTING & ITERATION</h2>
+            <div class="testing-grid">
+                <div class="testing-text text-content">
+                    <p>Performance was validated using high-speed camera analysis across multiple dynamic scenarios[cite: 470, 482]. The mechanical drop time averaged 46ms, well within the required safety threshold[cite: 472]. Total system latency—from the moment a human enters the 1.0m detection zone to the guard impacting the ground—averaged 284ms[cite: 473, 475, 452]. The system correctly biased toward false positives, safely deploying when a subject walked perpendicular to the mower, and correctly remaining idle when the mower moved away from a stationary subject[cite: 487, 488, 489, 491].</p>
+                    
+                    <p><strong>Engineering Iteration:</strong> During assembly, the off-center placement of the retraction motor introduced a severe moment, causing the guard to bind (rack) on the linear rails during upward travel[cite: 414, 545]. While we temporarily removed the downforce springs to allow the prototype to retract during testing[cite: 549], this failure highlighted a critical design flaw. Future revisions will utilize a centrally mounted belt-drive system or dual synchronized stepper motors to ensure symmetrical load distribution during reset[cite: 417, 551, 552].</p>
+                </div>
+                
+                <div class="testing-stats">
+                    <div class="data-table">
+                        <div class="table-row header">
+                            <span>Metric</span>
+                            <span>Average Time</span>
+                        </div>
+                        <div class="table-row">
+                            <span>Sensor Processing</span>
+                            <span>238 ms ± 10ms</span>
+                        </div>
+                        <div class="table-row">
+                            <span>Mechanical Drop</span>
+                            <span>46 ms ± 7ms</span>
+                        </div>
+                        <div class="table-row highlight">
+                            <span>Total Response Time</span>
+                            <span>284 ms</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section downloads-section">
+            <a href="assets/documents/Townsley_Richard_TechnicalReport.pdf" target="_blank" class="download-btn">
+                <span class="btn-icon">📄</span>
+                <span class="btn-text">READ FULL TECHNICAL REPORT</span>
+            </a>
+            <a href="#" class="download-btn secondary">
+                <span class="btn-icon">⚙️</span>
+                <span class="btn-text">VIEW CAD ASSEMBLY (.STEP)</span>
+            </a>
+        </section>
+
+    </main>
+
+    <footer id="contact" class="section-container contact-strip">
+        <div class="contact-grid">
+            <div class="contact-left">
+                <h2 class="contact-title">GET IN TOUCH</h2>
+                <p class="status-line">CURRENTLY SEEKING FULL-TIME MECHANICAL ENGINEERING ROLES.</p>
+            </div>
+
+            <div class="contact-right">
+                <div class="contact-links">
+                    <a href="mailto:richard.b.townsley@gmail.com" class="contact-link">Email ↗</a>
+                    <a href="https://linkedin.com/in/richard-townsley" target="_blank" class="contact-link">LinkedIn ↗</a>
+                    <a href="https://github.com/richard-townsley" target="_blank" class="contact-link">GitHub ↗</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-copyright">
+            <p>&copy; 2026 Richard B. Townsley. Built from scratch.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
