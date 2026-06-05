@@ -38,13 +38,11 @@
                 tone-mapping="commerce"
                 exposure="0.5"
                 shadow-intensity="0"
-
                 interaction-prompt="none"
                 camera-controls="false"
                 disable-zoom
                 disable-pan
                 environment-image="neutral"
-                exposure="1"
                 bounds="tight"
                 field-of-view="10deg"
                 camera-orbit="45deg 55deg 100%" 
@@ -55,96 +53,99 @@
 
     <main>
         <section class="section-container projects-section" id="projects">
-            <div class="section-header">
+            <div class="section-header center-text">
                 <h2>SELECTED WORK</h2>
                 <p>Highlighting hardware-software integration, structural analysis, and data modeling.</p>
             </div>
 
-            <div class="featured-split-layout" id="project-gallery">
-        
-        <div class="vertical-accordion">
-            
-            <a href="/projects/blade-guard/" class="gallery-card active" data-default="true" data-model="assets/models/master.glb">
-                <div class="card-header">
-                    <h3>Radar-Actuated Mower Blade Guard</h3>
-                </div>
-                <div class="card-body">
-                    <p>ANSI B71.1-compliant retrofit safety mechanism for riding mowers using millimeter-wave radar and solenoid actuation.</p>
-                    <div class="tag-row">
-                        <span class="tech-tag">SolidWorks</span>
-                        <span class="tech-tag">Embedded C</span>
-                        <span class="tech-tag">ANSI B71.1</span>
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn">&#8592;</button>
+                
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <div class="slide-model-wrapper">
+                            <model-viewer 
+                                class="idle-model"
+                                src="assets/models/master.glb" 
+                                poster="assets/images/mower-guard-poster.webp"
+                                loading="lazy"
+                                camera-controls  disable-zoom     disable-pan      interaction-prompt="none" 
+                                environment-image="neutral" 
+                                exposure="0.8"
+                                shadow-intensity="0">
+                            </model-viewer>
+                        </div>
+                        <div class="slide-text">
+                            <h3>Radar-Actuated Mower Blade Guard</h3>
+                            <p>ANSI B71.1-compliant retrofit safety mechanism for riding mowers using millimeter-wave radar and solenoid actuation. Response Time: &lt; 100ms.</p>
+                            <div class="tag-row justify-center">
+                                <span class="tech-tag">SolidWorks</span>
+                                <span class="tech-tag">Embedded C</span>
+                                <span class="tech-tag">ANSI B71.1</span>
+                            </div>
+                            
+                            <a href="/projects/blade-guard/" class="view-project-btn">View Project &rarr;</a>
+                        </div>
                     </div>
-                    <div class="gallery-metric">
-                        <span class="metric-label">Response Time</span>
-                        <span class="metric-value">&lt; 100ms</span>
-                    </div>
-                </div>
-            </a>
 
-            <a href="/projects/bracket-fea/" class="gallery-card" data-model="assets/models/master.glb">
-                <div class="card-header">
-                    <h3>Bracket Topology Optimization</h3>
-                </div>
-                <div class="card-body">
-                    <p>Load-bearing bracket redesigned via finite element analysis and topology optimization under a 100N static load.</p>
-                    <div class="tag-row">
-                        <span class="tech-tag">FEA</span>
-                        <span class="tech-tag">MATLAB</span>
-                        <span class="tech-tag">Topology Opt.</span>
+                    <div class="carousel-slide">
+                        <div class="slide-model-wrapper">
+                            <model-viewer 
+                                class="idle-model"
+                                src="assets/models/master.glb" 
+                                poster="assets/images/bracket-fea-poster.webp"
+                                loading="lazy"
+                                camera-controls  disable-zoom     disable-pan      interaction-prompt="none" 
+                                environment-image="neutral" 
+                                exposure="0.8"
+                                shadow-intensity="0">
+                            </model-viewer>
+                        </div>
+                        <div class="slide-text">
+                            <h3>Bracket Topology Optimization</h3>
+                            <p>Load-bearing bracket redesigned via finite element analysis and topology optimization under a 100N static load. Mass Reduction: Up to 50%.</p>
+                            <div class="tag-row justify-center">
+                                <span class="tech-tag">FEA</span>
+                                <span class="tech-tag">MATLAB</span>
+                                <span class="tech-tag">Topology Opt.</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-metric">
-                        <span class="metric-label">Mass Reduction</span>
-                        <span class="metric-value">Up to 50%</span>
-                    </div>
-                </div>
-            </a>
 
-            <a href="/projects/uva-dine/" class="gallery-card" data-model="assets/models/master.glb">
-                <div class="card-header">
-                    <h3>UVA Dine Reusable Container Program</h3>
-                </div>
-                <div class="card-body">
-                    <p>Managed 5,000+ reusable assets across UVA dining operations; built data models to forecast container utilization.</p>
-                    <div class="tag-row">
-                        <span class="tech-tag">Data Modeling</span>
-                        <span class="tech-tag">Julia</span>
-                        <span class="tech-tag">Operations</span>
+                    <div class="carousel-slide">
+                        <div class="slide-model-wrapper">
+                            <model-viewer 
+                                class="idle-model"
+                                src="assets/models/master.glb" 
+                                camera-controls="false" 
+                                interaction-prompt="none" 
+                                disable-zoom 
+                                disable-pan 
+                                environment-image="neutral" 
+                                exposure="0.8"
+                                shadow-intensity="0">
+                            </model-viewer>
+                        </div>
+                        <div class="slide-text">
+                            <h3>UVA Dine Reusable Container Program</h3>
+                            <p>Managed 5,000+ reusable assets across UVA dining operations; built data models to forecast container utilization.</p>
+                            <div class="tag-row justify-center">
+                                <span class="tech-tag">Data Modeling</span>
+                                <span class="tech-tag">Julia</span>
+                                <span class="tech-tag">Operations</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-metric">
-                        <span class="metric-label">Assets Managed</span>
-                        <span class="metric-value">5,000+</span>
-                    </div>
                 </div>
-            </a>
-            
-        </div>
 
-        <div class="featured-model-stage">
-            <model-viewer 
-                id="shared-model-viewer" 
-                class="idle-model"
-                src="assets/models/master.glb" 
-                loading="lazy" 
-                autoplay 
-                camera-controls="false" 
-                interaction-prompt="none" 
-                disable-zoom 
-                disable-pan 
-                environment-image="neutral" 
-                exposure="0.8" 
-                camera-orbit="45deg 75deg 80%" 
-            </model-viewer>
-        </div>
-
-    </div>
+                <button class="carousel-btn next-btn">&#8594;</button>
+                
+                <div class="carousel-dots">
+                    </div>
+            </div>
 
             <div class="supporting-grid">
-                
                 <a href="/projects/mechatronics/" class="project-card">
-                    <div class="card-image-wrapper">
-                        <div class="card-overlay">View Project &rarr;</div>
-                    </div>
                     <div class="grid-card-content">
                         <h3 class="card-title">Mechatronics &amp; Embedded Systems</h3>
                         <p class="card-subtitle">Sensor Integration &middot; Motor Control</p>
@@ -158,9 +159,6 @@
                 </a>
 
                 <a href="/projects/orbital-sim/" class="project-card">
-                    <div class="card-image-wrapper">
-                        <div class="card-overlay">View Project &rarr;</div>
-                    </div>
                     <div class="grid-card-content">
                         <h3 class="card-title">Orbital Mechanics Simulation</h3>
                         <p class="card-subtitle">Computational Methods &middot; Aerospace</p>
@@ -174,9 +172,6 @@
                 </a>
 
                 <a href="/projects/materials-testing/" class="project-card">
-                    <div class="card-image-wrapper">
-                        <div class="card-overlay">View Project &rarr;</div>
-                    </div>
                     <div class="grid-card-content">
                         <h3 class="card-title">FDM Materials Characterization</h3>
                         <p class="card-subtitle">Testing &middot; Additive Mfg.</p>
@@ -188,13 +183,11 @@
                         </div>
                     </div>
                 </a>
-
             </div>
 
             <div class="view-all-container">
                 <a href="/projects/" class="view-all-link">View All Projects &rarr;</a>
             </div>
-
         </section>
 
         <section id="skills" class="section-container">
