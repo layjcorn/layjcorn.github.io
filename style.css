@@ -11,8 +11,13 @@
 
 :root {
     --color-text-main: #000000;
-    --color-text-muted: #6b7280;
-    --color-accent: #2563eb;
+    --color-text-muted: #696969;
+    
+    /* Global Accent Colors (Red Theme) */
+    --color-accent: #c53f3f;       /* Primary Red */
+    --color-accent-light: #fee2e2; /* Light Red Background */
+    --color-accent-hover: #fecaca; /* Hover Red Background */
+    
     --color-card-bg: #ffffff;
     --color-border: #e5e7eb;
     --transition-speed: 250ms;
@@ -69,7 +74,6 @@ model-viewer { width: 100%; height: 100%; }
     padding: 4rem 3rem; /* Reduced from 6rem */
     max-width: 1400px; 
     margin: 0 auto; 
-    /* DELETE the min-height: 100vh; line completely */
 }
 
 .section-header { 
@@ -99,7 +103,6 @@ model-viewer { width: 100%; height: 100%; }
     overflow: hidden;
 }
 
-/* Stripped the hyperlink cursors and hover transitions */
 .carousel-slide {
     min-width: 100%;
     display: flex;
@@ -107,13 +110,7 @@ model-viewer { width: 100%; height: 100%; }
     align-items: center;
 }
 
-/* DELETE this entire block if it still exists in your code:
-.carousel-slide:hover {
-    transform: translateY(-3px);
-}
-*/
-
-/* --- Styling for the new explicit links --- */
+/* --- Styling for the explicit links --- */
 .view-project-btn {
     display: inline-block;
     margin-top: 1.75rem;
@@ -239,8 +236,6 @@ model-viewer { width: 100%; height: 100%; }
 }
 .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
 
-/* (Removed .card-image-wrapper and .card-overlay rules) */
-
 .grid-card-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
 .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
 .card-subtitle { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1rem; }
@@ -285,7 +280,7 @@ model-viewer { width: 100%; height: 100%; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 1rem; align-items: center; }
 
 .contact-title { font-family: 'Science', sans-serif; font-size: 2rem; color: #111; letter-spacing: -1px; margin-bottom: -0.25rem; }
-.status-line { font-family: 'Noto Sans Mono', monospace; font-size: 0.65rem; color: #c53f3f; font-weight: 600; }
+.status-line { font-family: 'Noto Sans Mono', monospace; font-size: 0.65rem; color: var(--color-accent); font-weight: 600; }
 
 .contact-right { display: flex; justify-content: flex-end; }
 .contact-links { display: flex; flex-wrap: wrap; gap: 2.5rem; }

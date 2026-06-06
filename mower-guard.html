@@ -15,23 +15,31 @@
 <body class="project-page">
 
     <div class="hero-container">
-        <div class="corner top-left">
-            <h1>RADAR-ACTUATED<br>MOWER GUARD</h1>
-        </div>
-
-        <nav class="corner top-right">
+        
+        <nav class="corner top-left">
             <a href="index.html">← BACK TO PORTFOLIO</a>
         </nav>
 
-        <div class="corner bottom-left">
+        <nav class="corner top-right">
+            <a href="index.html#projects">PROJECTS</a>
+            <a href="index.html#about">ABOUT</a>
+            <a href="assets/documents/Richard_Townsley_Resume_2026.pdf" target="_blank">RESUME</a>
+        </nav>
+
+        <div class="hero-left-content">
+            <h1>RADAR-ACTUATED<br>MOWER GUARD</h1>
             <p>ANSI B71.1-compliant retrofit safety mechanism for riding mowers using millimeter-wave radar and solenoid actuation.</p>
+        </div>
+
+        <div class="corner bottom-left">
+            <a href="https://doi.org/10.18130/pec5-5015" target="_blank" class="doi-link">DOI: 10.18130/pec5-5015 ↗</a>
         </div>
 
         <div class="corner bottom-right" id="scroll-indicator">
             <p>SCROLL DOWN</p>
         </div>
 
-        <div class="model-wrapper">
+        <div class="mower-model-wrapper">
             <model-viewer 
                 class="idle-model"
                 id="hero-model"
@@ -55,91 +63,121 @@
     <main class="project-container">
         
         <section class="project-section intro-stats">
-            <a href="https://doi.org/10.18130/pec5-5015" target="_blank" class="doi-link">DOI: 10.18130/pec5-5015 ↗</a>
-
             <div class="stat-strip">
                 <div class="stat-box">
-                    <span class="stat-label">RESPONSE TIME</span>
+                    <span class="stat-label">TOTAL LATENCY</span>
                     <span class="stat-value">284 ms</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">ACTUATION TIME</span>
+                    <span class="stat-value">46 ms</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">IMPACT RATING</span>
+                    <span class="stat-value">1143 N</span>
                 </div>
                 <div class="stat-box">
                     <span class="stat-label">PROTOTYPE COST</span>
                     <span class="stat-value">&lt;20% Base</span>
                 </div>
-                <div class="stat-box">
-                    <span class="stat-label">STANDARD</span>
-                    <span class="stat-value">ANSI B71.1</span>
-                </div>
             </div>
         </section>
 
-        <section class="project-section content-split">
-            <div class="split-text">
-                <h2 class="section-title">MECHANICAL DESIGN & FABRICATION</h2>
+        <section class="project-section dual-text-columns align-center">
+            
+            <div class="text-column">
+                <h2 class="section-title">ELECTRONICS & CONTROLS</h2>
+                <div class="text-content">
+                    <p>To accurately simulate a commercial retrofit, the entire system is powered by a standard 12V riding mower battery. Buck and boost converters distribute power across the system: stepping down to 5V for the ESP32 microcontroller and 3.3V for the sensor array, and stepping up to 24V for the stepper motor.</p>
+                    
+                    <p>The retraction mechanism relies on a NEMA 17 stepper motor driving an 8mm ballscrew. To optimize torque and precise positional control, the motor is driven by a TMC2209 breakout board. Utilizing the UART interface, we disabled the default <span class="inline-code">StealthChop</span> mode in favor of <span class="inline-code">SpreadCycle</span> to maximize pulling force against the 55.7N spring load. Once the electronic rotary latch secures the guard, a limit switch triggers the ESP32 to reverse the motor and disengage the nut.</p>
+                    
+                    <div id="arch-info-panel" class="arch-panel">
+                        <span class="panel-label">INTERACTIVE DIAGRAM</span>
+                        <h3 id="arch-title">Hover over a component</h3>
+                        <p id="arch-desc">Explore the logical flow, power distribution, and physical integration of the control system.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="diagram-column">
+                <svg viewBox="0 0 540 450" class="arch-svg">
+                    <path d="M 90 380 L 90 300" class="arch-link" id="link-bat-boost" />
+                    <path d="M 150 400 L 210 400" class="arch-link" id="link-bat-buck" />
+                    <path d="M 90 260 L 90 180" class="arch-link" id="link-boost-driver" />
+
+                    <path d="M 270 380 L 270 300" class="arch-link" id="link-buck-gyro" />
+                    <path d="M 270 260 L 270 190" class="arch-link" id="link-gyro-esp" />
+                    <path d="M 270 130 L 270 60" class="arch-link" id="link-sensor-esp" />
+                    <path d="M 210 160 L 150 160" class="arch-link" id="link-esp-driver" />
+                    <path d="M 90 140 L 90 60" class="arch-link" id="link-driver-motor" />
+                    <path d="M 330 160 L 390 160" class="arch-link" id="link-esp-relay" />
+                    <path d="M 450 140 L 450 60" class="arch-link" id="link-relay-latch" />
+
+                    <g class="arch-node" data-links="link-driver-motor" data-title="Stepper Motor" data-desc="Top-mounted NEMA 17 stepper. Driven by 24V from the boost converter to actuate the 8mm ballscrew for guard retraction." transform="translate(30, 20)">
+                        <rect width="120" height="40" rx="4" />
+                        <text x="60" y="25" text-anchor="middle">Motor</text>
+                    </g>
+                    <g class="arch-node" data-links="link-sensor-esp" data-title="mmWave Sensor" data-desc="Positioned at the leading edge. Detects human presence within the 1.0m zone and sends a 3.3V logic high to the controller." transform="translate(210, 20)">
+                        <rect width="120" height="40" rx="4" />
+                        <text x="60" y="25" text-anchor="middle">mmWave</text>
+                    </g>
+                    <g class="arch-node" data-links="link-relay-latch" data-title="Rotary Latch" data-desc="12V electronic latch. Disengages upon ESP-32 command, allowing the guard to drop via gravity in 46ms." transform="translate(390, 20)">
+                        <rect width="120" height="40" rx="4" />
+                        <text x="60" y="25" text-anchor="middle">Latch</text>
+                    </g>
+
+                    <g class="arch-node" data-links="link-boost-driver,link-esp-driver,link-driver-motor" data-title="TMC2209 Driver" data-desc="Stepper motor driver. Runs in SpreadCycle mode to maximize pull force against the 55.7N spring load without stalling." transform="translate(30, 140)">
+                        <rect width="120" height="40" rx="4" />
+                        <text x="60" y="25" text-anchor="middle">Driver</text>
+                    </g>
+                    <g class="arch-node" data-links="link-sensor-esp,link-gyro-esp,link-esp-driver,link-esp-relay" data-title="ESP-32 Controller" data-desc="The central logical hub. Processes the multi-sensor interrupt array and triggers the mechanical outputs." transform="translate(210, 130)">
+                        <rect width="120" height="60" rx="4" />
+                        <text x="60" y="35" text-anchor="middle">ESP-32</text>
+                    </g>
+                    <g class="arch-node" data-links="link-esp-relay,link-relay-latch" data-title="Relay Module" data-desc="Opto-isolated relay. Separates the 12V high-current draw of the rotary latch from the ESP-32's sensitive 5V logic." transform="translate(390, 140)">
+                        <rect width="120" height="40" rx="4" />
+                        <text x="60" y="25" text-anchor="middle">Relay</text>
+                    </g>
+
+                    <g class="arch-node" data-links="link-bat-boost,link-boost-driver" data-title="Boost Converter" data-desc="Steps the 12V battery power up to 24V to provide the necessary torque for the stepper motor retraction sequence." transform="translate(30, 260)">
+                        <rect width="120" height="40" rx="4" />
+                        <text x="60" y="25" text-anchor="middle">Boost</text>
+                    </g>
+                    <g class="arch-node" data-links="link-buck-gyro,link-gyro-esp" data-title="MPU6050 Gyroscope" data-desc="Critical for rollover protection. Monitors deck angle and triggers an emergency drop if pitch or roll exceeds safe thresholds." transform="translate(210, 260)">
+                        <rect width="120" height="40" rx="4" />
+                        <text x="60" y="25" text-anchor="middle">Gyroscope</text>
+                    </g>
+
+                    <g class="arch-node" data-links="link-bat-buck,link-bat-boost" data-title="12V Battery" data-desc="Standard 12V riding mower battery. Provides primary power to the entire safety mechanism." transform="translate(30, 380)">
+                        <rect width="120" height="40" rx="4" />
+                        <text x="60" y="25" text-anchor="middle">12V Battery</text>
+                    </g>
+                    <g class="arch-node" data-links="link-bat-buck,link-buck-gyro,link-gyro-esp,link-sensor-esp" data-title="Step-Down (Buck)" data-desc="Steps the 12V battery down to 5V and 3.3V to safely power the logic controller, radar, and gyroscope." transform="translate(210, 380)">
+                        <rect width="120" height="40" rx="4" />
+                        <text x="60" y="25" text-anchor="middle">Step-Down</text>
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <section class="project-section dual-text-columns">
+            
+            <div class="text-column">
+                <h2 class="section-title">MECHANICAL DESIGN</h2>
                 <div class="text-content">
                     <p>The structural foundation of the mockup mower deck was constructed using 3/4" MDF to ensure rigidity and prevent bowing under the dynamic load of the guard deployment. The guard itself was fabricated from a 30" x 5" sheet of 1/8" polycarbonate. While 1/4" aluminum was calculated to be the optimal material for a production environment to resist a 1143N dynamic impact (simulating an adult kick), polycarbonate was selected for the prototype to provide internal visibility of the rail mechanisms during demonstrations.</p>
                     
                     <p>Vertical travel is guided by 7mm linear rails and ball-bearing carriages. Because the rails required exacting precision to prevent binding during the 46ms drop, the M2 mounting holes were precision-machined using a mill rather than hand-drilled. Custom PETG standoffs, spring housings, and mechanical stops were 3D printed to manage spacing and prevent the carriages from derailing on uneven terrain.</p>
                 </div>
             </div>
-            <div class="split-visuals">
-                <div class="model-box tall">
-                    <model-viewer 
-                        class="idle-model"
-                        src="assets/models/retraction.glb" 
-                        interaction-prompt="none"
-                        camera-controls="false"
-                        disable-zoom
-                        disable-pan
-                        environment-image="neutral"
-                        exposure="1"
-                        bounds="tight"
-                        camera-orbit="30deg 70deg 100%" 
-                        orientation="0deg 0deg 15deg"> 
-                    </model-viewer>
-                </div>
-            </div>
-        </section>
 
-        <section class="project-section content-split reverse-split">
-            <div class="split-text">
-                <h2 class="section-title">ELECTRONICS & CONTROLS</h2>
+            <div class="text-column">
+                <h2 class="section-title">TESTING & ITERATION</h2>
                 <div class="text-content">
-                    <p>To accurately simulate a commercial retrofit, the entire system is powered by a standard 12V riding mower battery. Buck and boost converters distribute power across the system: stepping down to 5V for the ESP32 microcontroller and 3.3V for the sensor array, and stepping up to 24V for the stepper motor.</p>
-                    
-                    <p>The retraction mechanism relies on a NEMA 17 stepper motor driving an 8mm ballscrew. To optimize torque and precise positional control, the motor is driven by a TMC2209 breakout board. Utilizing the UART interface, we disabled the default 'StealthChop' mode in favor of 'SpreadCycle' to maximize pulling force against the 55.7N spring load. Once the electronic rotary latch secures the guard, a limit switch triggers the ESP32 to reverse the motor and disengage the nut.</p>
-                </div>
-            </div>
-            <div class="split-visuals">
-                <div class="model-box square">
-                    <model-viewer 
-                        class="idle-model"
-                        src="assets/models/sensor-mount.glb" 
-                        interaction-prompt="none"
-                        camera-controls="false"
-                        disable-zoom
-                        disable-pan
-                        environment-image="neutral"
-                        exposure="1"
-                        bounds="tight"
-                        camera-orbit="-45deg 60deg 100%" 
-                        orientation="0deg 0deg 15deg"> 
-                    </model-viewer>
-                </div>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <h2 class="section-title">TESTING & ITERATION</h2>
-            <div class="testing-grid">
-                <div class="testing-text text-content">
                     <p>Performance was validated using high-speed camera analysis across multiple dynamic scenarios. The mechanical drop time averaged 46ms, well within the required safety threshold. Total system latency—from the moment a human enters the 1.0m detection zone to the guard impacting the ground—averaged 284ms. The system correctly biased toward false positives, safely deploying when a subject walked perpendicular to the mower, and correctly remaining idle when the mower moved away from a stationary subject.</p>
                     
-                    <p><strong>Engineering Iteration:</strong> During assembly, the off-center placement of the retraction motor introduced a severe moment, causing the guard to bind (rack) on the linear rails during upward travel. While we temporarily removed the downforce springs to allow the prototype to retract during testing, this failure highlighted a critical design flaw. Future revisions will utilize a centrally mounted belt-drive system or dual synchronized stepper motors to ensure symmetrical load distribution during reset.</p>
-                </div>
-                
-                <div class="testing-stats">
-                    <div class="data-table">
+                    <div class="data-table" style="margin: 2rem 0;">
                         <div class="table-row header">
                             <span>Metric</span>
                             <span>Average Time</span>
@@ -157,17 +195,18 @@
                             <span>284 ms</span>
                         </div>
                     </div>
+
+                    <p><strong>Engineering Iteration:</strong> During assembly, the off-center placement of the retraction motor introduced a severe moment, causing the guard to bind (rack) on the linear rails during upward travel. While we temporarily removed the downforce springs to allow the prototype to retract during testing, this failure highlighted a critical design flaw. Future revisions will utilize a centrally mounted belt-drive system or dual synchronized stepper motors to ensure symmetrical load distribution during reset.</p>
                 </div>
             </div>
+
         </section>
 
         <section class="project-section downloads-section">
             <a href="assets/documents/Townsley_Richard_TechnicalReport.pdf" target="_blank" class="download-btn">
-                <span class="btn-icon">📄</span>
                 <span class="btn-text">READ FULL TECHNICAL REPORT</span>
             </a>
-            <a href="#" class="download-btn secondary">
-                <span class="btn-icon">⚙️</span>
+            <a href="assets/documents/RALPH.step" class="download-btn secondary">
                 <span class="btn-text">VIEW CAD ASSEMBLY (.STEP)</span>
             </a>
         </section>

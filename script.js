@@ -97,4 +97,40 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // --- Architecture Diagram Hover Logic ---
+    const archNodes = document.querySelectorAll('.arch-node');
+    const archTitle = document.getElementById('arch-title');
+    const archDesc = document.getElementById('arch-desc');
+    const archLinks = document.querySelectorAll('.arch-link');
+
+    if (archNodes.length > 0) {
+        archNodes.forEach(node => {
+            node.addEventListener('mouseenter', () => {
+                // Update text panel
+                archTitle.textContent = node.getAttribute('data-title');
+                archDesc.textContent = node.getAttribute('data-desc');
+                
+                // Highlight the specific node
+                node.classList.add('active');
+                
+                // Route signal flows based on the data-links array
+                const linkIds = node.getAttribute('data-links').split(',');
+                linkIds.forEach(id => {
+                    const link = document.getElementById(id);
+                    if (link) link.classList.add('active-link');
+                });
+            });
+
+            node.addEventListener('mouseleave', () => {
+                // Reset panel text
+                archTitle.textContent = 'Hover over a component';
+                archDesc.textContent = 'Explore the logical flow and physical integration of the control system.';
+                
+                // Clear all active highlights
+                node.classList.remove('active');
+                archLinks.forEach(link => link.classList.remove('active-link'));
+            });
+        });
+    }
 });
