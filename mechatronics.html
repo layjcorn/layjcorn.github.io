@@ -4,163 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mechatronics & Embedded Systems | Richard Townsley</title>
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mechatronics.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-    <main class="project-page">
-        <a href="index.html#projects" class="back-nav">← Projects</a>
+<body class="project-page">
 
-        <header class="project-header">
-            <h1>Mechatronics Projects</h1>
-            <p class="framing-statement">Three embedded systems projects encompassing sensor integration, motor control, and real-time parallel processing.</p>
-            
-            <div class="stat-strip dark-strip">
-                <div class="stat-item">
-                    <span class="stat-value">C / P2</span>
-                    <span class="stat-label">Languages & Platforms</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">3 Types</span>
-                    <span class="stat-label">Actuation (Servo/Step/Sol)</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">Closed-Loop</span>
-                    <span class="stat-label">Autonomous Fault Recovery</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">QRD / HID</span>
-                    <span class="stat-label">Hardware Interfaces</span>
-                </div>
-            </div>
-        </header>
-
-        <nav class="in-page-nav" id="section-nav">
-            <a href="#section-a">Valve System</a>
-            <a href="#section-b">Cam Profile</a>
-            <a href="#section-c">Propeller 2 Game</a>
+    <div class="hero-container">
+        
+        <nav class="corner top-left">
+            <a href="index.html">← BACK TO PORTFOLIO</a>
         </nav>
 
-        <section id="section-a" class="project-section">
-            <h2>Sensor-Actuated Valve System with Autonomous Fault Recovery</h2>
-            <p>The core capability of this system is closed-loop jam detection. The primary function detects hand presence via an infrared QRD sensor, triggering a Parallax Propeller 2 microcontroller to drive a PZ22 DC gear motor through an inverted-logic relay module. Rather than relying on simple software timeouts, the system autonomously detects and recovers from mechanical valve jams by measuring motor current draw across a 5Ω shunt resistor passed through an LM358N op-amp. This moves the project from a basic open-loop actuator into a robust controls engineering implementation.</p>
+        <nav class="corner top-right">
+            <a href="index.html#projects">PROJECTS</a>
+            <a href="index.html#about">ABOUT</a>
+            <a href="assets/documents/Richard_Townsley_Resume_2026.pdf" target="_blank">RESUME</a>
+        </nav>
 
-            <h3>System Architecture</h3>
-            <p class="diagram-instruction center-text">Hover or tap component nodes to view hardware specifications.</p>
+        <div class="hero-left-content">
+            <h1>MECHATRONICS &<br>EMBEDDED SYSTEMS</h1>
+            <p>Three embedded systems projects encompassing sensor integration, motor control, and real-time parallel processing.</p>
+        </div>
+
+        <div class="corner bottom-right" id="scroll-indicator">
+            <p>SCROLL DOWN</p>
+        </div>
+
+        <div class="mecha-model-wrapper">
+            <model-viewer 
+                class="idle-model"
+                id="hero-model"
+                src="assets/models/board.glb"
+                tone-mapping="commerce"
+                exposure="0.8"
+                shadow-intensity="0"
+                interaction-prompt="none"
+                camera-controls="false"
+                disable-zoom
+                disable-pan
+                environment-image="neutral"
+                bounds="tight"
+                field-of-view="7.5deg"
+                camera-orbit="30deg 35deg 100%" 
+                orientation="0deg 0deg 15deg"> 
+            </model-viewer>
+        </div>
+    </div>
+
+    <main class="project-container">
+        
+        <section class="project-section intro-stats">
+            <div class="stat-strip">
+                <div class="stat-box">
+                    <span class="stat-label">LANGUAGES & PLATFORMS</span>
+                    <span class="stat-value">C / P2</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">ACTUATION TYPES</span>
+                    <span class="stat-value">3 Types</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">KEY BEHAVIOR</span>
+                    <span class="stat-value">Auto-Recovery</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">HARDWARE INTERFACES</span>
+                    <span class="stat-value">QRD / HID</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-a" class="project-section dual-text-columns align-center">
             
-            <div class="svg-container architecture-diagram borderless-svg">
-                <svg viewBox="0 70 780 130" xmlns="http://www.w3.org/2000/svg" class="eng-diagram" id="arch-diagram">
+            <div class="text-column">
+                <h2 class="section-title">SENSOR-ACTUATED VALVE SYSTEM</h2>
+                <div class="text-content">
+                    <p>The core capability of this system is closed-loop jam detection. The primary function detects hand presence via an infrared QRD sensor, triggering a Parallax Propeller 2 microcontroller to drive a PZ22 DC gear motor through an inverted-logic relay module.</p>
+                    
+                    <p>Rather than relying on simple software timeouts, the system autonomously detects and recovers from mechanical valve jams by measuring motor current draw across a 5Ω shunt resistor passed through an LM358N op-amp. This moves the project from a basic open-loop actuator into a robust controls engineering implementation.</p>
+                    
+                    <div id="arch-info-panel" class="arch-panel">
+                        <span class="panel-label">INTERACTIVE DIAGRAM</span>
+                        <h3 id="arch-title">Hover over a component</h3>
+                        <p id="arch-desc">Explore the logical flow, power distribution, and physical integration of the control system.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="diagram-column">
+                <svg viewBox="0 70 780 130" class="arch-svg">
                     <defs>
                         <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                             <path d="M 0 0 L 10 5 L 0 10 z" fill="#111" />
                         </marker>
                     </defs>
-                    <g class="interactive-node" data-spec="Type: Reflective Optical Sensor | Function: Hand Detection">
-                        <rect x="10" y="80" width="100" height="40" rx="4" />
-                        <text x="60" y="105">QRD Sensor</text>
-                    </g>
-                    <g class="interactive-node" data-spec="MCU: Parallax Propeller 2 | Cores: 8 | Clock: 300MHz">
-                        <rect x="170" y="80" width="120" height="40" rx="4" />
-                        <text x="230" y="105">Propeller 2 MCU</text>
-                    </g>
-                    <g class="interactive-node" data-spec="Part: 4-Channel Relay | Logic: Inverted (Active Low)">
-                        <rect x="350" y="80" width="100" height="40" rx="4" />
-                        <text x="400" y="105">Relay Module</text>
-                    </g>
-                    <g class="interactive-node" data-spec="Type: PZ22 DC Gear Motor | Speed: 170 RPM">
-                        <rect x="510" y="80" width="100" height="40" rx="4" />
-                        <text x="560" y="105">DC Motor</text>
-                    </g>
-                    <g class="interactive-node" data-spec="Type: 1/4-Turn Ball Valve | Material: Brass">
-                        <rect x="670" y="80" width="100" height="40" rx="4" />
-                        <text x="720" y="105">Valve</text>
-                    </g>
                     
-                    <g class="interactive-node" data-spec="Type: Quadrature | Res: 20 ticks/rev | Target: 495 deg (66 ticks)">
-                        <rect x="510" y="150" width="100" height="30" rx="4" stroke-dasharray="4" />
-                        <text x="560" y="170">Rotary Encoder</text>
+                    <g class="arch-node" data-title="QRD Sensor" data-desc="Reflective Optical Sensor. Detects hand presence to trigger the deployment sequence." transform="translate(0, 0)">
+                        <rect x="10" y="80" width="100" height="40" rx="4" />
+                        <text x="60" y="105" text-anchor="middle">QRD SENSOR</text>
                     </g>
-                    <g class="interactive-node" data-spec="Part: 5Ω Shunt + LM358N | Threshold: 0.6V (Pin reads 0 on jam)">
+                    <g class="arch-node" data-title="Propeller 2 MCU" data-desc="8-core microcontroller running at 300MHz. Processes inputs and drives logic across parallel cogs." transform="translate(0, 0)">
+                        <rect x="170" y="80" width="120" height="40" rx="4" />
+                        <text x="230" y="105" text-anchor="middle">PROPELLER 2</text>
+                    </g>
+                    <g class="arch-node" data-title="Relay Module" data-desc="4-Channel, active-low inverted logic relay. Isolates the motor's power draw from the microcontroller." transform="translate(0, 0)">
+                        <rect x="350" y="80" width="100" height="40" rx="4" />
+                        <text x="400" y="105" text-anchor="middle">RELAY MOD</text>
+                    </g>
+                    <g class="arch-node" data-title="PZ22 DC Motor" data-desc="170 RPM DC Gear motor. Provides the mechanical torque to open and close the ball valve." transform="translate(0, 0)">
+                        <rect x="510" y="80" width="100" height="40" rx="4" />
+                        <text x="560" y="105" text-anchor="middle">DC MOTOR</text>
+                    </g>
+                    <g class="arch-node" data-title="Brass Valve" data-desc="1/4-Turn mechanical ball valve regulating fluid flow." transform="translate(0, 0)">
+                        <rect x="670" y="80" width="100" height="40" rx="4" />
+                        <text x="720" y="105" text-anchor="middle">VALVE</text>
+                    </g>
+                    <g class="arch-node" data-title="Rotary Encoder" data-desc="Quadrature encoder providing position feedback (20 ticks/rev) targeting 495 degrees of total rotation." transform="translate(0, 0)">
+                        <rect x="510" y="150" width="100" height="30" rx="4" stroke-dasharray="4" />
+                        <text x="560" y="170" text-anchor="middle">ENCODER</text>
+                    </g>
+                    <g class="arch-node" data-title="Shunt + Op-Amp" data-desc="5Ω Shunt resistor passed through an LM358N op-amp. Triggers a logic 0 when the motor draws high current during a jam." transform="translate(0, 0)">
                         <rect x="350" y="150" width="100" height="30" rx="4" stroke-dasharray="4" />
-                        <text x="400" y="170">Shunt + Op-Amp</text>
+                        <text x="400" y="170" text-anchor="middle">SHUNT SENSE</text>
                     </g>
                     
                     <line x1="110" y1="100" x2="160" y2="100" class="signal-line" marker-end="url(#arrow)" />
                     <line x1="290" y1="100" x2="340" y2="100" class="signal-line" marker-end="url(#arrow)" />
                     <line x1="450" y1="100" x2="500" y2="100" class="signal-line" marker-end="url(#arrow)" />
                     <line x1="610" y1="100" x2="660" y2="100" class="signal-line" marker-end="url(#arrow)" />
-                    
                     <path d="M 560 120 L 560 150" class="signal-line" marker-end="url(#arrow)" />
                     <path d="M 510 165 L 290 165 L 290 120" class="signal-line" marker-end="url(#arrow)" />
-                    
                     <path d="M 510 100 L 480 100 L 480 165 L 450 165" class="signal-line" marker-end="url(#arrow)" />
                     <path d="M 350 165 L 230 165 L 230 120" class="signal-line" marker-end="url(#arrow)" />
                 </svg>
-                <div id="tooltip" class="svg-tooltip"></div>
             </div>
+        </section>
 
-            <h3>Control Logic</h3>
-            <p class="diagram-instruction center-text">Hover over flowchart blocks to view corresponding Main() loop Spin2 logic.</p>
+        <section class="project-section">
+            <h2 class="section-title">CONTROL LOGIC</h2>
+            <p style="margin-bottom: 2rem;">Hover over flowchart blocks to view corresponding Main() loop Spin2 logic.</p>
             
             <div class="logic-split-layout">
-                <div class="svg-container logic-diagram borderless-svg" id="logic-svg-container">
-                    <svg viewBox="205 10 375 440" xmlns="http://www.w3.org/2000/svg" class="eng-diagram">
+                <div class="diagram-column borderless-svg" id="logic-svg-container" style="height: auto;">
+                    <svg viewBox="205 10 375 440" xmlns="http://www.w3.org/2000/svg" class="arch-svg">
                         
-                        <g class="logic-node interactive-node" data-target="code-sense">
+                        <g class="arch-node logic-node" data-target="code-sense">
                             <rect x="225" y="20" width="150" height="40" rx="20" />
                             <text x="300" y="45">Sense Hand (IR)</text>
                         </g>
 
-                        <g class="logic-node interactive-node" data-target="code-open">
+                        <g class="arch-node logic-node" data-target="code-open">
                             <rect x="225" y="90" width="150" height="40" />
                             <text x="300" y="115">Open Valve (495°)</text>
                         </g>
 
-                        <g class="logic-node interactive-node" data-target="code-wait">
+                        <g class="arch-node logic-node" data-target="code-wait">
                             <rect x="225" y="160" width="150" height="40" />
                             <text x="300" y="185">Wait (Hand Remove)</text>
                         </g>
 
-                        <g class="logic-node interactive-node" data-target="code-close">
+                        <g class="arch-node logic-node" data-target="code-close">
                             <rect x="225" y="230" width="150" height="40" />
                             <text x="300" y="255">Close Valve</text>
                         </g>
 
-                        <g class="logic-node interactive-node" data-target="code-shunt">
-                            <polygon points="300,300 385,335 300,370 215,335" class="decision-node"/>
+                        <g class="arch-node logic-node" data-target="code-shunt">
+                            <polygon points="300,300 385,335 300,370 215,335" class="decision-node" fill="#fff" stroke="#111" stroke-width="2"/>
                             <text x="300" y="340">Shunt Drop > 0.6V?</text>
                         </g>
 
-                        <g class="logic-node interactive-node" data-target="code-retry">
-                            <rect x="420" y="245" width="150" height="40" class="recovery-node" />
+                        <g class="arch-node logic-node" data-target="code-retry">
+                            <rect x="420" y="245" width="150" height="40" stroke-dasharray="4" />
                             <text x="495" y="270">Reverse & Retry</text>
                         </g>
 
-                        <g class="logic-node interactive-node" data-target="code-normal">
+                        <g class="arch-node logic-node" data-target="code-normal">
                             <rect x="225" y="400" width="150" height="40" rx="20" />
                             <text x="300" y="425">Normal State</text>
                         </g>
 
-                        <g class="logic-node interactive-node" data-target="code-fault">
-                            <rect x="420" y="400" width="150" height="40" rx="20" fill="#fce4e4" stroke="#d32f2f"/>
-                            <text x="495" y="425">Fault & Halt</text>
+                        <g class="arch-node logic-node" data-target="code-fault">
+                            <rect x="420" y="400" width="150" height="40" rx="20" fill="#fee2e2" stroke="#c53f3f"/>
+                            <text x="495" y="425" fill="#c53f3f">Fault & Halt</text>
                         </g>
 
                         <path d="M 300 60 L 300 80" class="signal-line" marker-end="url(#arrow)" />
                         <path d="M 300 130 L 300 150" class="signal-line" marker-end="url(#arrow)" />
                         <path d="M 300 200 L 300 220" class="signal-line" marker-end="url(#arrow)" />
                         <path d="M 300 270 L 300 300" class="signal-line" marker-end="url(#arrow)" />
-                        
                         <path d="M 300 370 L 300 390" class="signal-line" marker-end="url(#arrow)" />
                         <text x="315" y="385" class="diagram-label">No (Safe)</text>
-                        
                         <path d="M 385 335 L 495 335 L 495 295" class="signal-line" marker-end="url(#arrow)" />
                         <text x="405" y="325" class="diagram-label">Yes (Jam Count = 1)</text>
-
                         <path d="M 495 245 L 495 210 L 375 210" class="signal-line" marker-end="url(#arrow)" />
-
                         <path d="M 495 335 L 495 390" class="signal-line" marker-end="url(#arrow)" />
                         <text x="510" y="365" class="diagram-label">Yes (Jam Count = 2)</text>
                     </svg>
@@ -239,81 +281,72 @@
                 <span class="function">waitms</span>(<span class="number">100</span>)</code></pre>
                 </div>
             </div> 
-
-            <!-- <h3>Video Demonstration</h3>
-            <div class="asset-placeholder video-placeholder">
-                <p>Hardware Demonstration Video<br><span>(Replace with actual MP4 showing normal operation and autonomous jam recovery)</span></p>
-            </div>
-            <p class="media-caption">Demonstration of normal operation cycle and autonomous jam recovery. Water integration was not completed in this build — valve actuation and fault recovery were validated with the mechanical system in isolation.</p> -->
-
-            <h3>Design Notes and Future Work</h3>
-            <p>While the 5Ω shunt resistor provided a reliable, fast-response method for jam detection, a production revision of this system would require integration with a physical tap fitting and the addition of an inline flow rate sensor to positively confirm successful dispensing, closing the fluidic loop alongside the electromechanical loop. Furthermore, a sealed, IP67-rated enclosure would be necessary to protect the control electronics from the operating environment.</p>
         </section>
 
-        <section id="section-b" class="project-section inverted-section">
-            <div class="inverted-inner">
-                <h2>Cam Profile Accuracy: Servo vs. Stepper Motor Under Proportional Control</h2>
+        <section id="section-b" class="project-section">
+            <h2 class="section-title">CAM PROFILE ACCURACY</h2>
+            
+            <div class="text-content" style="margin-bottom: 2rem;">
                 <p>This project isolates a specific engineering problem: which motor type more accurately reproduces a defined, non-linear cam profile, and by how much? By treating the motor type as the independent variable and profile tracking accuracy as the dependent variable, we evaluated both platforms under identical proportional control structures. The stepper motor ultimately produced significantly higher accuracy due to its fundamental step-resolution mechanics and dynamic microstepping capabilities.</p>
+            </div>
 
-                <h3>Test Methodology</h3>
-                <p>The target profile was a variable-radius cam designed to produce a non-harmonic stroke. Actual mechanical displacement was recorded using a linear rotary encoder on the follower mechanism. Error was quantified using Root Mean Square (RMS) deviation across continuous full-rotation cycles at a controlled duty cycle.</p>
+            <div class="chart-wrapper">
+                <canvas id="camChart"></canvas>
+            </div>
 
-                <h3>Results</h3>
-                <div class="chart-wrapper">
-                    <canvas id="camChart"></canvas>
+            <div class="dual-text-columns" style="margin-top: 3rem;">
+                
+                <div class="text-column">
+                    <h3>TEST METHODOLOGY & RESULTS</h3>
+                    <div class="text-content">
+                        <p>The target profile was a variable-radius cam designed to produce a non-harmonic stroke. Actual mechanical displacement was recorded using a linear rotary encoder on the follower mechanism. Error was quantified using Root Mean Square (RMS) deviation.</p>
+                        
+                        <div class="data-table" style="margin: 1.5rem 0;">
+                            <div class="table-row header">
+                                <span>Metric</span>
+                                <span>Servo</span>
+                                <span>Stepper</span>
+                                <span>Delta</span>
+                            </div>
+                            <div class="table-row">
+                                <span>RMS Error (mm)</span>
+                                <span>1.24</span>
+                                <span>0.08</span>
+                                <span style="color: var(--color-accent); font-weight: 700;">-93%</span>
+                            </div>
+                            <div class="table-row">
+                                <span>Peak Deviation</span>
+                                <span>1.85</span>
+                                <span>0.15</span>
+                                <span>-91%</span>
+                            </div>
+                            <div class="table-row highlight">
+                                <span>Phase Lag (deg)</span>
+                                <span>8.5</span>
+                                <span>~0.0</span>
+                                <span>-100%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Metric</th>
-                            <th>Servo Motor</th>
-                            <th>Stepper Motor</th>
-                            <th>Delta</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>RMS Error (mm)</td>
-                            <td>1.24</td>
-                            <td>0.08</td>
-                            <td>-93%</td>
-                        </tr>
-                        <tr>
-                            <td>Peak Deviation (mm)</td>
-                            <td>1.85</td>
-                            <td>0.15</td>
-                            <td>-91%</td>
-                        </tr>
-                        <tr>
-                            <td>Phase Lag (deg)</td>
-                            <td>8.5</td>
-                            <td>~0.0</td>
-                            <td>-100%</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="callout-block">
-                    <strong>Key Finding:</strong> Stepper motor control produced 93% lower profile tracking error (RMS) than servo control, attributed to the stepper's dynamic microstepping and inherent physical position resolution advantage.
-                </div>
-
-                <h3>Kinematic Math & Microstepping Implementation</h3>
-                <p>To accurately reproduce the piecewise, non-harmonic waveform, the target velocity (v) was calculated in real-time across four distinct mathematical bounds using dedicated Propeller 2 parallel processing (Cog 1). The base speed was dynamically converted into a microstepping <code>WaitTime</code>, actively adjusting mechanical resolution based on the curve's instantaneous slope.</p>
-                <div class="code-wrapper">
-                    <div class="code-header">FInalProjectCode1.spin2</div>
-<pre><code><span class="keyword">pub</span> <span class="function">Math</span>() | y, v, base_speed, temp_val
+                <div class="text-column">
+                    <h3>KINEMATIC MATH & MICROSTEPPING</h3>
+                    <div class="text-content">
+                        <p>To accurately reproduce the piecewise waveform, target velocity (v) was calculated in real-time across four distinct mathematical bounds using Propeller 2 parallel processing. Base speed was dynamically converted into a microstepping <code>WaitTime</code>.</p>
+                        
+                        <div class="code-wrapper" style="margin-top: 1rem;">
+                            <div class="code-header">FInalProjectCode1.spin2</div>
+<pre style="padding: 1.25rem;"><code><span class="keyword">pub</span> <span class="function">Math</span>() | y, v, base_speed, temp_val
   <span class="keyword">repeat</span>
     y := <span class="function">float</span>(Position) /. <span class="number">3200.0</span>    <span class="comment">' Get step #</span>
 
     <span class="keyword">if</span> direction == <span class="number">1</span>                 <span class="comment">' Going up</span>
       <span class="keyword">if</span> Position < <span class="number">1440</span>
         v := <span class="number">3.14159</span> *. <span class="function">fsqrt</span>(<span class="number">0.2025</span> -. (y *. y))
-
       <span class="keyword">elseif</span> Position < <span class="number">1760</span>
         temp := <span class="number">1.0</span> -. ((y -. <span class="number">0.45</span>) /. <span class="number">0.05</span>)
         v := <span class="number">0.47124</span> *. <span class="function">fsqrt</span>(<span class="number">1.0</span> -. (temp *. temp))
-
       <span class="keyword">else</span>
         temp := <span class="number">1.0</span> -. ((y -. <span class="number">0.55</span>) /. <span class="number">0.45</span>)
         v := <span class="number">1.4137</span> *. <span class="function">fsqrt</span>(<span class="number">1.0</span> -. (temp *. temp))
@@ -321,35 +354,53 @@
       temp := (<span class="number">2.0</span> *. y) -. <span class="number">1.0</span>
       v := <span class="number">2.35619</span> *. <span class="function">fsqrt</span>(<span class="number">1.0</span> -. (temp *. temp))
 
-    <span class="keyword">if</span> v < <span class="number">0.1</span>                       <span class="comment">' When v ~ 0 (smoothing)</span>
-      v := <span class="number">0.1</span>
-
-    WaitTime := <span class="function">trunc</span>(<span class="number">1500</span> /. v)      <span class="comment">' Truncate the # to ensure WaitTime isn't a decimal</span></code></pre>
+    WaitTime := <span class="function">trunc</span>(<span class="number">1500</span> /. (<span class="function">max</span>(v, <span class="number">0.1</span>)))</code></pre>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </section>
 
         <section id="section-c" class="project-section">
-            <h2>Real-Time Multiplayer Input on a Propeller 2 Microcontroller</h2>
-            <p>The Propeller 2 is a multi-core microcontroller featuring eight independent parallel processors. Moving beyond standard single-core embedded applications, this project implemented a "Whack-a-Mole" style game by distributing concurrent hardware input handling, game state logic, and VGA display rendering across separate physical cores. This architecture avoids standard interrupt-driven timing conflicts and introduces complex considerations for inter-core communication and shared memory access.</p>
-
-            <p>The primary hardware challenge was decoding Nintendo Wii controller inputs over an I2C-derived protocol. Because the Propeller 2 operates with deterministic timing, the input parsing routine had to strictly manage clock stretching and data frame extraction without blocking the primary game logic.</p>
-
-            <!-- <div class="asset-placeholder diagram-placeholder">
-                <p>Propeller 2 Core Allocation Diagram<br><span>(Replace with simple SVG block diagram showing Core 0 [VGA], Core 1 [Game State], Core 2 [I2C Input])</span></p>
-            </div> -->
-
-            <p>Work was divided efficiently: Core 0 was dedicated exclusively to generating the VGA timing signals, Core 1 maintained the authoritative game state and scoring, and Core 2 acted as an autonomous input driver, reading HID data and dropping sanitized player coordinates into a shared memory register.</p>
-
-            <a href="#" class="code-link" target="_blank">View Propeller 2 Repository on GitHub →</a>
+            <h2 class="section-title">REAL-TIME MULTIPLAYER INPUT</h2>
+            <div class="text-content" style="max-width: 800px;">
+                <p>The Propeller 2 is a multi-core microcontroller featuring eight independent parallel processors. Moving beyond standard single-core embedded applications, this project implemented a "Whack-a-Mole" style game by distributing concurrent hardware input handling, game state logic, and VGA display rendering across separate physical cores. This architecture avoids standard interrupt-driven timing conflicts and introduces complex considerations for inter-core communication and shared memory access.</p>
+                <p>Work was divided efficiently: Core 0 was dedicated exclusively to generating the VGA timing signals, Core 1 maintained the authoritative game state and scoring, and Core 2 acted as an autonomous input driver, reading HID data over I2C and dropping sanitized player coordinates into a shared memory register.</p>
+                <a href="#" class="view-project-btn" target="_blank" style="margin-top: 1rem;">View Code Repository ↗</a>
+            </div>
         </section>
 
-        <footer class="page-footer">
-            <a href="uva-dine.html" class="footer-nav-link">← Previous: UVA Dine</a>
-            <a href="index.html#projects" class="footer-nav-link center-link">Back to all projects</a>
-            <a href="orbital-sim.html" class="footer-nav-link">Next: Orbital Sim →</a>
-        </footer>
     </main>
+
+    <footer id="contact" class="section-container contact-strip" style="margin-top: 2rem;">
+        
+        <div style="display: flex; justify-content: space-between; margin-bottom: 4rem; border-bottom: 1px solid #eaeaea; padding-bottom: 2rem;">
+            <a href="uva-dine.html" class="contact-link" style="font-size: 0.85rem;">← PREVIOUS PROJECT</a>
+            <a href="orbital-sim.html" class="contact-link" style="font-size: 0.85rem;">NEXT PROJECT →</a>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-left">
+                <h2 class="contact-title">GET IN TOUCH</h2>
+                <p class="status-line">CURRENTLY SEEKING FULL-TIME MECHANICAL ENGINEERING ROLES.</p>
+            </div>
+
+            <div class="contact-right">
+                <div class="contact-links">
+                    <a href="mailto:richard.b.townsley@gmail.com" class="contact-link">Email ↗</a>
+                    <a href="https://linkedin.com/in/richard-townsley" target="_blank" class="contact-link">LinkedIn ↗</a>
+                    <a href="https://github.com/richard-townsley" target="_blank" class="contact-link">GitHub ↗</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-copyright">
+            <p>&copy; 2026 Richard B. Townsley. Built from scratch.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
     <script src="mechatronics.js"></script>
 </body>
 </html>
