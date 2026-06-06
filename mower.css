@@ -81,7 +81,6 @@
 
 .section-title {
     font-family: 'Science', sans-serif;
-    font-weight: 700; /* Forces bold */
     font-size: 2rem;
     color: #000000; /* Pure black for max contrast */
     border-bottom: 1px solid #eaeaea;
@@ -415,5 +414,6 @@
 .inline-code {
     font-family: 'Noto Sans Mono', monospace;
     font-size: 0.9em; 
-    color: #4b5563; /* Clean dark gray */
+    font-weight: 600;
+    color: var(--color-accent); /* Clean dark gray */
 }

@@ -116,20 +116,20 @@
 
                     <g class="arch-node" data-links="link-driver-motor" data-title="Stepper Motor" data-desc="Top-mounted NEMA 17 stepper. Driven by 24V from the boost converter to actuate the 8mm ballscrew for guard retraction." transform="translate(30, 20)">
                         <rect width="120" height="40" rx="4" />
-                        <text x="60" y="25" text-anchor="middle">Motor</text>
+                        <text x="60" y="25" text-anchor="middle">STEPPER MOTOR</text>
                     </g>
                     <g class="arch-node" data-links="link-sensor-esp" data-title="mmWave Sensor" data-desc="Positioned at the leading edge. Detects human presence within the 1.0m zone and sends a 3.3V logic high to the controller." transform="translate(210, 20)">
                         <rect width="120" height="40" rx="4" />
-                        <text x="60" y="25" text-anchor="middle">mmWave</text>
+                        <text x="60" y="25" text-anchor="middle">MMWAVE RADAR</text>
                     </g>
                     <g class="arch-node" data-links="link-relay-latch" data-title="Rotary Latch" data-desc="12V electronic latch. Disengages upon ESP-32 command, allowing the guard to drop via gravity in 46ms." transform="translate(390, 20)">
                         <rect width="120" height="40" rx="4" />
-                        <text x="60" y="25" text-anchor="middle">Latch</text>
+                        <text x="60" y="25" text-anchor="middle">ROTARY LATCH</text>
                     </g>
 
                     <g class="arch-node" data-links="link-boost-driver,link-esp-driver,link-driver-motor" data-title="TMC2209 Driver" data-desc="Stepper motor driver. Runs in SpreadCycle mode to maximize pull force against the 55.7N spring load without stalling." transform="translate(30, 140)">
                         <rect width="120" height="40" rx="4" />
-                        <text x="60" y="25" text-anchor="middle">Driver</text>
+                        <text x="60" y="25" text-anchor="middle">STEPPER DRIVER</text>
                     </g>
                     <g class="arch-node" data-links="link-sensor-esp,link-gyro-esp,link-esp-driver,link-esp-relay" data-title="ESP-32 Controller" data-desc="The central logical hub. Processes the multi-sensor interrupt array and triggers the mechanical outputs." transform="translate(210, 130)">
                         <rect width="120" height="60" rx="4" />
@@ -137,25 +137,25 @@
                     </g>
                     <g class="arch-node" data-links="link-esp-relay,link-relay-latch" data-title="Relay Module" data-desc="Opto-isolated relay. Separates the 12V high-current draw of the rotary latch from the ESP-32's sensitive 5V logic." transform="translate(390, 140)">
                         <rect width="120" height="40" rx="4" />
-                        <text x="60" y="25" text-anchor="middle">Relay</text>
+                        <text x="60" y="25" text-anchor="middle">RELAY MODULE</text>
                     </g>
 
                     <g class="arch-node" data-links="link-bat-boost,link-boost-driver" data-title="Boost Converter" data-desc="Steps the 12V battery power up to 24V to provide the necessary torque for the stepper motor retraction sequence." transform="translate(30, 260)">
                         <rect width="120" height="40" rx="4" />
-                        <text x="60" y="25" text-anchor="middle">Boost</text>
+                        <text x="60" y="25" text-anchor="middle">BOOST CONVERTER</text>
                     </g>
                     <g class="arch-node" data-links="link-buck-gyro,link-gyro-esp" data-title="MPU6050 Gyroscope" data-desc="Critical for rollover protection. Monitors deck angle and triggers an emergency drop if pitch or roll exceeds safe thresholds." transform="translate(210, 260)">
                         <rect width="120" height="40" rx="4" />
-                        <text x="60" y="25" text-anchor="middle">Gyroscope</text>
+                        <text x="60" y="25" text-anchor="middle">GYROSCOPE</text>
                     </g>
 
                     <g class="arch-node" data-links="link-bat-buck,link-bat-boost" data-title="12V Battery" data-desc="Standard 12V riding mower battery. Provides primary power to the entire safety mechanism." transform="translate(30, 380)">
                         <rect width="120" height="40" rx="4" />
-                        <text x="60" y="25" text-anchor="middle">12V Battery</text>
+                        <text x="60" y="25" text-anchor="middle">12V BATTERY</text>
                     </g>
                     <g class="arch-node" data-links="link-bat-buck,link-buck-gyro,link-gyro-esp,link-sensor-esp" data-title="Step-Down (Buck)" data-desc="Steps the 12V battery down to 5V and 3.3V to safely power the logic controller, radar, and gyroscope." transform="translate(210, 380)">
                         <rect width="120" height="40" rx="4" />
-                        <text x="60" y="25" text-anchor="middle">Step-Down</text>
+                        <text x="60" y="25" text-anchor="middle">BUCK CONVERTER</text>
                     </g>
                 </svg>
             </div>
