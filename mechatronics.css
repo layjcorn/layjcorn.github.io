@@ -116,6 +116,24 @@
 .arch-panel h3 { font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #111; margin-bottom: 0.5rem; }
 .arch-panel p { font-size: 0.95rem; color: #444; margin: 0; line-height: 1.5; }
 
+/* Animation fix */
+.arch-link {
+    fill: none;
+    stroke: #d1d5db;
+    stroke-width: 2px;
+    stroke-dasharray: 6;
+    transition: stroke 0.2s ease;
+}
+
+.arch-link.active-link {
+    stroke: var(--color-accent);
+    animation: dashFlow 1s linear infinite; /* Increased speed for better visibility */
+}
+
+@keyframes dashFlow {
+    to { stroke-dashoffset: -12; } /* Corrected for dasharray 6 */
+}
+
 .chart-wrapper { width: 100%; height: 400px; display: block; margin-bottom: 2rem; padding: 1rem; background: #ffffff; border: 1px solid #eaeaea; border-radius: 4px; position: relative; }
 .chart-wrapper canvas { width: 100% !important; height: 100% !important; }
 

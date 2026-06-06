@@ -51,7 +51,7 @@
                 environment-image="neutral"
                 bounds="tight"
                 field-of-view="7.5deg"
-                camera-orbit="30deg 35deg 100%" 
+                camera-orbit="35deg 45deg 100%" 
                 orientation="0deg 0deg 15deg"> 
             </model-viewer>
         </div>
@@ -97,51 +97,50 @@
                 </div>
             </div>
 
-            <div class="diagram-column">
-                <svg viewBox="0 70 780 130" class="arch-svg">
+            <div class="diagram-column" style="height: auto; padding: 2rem 0;">
+                <svg viewBox="0 0 600 400" class="arch-svg">
                     <defs>
-                        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                             <path d="M 0 0 L 10 5 L 0 10 z" fill="#111" />
                         </marker>
                     </defs>
-                    
-                    <g class="arch-node" data-title="QRD Sensor" data-desc="Reflective Optical Sensor. Detects hand presence to trigger the deployment sequence." transform="translate(0, 0)">
-                        <rect x="10" y="80" width="100" height="40" rx="4" />
-                        <text x="60" y="105" text-anchor="middle">QRD SENSOR</text>
+
+                    <path d="M 140 40 L 220 40 L 220 120" class="arch-link" id="link-qrd-op" marker-end="url(#arrow)" />
+                    <path d="M 140 280 L 220 280 L 220 160" class="arch-link" id="link-shunt-op" marker-end="url(#arrow)" />
+                    <path d="M 300 140 L 360 140" class="arch-link" id="link-op-p2" marker-end="url(#arrow)" />
+                    <path d="M 430 160 L 430 200" class="arch-link" id="link-p2-relay" marker-end="url(#arrow)" />
+                    <path d="M 430 240 L 430 280" class="arch-link" id="link-relay-motor" marker-end="url(#arrow)" />
+                    <path d="M 430 320 L 430 360" class="arch-link" id="link-motor-valve" marker-end="url(#arrow)" />
+
+                    <g class="arch-node" data-links="link-qrd-op" data-title="QRD Sensor" data-desc="Detects hand presence." transform="translate(0, 20)">
+                        <rect width="140" height="40" rx="4" />
+                        <text x="70" y="25" text-anchor="middle">QRD SENSOR</text>
                     </g>
-                    <g class="arch-node" data-title="Propeller 2 MCU" data-desc="8-core microcontroller running at 300MHz. Processes inputs and drives logic across parallel cogs." transform="translate(0, 0)">
-                        <rect x="170" y="80" width="120" height="40" rx="4" />
-                        <text x="230" y="105" text-anchor="middle">PROPELLER 2</text>
+                    <g class="arch-node" data-links="link-qrd-op,link-shunt-op,link-op-p2" data-title="Signal Op-Amp" data-desc="Conditions inputs." transform="translate(220, 120)">
+                        <rect width="80" height="40" rx="4" />
+                        <text x="40" y="25" text-anchor="middle">OP AMP</text>
                     </g>
-                    <g class="arch-node" data-title="Relay Module" data-desc="4-Channel, active-low inverted logic relay. Isolates the motor's power draw from the microcontroller." transform="translate(0, 0)">
-                        <rect x="350" y="80" width="100" height="40" rx="4" />
-                        <text x="400" y="105" text-anchor="middle">RELAY MOD</text>
+                    <g class="arch-node" data-links="link-shunt-op" data-title="Shunt Resistor" data-desc="Measures motor current." transform="translate(0, 260)">
+                        <rect width="140" height="40" rx="4" />
+                        <text x="70" y="25" text-anchor="middle">SHUNT RESISTOR</text>
                     </g>
-                    <g class="arch-node" data-title="PZ22 DC Motor" data-desc="170 RPM DC Gear motor. Provides the mechanical torque to open and close the ball valve." transform="translate(0, 0)">
-                        <rect x="510" y="80" width="100" height="40" rx="4" />
-                        <text x="560" y="105" text-anchor="middle">DC MOTOR</text>
+
+                    <g class="arch-node" data-links="link-op-p2,link-p2-relay" data-title="Propeller 2 MCU" data-desc="Logic hub." transform="translate(360, 100)">
+                        <rect width="140" height="40" rx="4" />
+                        <text x="70" y="25" text-anchor="middle">PROPELLER 2</text>
                     </g>
-                    <g class="arch-node" data-title="Brass Valve" data-desc="1/4-Turn mechanical ball valve regulating fluid flow." transform="translate(0, 0)">
-                        <rect x="670" y="80" width="100" height="40" rx="4" />
-                        <text x="720" y="105" text-anchor="middle">VALVE</text>
+                    <g class="arch-node" data-links="link-p2-relay,link-relay-motor" data-title="Relay Module" data-desc="Isolates power." transform="translate(360, 200)">
+                        <rect width="140" height="40" rx="4" />
+                        <text x="70" y="25" text-anchor="middle">RELAY MODULE</text>
                     </g>
-                    <g class="arch-node" data-title="Rotary Encoder" data-desc="Quadrature encoder providing position feedback (20 ticks/rev) targeting 495 degrees of total rotation." transform="translate(0, 0)">
-                        <rect x="510" y="150" width="100" height="30" rx="4" stroke-dasharray="4" />
-                        <text x="560" y="170" text-anchor="middle">ENCODER</text>
+                    <g class="arch-node" data-links="link-relay-motor,link-motor-valve" data-title="DC Motor" data-desc="Provides torque." transform="translate(360, 280)">
+                        <rect width="140" height="40" rx="4" />
+                        <text x="70" y="25" text-anchor="middle">DC MOTOR</text>
                     </g>
-                    <g class="arch-node" data-title="Shunt + Op-Amp" data-desc="5Ω Shunt resistor passed through an LM358N op-amp. Triggers a logic 0 when the motor draws high current during a jam." transform="translate(0, 0)">
-                        <rect x="350" y="150" width="100" height="30" rx="4" stroke-dasharray="4" />
-                        <text x="400" y="170" text-anchor="middle">SHUNT SENSE</text>
+                    <g class="arch-node" data-links="link-motor-valve" data-title="Brass Valve" data-desc="Regulates flow." transform="translate(360, 360)">
+                        <rect width="140" height="40" rx="4" />
+                        <text x="70" y="25" text-anchor="middle">VALVE</text>
                     </g>
-                    
-                    <line x1="110" y1="100" x2="160" y2="100" class="signal-line" marker-end="url(#arrow)" />
-                    <line x1="290" y1="100" x2="340" y2="100" class="signal-line" marker-end="url(#arrow)" />
-                    <line x1="450" y1="100" x2="500" y2="100" class="signal-line" marker-end="url(#arrow)" />
-                    <line x1="610" y1="100" x2="660" y2="100" class="signal-line" marker-end="url(#arrow)" />
-                    <path d="M 560 120 L 560 150" class="signal-line" marker-end="url(#arrow)" />
-                    <path d="M 510 165 L 290 165 L 290 120" class="signal-line" marker-end="url(#arrow)" />
-                    <path d="M 510 100 L 480 100 L 480 165 L 450 165" class="signal-line" marker-end="url(#arrow)" />
-                    <path d="M 350 165 L 230 165 L 230 120" class="signal-line" marker-end="url(#arrow)" />
                 </svg>
             </div>
         </section>
@@ -299,33 +298,10 @@
                 <div class="text-column">
                     <h3>TEST METHODOLOGY & RESULTS</h3>
                     <div class="text-content">
-                        <p>The target profile was a variable-radius cam designed to produce a non-harmonic stroke. Actual mechanical displacement was recorded using a linear rotary encoder on the follower mechanism. Error was quantified using Root Mean Square (RMS) deviation.</p>
+                        <p>The target profile was a variable-radius cam designed to produce a non-harmonic stroke. Actual mechanical displacement was recorded using a linear rotary encoder on the follower mechanism.</p>
                         
-                        <div class="data-table" style="margin: 1.5rem 0;">
-                            <div class="table-row header">
-                                <span>Metric</span>
-                                <span>Servo</span>
-                                <span>Stepper</span>
-                                <span>Delta</span>
-                            </div>
-                            <div class="table-row">
-                                <span>RMS Error (mm)</span>
-                                <span>1.24</span>
-                                <span>0.08</span>
-                                <span style="color: var(--color-accent); font-weight: 700;">-93%</span>
-                            </div>
-                            <div class="table-row">
-                                <span>Peak Deviation</span>
-                                <span>1.85</span>
-                                <span>0.15</span>
-                                <span>-91%</span>
-                            </div>
-                            <div class="table-row highlight">
-                                <span>Phase Lag (deg)</span>
-                                <span>8.5</span>
-                                <span>~0.0</span>
-                                <span>-100%</span>
-                            </div>
+                        <div class="callout-block" style="margin-top: 2rem; padding: 1.5rem; background: var(--color-accent-light); border-left: 4px solid var(--color-accent);">
+                            <strong style="color: var(--color-accent);">Key Finding:</strong> Stepper motor control produced 93% lower profile tracking error (RMS) than servo control, attributed to the stepper's dynamic microstepping and inherent physical position resolution advantage.
                         </div>
                     </div>
                 </div>
@@ -364,7 +340,7 @@
 
         <section id="section-c" class="project-section">
             <h2 class="section-title">REAL-TIME MULTIPLAYER INPUT</h2>
-            <div class="text-content" style="max-width: 800px;">
+            <div class="text-content">
                 <p>The Propeller 2 is a multi-core microcontroller featuring eight independent parallel processors. Moving beyond standard single-core embedded applications, this project implemented a "Whack-a-Mole" style game by distributing concurrent hardware input handling, game state logic, and VGA display rendering across separate physical cores. This architecture avoids standard interrupt-driven timing conflicts and introduces complex considerations for inter-core communication and shared memory access.</p>
                 <p>Work was divided efficiently: Core 0 was dedicated exclusively to generating the VGA timing signals, Core 1 maintained the authoritative game state and scoring, and Core 2 acted as an autonomous input driver, reading HID data over I2C and dropping sanitized player coordinates into a shared memory register.</p>
                 <a href="#" class="view-project-btn" target="_blank" style="margin-top: 1rem;">View Code Repository ↗</a>
@@ -373,13 +349,12 @@
 
     </main>
 
-    <footer id="contact" class="section-container contact-strip" style="margin-top: 2rem;">
-        
-        <div style="display: flex; justify-content: space-between; margin-bottom: 4rem; border-bottom: 1px solid #eaeaea; padding-bottom: 2rem;">
-            <a href="uva-dine.html" class="contact-link" style="font-size: 0.85rem;">← PREVIOUS PROJECT</a>
-            <a href="orbital-sim.html" class="contact-link" style="font-size: 0.85rem;">NEXT PROJECT →</a>
-        </div>
+    <div class="section-container" style="display: flex; justify-content: space-between; padding-bottom: 2rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; padding-top: 0;">
+        <a href="uva-dine.html" class="contact-link" style="font-size: 0.85rem;">← PREVIOUS PROJECT</a>
+        <a href="orbital-sim.html" class="contact-link" style="font-size: 0.85rem;">NEXT PROJECT →</a>
+    </div>
 
+    <footer id="contact" class="section-container contact-strip" style="border-top: none; padding-top: 0;">
         <div class="contact-grid">
             <div class="contact-left">
                 <h2 class="contact-title">GET IN TOUCH</h2>
