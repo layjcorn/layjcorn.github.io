@@ -90,44 +90,48 @@ model-viewer { width: 100%; height: 100%; }
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem; /* Reduced from 4rem to perfectly match the internal gap */
 }
 
 .featured-card {
-    background: transparent; /* Stripped the solid background */
+    background: transparent; 
     border-radius: 8px;
     overflow: hidden;
     text-decoration: none;
     color: var(--color-text-main);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    border: 1px solid #eaeaea; 
+    border: none; /* Removed the 1px solid border */
 }
 
 .featured-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08); /* Softer shadow for white cards */
-    border-color: #ccc;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08); 
 }
 
 /* --- Full-Width Hero Card --- */
 .full-width {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 450px;
+    align-items: stretch; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08); /* Permanent shadow applied */
+}
+
+.full-width:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12); /* Slightly deeper shadow on hover */
 }
 
 .featured-text {
     padding: 3.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* This guarantees vertical centering */
+    justify-content: center; 
 }
 
 .featured-text h3 {
     font-family: 'Science', sans-serif;
     font-size: 2.5rem;
-    color: #111; /* Inverted to black */
+    color: #111; 
     margin-bottom: 1rem;
     letter-spacing: -0.5px;
     line-height: 1.1;
@@ -135,25 +139,24 @@ model-viewer { width: 100%; height: 100%; }
 
 .featured-text p {
     font-size: 1.05rem;
-    color: #555; /* Inverted to dark gray */
+    color: #555; 
     margin-bottom: 1.5rem;
     line-height: 1.6;
 }
 
 .featured-model {
     width: 100%;
-    height: 100%;
-    min-height: 400px;
+    /* Removed min-height restrictions to allow dynamic sizing */
     display: flex;
     justify-content: center;
     align-items: center;
-    background: transparent; /* Stripped the radial gradient */
+    background: transparent; 
     pointer-events: none; 
 }
 
 .featured-model model-viewer {
     width: 100%;
-    height: 100%;
+    height: 100%; /* Shrinks to naturally fit the new stretched bounds */
     background: transparent;
     outline: none;
 }
@@ -166,10 +169,12 @@ model-viewer { width: 100%; height: 100%; }
 }
 
 .half-width {
-    height: 400px;
+    /* Removed the fixed 400px height so the text dictates the sizing */
+    height: auto; 
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Creates the 50/50 horizontal split */
+    grid-template-columns: 1fr 1fr; 
     overflow: hidden;
+    align-items: stretch; /* Forces the model side to exactly match the text side's height */
 }
 
 .card-content {
@@ -195,7 +200,28 @@ model-viewer { width: 100%; height: 100%; }
     font-size: 0.95rem;
     color: #555; 
     margin-bottom: 1.5rem;
-    max-width: 95%; /* Widened slightly to fill the new left-aligned space */
+    max-width: 95%; 
+}
+
+/* --- Restored Tag Formatting --- */
+.tag-row { 
+    display: flex; 
+    gap: 0.5rem; 
+    flex-wrap: wrap; 
+    margin-top: auto; /* Ensures tags align cleanly at the bottom of the text block */
+}
+
+.tech-tag {
+    font-family: 'Noto Sans Mono', monospace;
+    display: inline-block;
+    padding: 4px 10px;
+    background: #f1f5f9; 
+    color: #333; 
+    border: 1px solid #e2e8f0; 
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
 }
 
 /* 3D Side Models for Half-Width Cards */
@@ -205,7 +231,7 @@ model-viewer { width: 100%; height: 100%; }
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.85; /* Bumped up significantly since it's no longer behind text */
+    opacity: 0.85; 
     transition: transform 0.4s ease, opacity 0.4s ease;
     pointer-events: none; 
     background: transparent;
@@ -213,14 +239,14 @@ model-viewer { width: 100%; height: 100%; }
 
 .card-side-model model-viewer {
     width: 100%;
-    height: 100%;
+    height: 100%; /* Naturally shrinks to fit the new height bound */
     background-color: transparent;
 }
 
 /* Subtle hover effects */
 .featured-card:hover .card-side-model {
     opacity: 1;
-    transform: scale(1.05); /* Adds a slight pop to the model on hover */
+    transform: scale(1.05); 
 }
 
 /* --- Mobile Responsiveness --- */
@@ -240,15 +266,13 @@ model-viewer { width: 100%; height: 100%; }
     }
 }
 
-/* Additional Breakpoint for the 50/50 split on very small screens */
 @media (max-width: 600px) {
     .half-width {
         grid-template-columns: 1fr; /* Stacks text and model vertically */
-        height: auto;
     }
     .card-side-model {
-        height: 250px;
-        order: -1; /* Places the model above the text */
+        height: 250px; /* Provides a fixed height for the model when stacked on phones */
+        order: -1; 
     }
     .card-content {
         padding: 2rem;
@@ -264,11 +288,12 @@ model-viewer { width: 100%; height: 100%; }
 @media (max-width: 767px) { .supporting-grid { grid-template-columns: 1fr; } }
 
 .project-card {
-    display: flex; flex-direction: column; background: var(--color-card-bg);
-    border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden;
+    display: flex; flex-direction: column; 
+    background: transparent; /* Changed from white to transparent */
     color: var(--color-text-main); transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
-.project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+
+.project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08); }
 
 .grid-card-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
 .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
