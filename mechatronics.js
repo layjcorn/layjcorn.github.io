@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             node.addEventListener('mouseleave', () => {
                 archTitle.textContent = 'Hover over a component';
-                archDesc.textContent = 'Explore the logical flow, power distribution, and physical integration of the control system.';
+                archDesc.textContent = 'Explore the logical flow and physical integration of the control system.';
                 node.classList.remove('active');
             });
         });
@@ -26,10 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const allCodeBlocks = document.querySelectorAll('.split-code pre');
     const defaultCode = document.getElementById('code-default');
     const flowchartContainer = document.getElementById('logic-svg-container');
+    const allArchLinks = document.querySelectorAll('.arch-link');
 
     if (logicNodes.length > 0 && allCodeBlocks.length > 0) {
+        
         logicNodes.forEach(node => {
             node.addEventListener('mouseenter', () => {
+                // 1. Toggle Code Blocks
                 const targetId = node.getAttribute('data-target');
                 const targetCode = document.getElementById(targetId);
 
@@ -42,11 +45,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     targetCode.classList.remove('hidden-code');
                     targetCode.classList.add('active-code');
                 }
-                node.classList.add('active'); // Applies red hover style
+                
+                node.classList.add('active'); 
+
+                // 2. Animate Corresponding Flow Lines
+                const linksAttr = node.getAttribute('data-links');
+                if (linksAttr) {
+                    const linkIds = linksAttr.split(',');
+                    linkIds.forEach(id => {
+                        const link = document.getElementById(id);
+                        if (link) link.classList.add('active-link');
+                        link.parentNode.appendChild(link);
+                    });
+                }
             });
             
             node.addEventListener('mouseleave', () => {
                 node.classList.remove('active');
+                allArchLinks.forEach(link => link.classList.remove('active-link'));
             });
         });
 
@@ -100,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentServoPos = 0;
         let previousStepSize = 1;
 
-        for (let t = 0; t <= 6; t += dt) {
+        for (let t = 0; t <= 4; t += dt) {
             labels.push(t.toFixed(2));
             
             let targetY = calculateCamDisplacement(t);

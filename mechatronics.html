@@ -80,8 +80,7 @@
             </div>
         </section>
 
-        <section id="section-a" class="project-section dual-text-columns align-center">
-            
+        <section id="section-a" class="project-section dual-text-columns text-heavy-split align-center">            
             <div class="text-column">
                 <h2 class="section-title">SENSOR-ACTUATED VALVE SYSTEM</h2>
                 <div class="text-content">
@@ -92,54 +91,50 @@
                     <div id="arch-info-panel" class="arch-panel">
                         <span class="panel-label">INTERACTIVE DIAGRAM</span>
                         <h3 id="arch-title">Hover over a component</h3>
-                        <p id="arch-desc">Explore the logical flow, power distribution, and physical integration of the control system.</p>
+                        <p id="arch-desc">Explore the logical flow and physical integration of the control system.</p>
                     </div>
                 </div>
             </div>
 
             <div class="diagram-column" style="height: auto; padding: 2rem 0;">
-                <svg viewBox="0 0 600 400" class="arch-svg">
-                    <defs>
-                        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#111" />
-                        </marker>
-                    </defs>
+                <svg viewBox="0 0 400 450" class="arch-svg">
+                    
+                    <path d="M 310 60 L 310 140" class="arch-link" id="link-qrd-op" />
+                    <path d="M 310 260 L 310 180" class="arch-link" id="link-shunt-op" />
+                    <path d="M 240 160 L 160 160" class="arch-link" id="link-op-p2" />
 
-                    <path d="M 140 40 L 220 40 L 220 120" class="arch-link" id="link-qrd-op" marker-end="url(#arrow)" />
-                    <path d="M 140 280 L 220 280 L 220 160" class="arch-link" id="link-shunt-op" marker-end="url(#arrow)" />
-                    <path d="M 300 140 L 360 140" class="arch-link" id="link-op-p2" marker-end="url(#arrow)" />
-                    <path d="M 430 160 L 430 200" class="arch-link" id="link-p2-relay" marker-end="url(#arrow)" />
-                    <path d="M 430 240 L 430 280" class="arch-link" id="link-relay-motor" marker-end="url(#arrow)" />
-                    <path d="M 430 320 L 430 360" class="arch-link" id="link-motor-valve" marker-end="url(#arrow)" />
+                    <path d="M 90 180 L 90 220" class="arch-link" id="link-p2-relay" />
+                    <path d="M 90 260 L 90 300" class="arch-link" id="link-relay-motor" />
+                    <path d="M 90 340 L 90 380" class="arch-link" id="link-motor-valve" />
 
-                    <g class="arch-node" data-links="link-qrd-op" data-title="QRD Sensor" data-desc="Detects hand presence." transform="translate(0, 20)">
-                        <rect width="140" height="40" rx="4" />
-                        <text x="70" y="25" text-anchor="middle">QRD SENSOR</text>
-                    </g>
-                    <g class="arch-node" data-links="link-qrd-op,link-shunt-op,link-op-p2" data-title="Signal Op-Amp" data-desc="Conditions inputs." transform="translate(220, 120)">
-                        <rect width="80" height="40" rx="4" />
-                        <text x="40" y="25" text-anchor="middle">OP AMP</text>
-                    </g>
-                    <g class="arch-node" data-links="link-shunt-op" data-title="Shunt Resistor" data-desc="Measures motor current." transform="translate(0, 260)">
-                        <rect width="140" height="40" rx="4" />
-                        <text x="70" y="25" text-anchor="middle">SHUNT RESISTOR</text>
-                    </g>
-
-                    <g class="arch-node" data-links="link-op-p2,link-p2-relay" data-title="Propeller 2 MCU" data-desc="Logic hub." transform="translate(360, 100)">
+                    <g class="arch-node" data-links="link-p2-relay,link-op-p2" data-title="Propeller 2 MCU" data-desc="8-core microcontroller running at 300MHz." transform="translate(20, 140)">
                         <rect width="140" height="40" rx="4" />
                         <text x="70" y="25" text-anchor="middle">PROPELLER 2</text>
                     </g>
-                    <g class="arch-node" data-links="link-p2-relay,link-relay-motor" data-title="Relay Module" data-desc="Isolates power." transform="translate(360, 200)">
+                    <g class="arch-node" data-links="link-p2-relay,link-relay-motor" data-title="Relay Module" data-desc="Opto-isolated switching." transform="translate(20, 220)">
                         <rect width="140" height="40" rx="4" />
                         <text x="70" y="25" text-anchor="middle">RELAY MODULE</text>
                     </g>
-                    <g class="arch-node" data-links="link-relay-motor,link-motor-valve" data-title="DC Motor" data-desc="Provides torque." transform="translate(360, 280)">
+                    <g class="arch-node" data-links="link-relay-motor,link-motor-valve" data-title="DC Motor" data-desc="PZ22 170RPM Gear motor." transform="translate(20, 300)">
                         <rect width="140" height="40" rx="4" />
                         <text x="70" y="25" text-anchor="middle">DC MOTOR</text>
                     </g>
-                    <g class="arch-node" data-links="link-motor-valve" data-title="Brass Valve" data-desc="Regulates flow." transform="translate(360, 360)">
+                    <g class="arch-node" data-links="link-motor-valve" data-title="Brass Valve" data-desc="Regulates fluid flow." transform="translate(20, 380)">
                         <rect width="140" height="40" rx="4" />
                         <text x="70" y="25" text-anchor="middle">VALVE</text>
+                    </g>
+
+                    <g class="arch-node" data-links="link-qrd-op" data-title="QRD Sensor" data-desc="Hand detection." transform="translate(240, 20)">
+                        <rect width="140" height="40" rx="4" />
+                        <text x="70" y="25" text-anchor="middle">QRD SENSOR</text>
+                    </g>
+                    <g class="arch-node" data-links="link-qrd-op,link-shunt-op,link-op-p2" data-title="Signal Op-Amp" data-desc="Conditions inputs." transform="translate(240, 140)">
+                        <rect width="140" height="40" rx="4" />
+                        <text x="70" y="25" text-anchor="middle">OP AMP</text>
+                    </g>
+                    <g class="arch-node" data-links="link-shunt-op" data-title="Shunt Resistor" data-desc="Measures current." transform="translate(240, 260)">
+                        <rect width="140" height="40" rx="4" />
+                        <text x="70" y="25" text-anchor="middle">SHUNT RESISTOR</text>
                     </g>
                 </svg>
             </div>
@@ -150,60 +145,69 @@
             <p style="margin-bottom: 2rem;">Hover over flowchart blocks to view corresponding Main() loop Spin2 logic.</p>
             
             <div class="logic-split-layout">
-                <div class="diagram-column borderless-svg" id="logic-svg-container" style="height: auto;">
-                    <svg viewBox="205 10 375 440" xmlns="http://www.w3.org/2000/svg" class="arch-svg">
+                <div class="diagram-column borderless-svg" id="logic-svg-container" style="height: auto; padding: 2rem 0;">
+                    <svg viewBox="120 0 390 470" class="arch-svg">
                         
-                        <g class="arch-node logic-node" data-target="code-sense">
-                            <rect x="225" y="20" width="150" height="40" rx="20" />
-                            <text x="300" y="45">Sense Hand (IR)</text>
+                        <g class="lines-layer">
+                            <path d="M 200 50 L 200 90" class="arch-link" id="link-sense-open" />
+                            <path d="M 200 130 L 200 170" class="arch-link" id="link-open-wait" />
+                            <path d="M 200 210 L 200 250" class="arch-link" id="link-wait-close" />
+                            <path d="M 200 290 L 200 330" class="arch-link" id="link-close-shunt" />
+
+                            <path d="M 200 370 L 200 410" class="arch-link" id="link-shunt-normal" />
+                            <path d="M 430 350 L 430 290" class="arch-link" id="link-shunt-retry" />
+                            <path d="M 270 350 L 430 350" class="arch-link" id="link-shunt-both" />
+                            <path d="M 430 350 L 430 410" class="arch-link" id="link-shunt-fault" />
+                            <path d="M 430 250 L 430 110 L 270 110" class="arch-link" id="link-retry-open" />
                         </g>
 
-                        <g class="arch-node logic-node" data-target="code-open">
-                            <rect x="225" y="90" width="150" height="40" />
-                            <text x="300" y="115">Open Valve (495°)</text>
+                        <g class="labels-layer">
+                            <text x="220" y="395" font-family="'Segoe UI', sans-serif" fill="#666" font-size="11px">No (Safe)</text>
+                            <text x="335" y="325" font-family="'Segoe UI', sans-serif" fill="#666" font-size="11px">Yes (Count = 1)</text>
+                            <text x="335" y="385" font-family="'Segoe UI', sans-serif" fill="#666" font-size="11px">Yes (Count = 2)</text>
                         </g>
 
-                        <g class="arch-node logic-node" data-target="code-wait">
-                            <rect x="225" y="160" width="150" height="40" />
-                            <text x="300" y="185">Wait (Hand Remove)</text>
-                        </g>
+                        <g class="nodes-layer">
+                            <g class="arch-node logic-node" data-target="code-sense" data-links="link-sense-open" transform="translate(130, 10)">
+                                <rect width="140" height="40" rx="20" />
+                                <text x="70" y="25" text-anchor="middle">Sense Hand (IR)</text>
+                            </g>
 
-                        <g class="arch-node logic-node" data-target="code-close">
-                            <rect x="225" y="230" width="150" height="40" />
-                            <text x="300" y="255">Close Valve</text>
-                        </g>
+                            <g class="arch-node logic-node" data-target="code-open" data-links="link-sense-open,link-open-wait,link-retry-open" transform="translate(130, 90)">
+                                <rect width="140" height="40" rx="4" />
+                                <text x="70" y="25" text-anchor="middle">Open Valve (495°)</text>
+                            </g>
 
-                        <g class="arch-node logic-node" data-target="code-shunt">
-                            <polygon points="300,300 385,335 300,370 215,335" class="decision-node" fill="#fff" stroke="#111" stroke-width="2"/>
-                            <text x="300" y="340">Shunt Drop > 0.6V?</text>
-                        </g>
+                            <g class="arch-node logic-node" data-target="code-wait" data-links="link-open-wait,link-wait-close" transform="translate(130, 170)">
+                                <rect width="140" height="40" rx="4" />
+                                <text x="70" y="25" text-anchor="middle">Wait (Hand Remove)</text>
+                            </g>
 
-                        <g class="arch-node logic-node" data-target="code-retry">
-                            <rect x="420" y="245" width="150" height="40" stroke-dasharray="4" />
-                            <text x="495" y="270">Reverse & Retry</text>
-                        </g>
+                            <g class="arch-node logic-node" data-target="code-close" data-links="link-wait-close,link-close-shunt" transform="translate(130, 250)">
+                                <rect width="140" height="40" rx="4" />
+                                <text x="70" y="25" text-anchor="middle">Close Valve</text>
+                            </g>
 
-                        <g class="arch-node logic-node" data-target="code-normal">
-                            <rect x="225" y="400" width="150" height="40" rx="20" />
-                            <text x="300" y="425">Normal State</text>
-                        </g>
+                            <g class="arch-node logic-node" data-target="code-shunt" data-links="link-close-shunt,link-shunt-normal,link-shunt-retry,link-shunt-fault,link-shunt-both" transform="translate(130, 330)">
+                                <rect width="140" height="40" rx="4" />
+                                <text x="70" y="25" text-anchor="middle">Shunt Drop > 0.6V?</text>
+                            </g>
 
-                        <g class="arch-node logic-node" data-target="code-fault">
-                            <rect x="420" y="400" width="150" height="40" rx="20" fill="#fee2e2" stroke="#c53f3f"/>
-                            <text x="495" y="425" fill="#c53f3f">Fault & Halt</text>
-                        </g>
+                            <g class="arch-node logic-node" data-target="code-retry" data-links="link-shunt-retry,link-retry-open,link-shunt-both" transform="translate(360, 250)">
+                                <rect width="140" height="40" rx="4" stroke-dasharray="4" />
+                                <text x="70" y="25" text-anchor="middle">Reverse & Retry</text>
+                            </g>
 
-                        <path d="M 300 60 L 300 80" class="signal-line" marker-end="url(#arrow)" />
-                        <path d="M 300 130 L 300 150" class="signal-line" marker-end="url(#arrow)" />
-                        <path d="M 300 200 L 300 220" class="signal-line" marker-end="url(#arrow)" />
-                        <path d="M 300 270 L 300 300" class="signal-line" marker-end="url(#arrow)" />
-                        <path d="M 300 370 L 300 390" class="signal-line" marker-end="url(#arrow)" />
-                        <text x="315" y="385" class="diagram-label">No (Safe)</text>
-                        <path d="M 385 335 L 495 335 L 495 295" class="signal-line" marker-end="url(#arrow)" />
-                        <text x="405" y="325" class="diagram-label">Yes (Jam Count = 1)</text>
-                        <path d="M 495 245 L 495 210 L 375 210" class="signal-line" marker-end="url(#arrow)" />
-                        <path d="M 495 335 L 495 390" class="signal-line" marker-end="url(#arrow)" />
-                        <text x="510" y="365" class="diagram-label">Yes (Jam Count = 2)</text>
+                            <g class="arch-node logic-node" data-target="code-normal" data-links="link-shunt-normal" transform="translate(130, 410)">
+                                <rect width="140" height="40" rx="20" />
+                                <text x="70" y="25" text-anchor="middle">Normal State</text>
+                            </g>
+
+                            <g class="arch-node logic-node" data-target="code-fault" data-links="link-shunt-fault,link-shunt-both" transform="translate(360, 410)">
+                                <rect width="140" height="40" rx="20" fill="#fee2e2" stroke="#c53f3f" />
+                                <text x="70" y="25" text-anchor="middle" fill="#c53f3f">Fault & Halt</text>
+                            </g>
+                        </g>
                     </svg>
                 </div>
 
@@ -222,102 +226,83 @@
     <span class="function">waitus</span>(<span class="number">500</span>)
 
 <span class="comment">' Inside Main() Loop:</span>
-    <span class="keyword">if</span> hand == <span class="number">1</span>                                        <span class="comment">' IR on pin 0 (detects hand)</span></code></pre>
+<span class="keyword">if</span> hand == <span class="number">1</span>                                      <span class="comment">' IR on pin 0 (detects hand)</span></code></pre>
                     
                     <pre id="code-open" class="hidden-code"><code><span class="comment">' Start Cog 1 running Encoder method</span>
-  <span class="function">cogspin</span>(<span class="number">1</span>,<span class="function">Encoder</span>(),@Stack1)                             
+<span class="function">cogspin</span>(<span class="number">1</span>,<span class="function">Encoder</span>(),@Stack1)                             
 
 <span class="comment">' Inside Main() Loop:</span>
-      <span class="function">pinlow</span>(<span class="number">4</span>)                                         <span class="comment">' IN1 on (black) - starts CCW rotation</span>
-      <span class="keyword">repeat until</span> position/<span class="number">4</span> == <span class="number">66</span>                     <span class="comment">' keep IN4 on until 495deg (24T/10T * 495deg/360deg * 20/turn = 66)</span>
-      <span class="function">pinhigh</span>(<span class="number">4</span>)                                        <span class="comment">' IN1 off (black) - stops CCW rotation</span></code></pre>
+<span class="function">pinlow</span>(<span class="number">4</span>)                                         <span class="comment">' IN1 on (black) - starts CCW rotation</span>
+<span class="keyword">repeat until</span> position/<span class="number">4</span> == <span class="number">66</span>                     <span class="comment">' keep IN4 on until 495deg (24T/10T * 495deg/360deg * 20/turn = 66)</span>
+<span class="function">pinhigh</span>(<span class="number">4</span>)                                        <span class="comment">' IN1 off (black) - stops CCW rotation</span></code></pre>
 
-                    <pre id="code-wait" class="hidden-code"><code>    wait := <span class="number">5000</span>                                        <span class="comment">' Initialize 'wait' variable @ 5000</span>
+    <pre id="code-wait" class="hidden-code"><code>wait := <span class="number">5000</span>                                      <span class="comment">' Initialize 'wait' variable @ 5000</span>
 
 <span class="comment">' ...after valve opens:</span>
-      <span class="function">waitms</span>(<span class="number">100</span>)
-      <span class="keyword">repeat until</span> hand == <span class="number">0</span> <span class="keyword">or</span> wait <= <span class="number">0</span>               <span class="comment">' loops until hand is removed OR 5 seconds pass</span>
-        <span class="function">waitms</span>(<span class="number">1</span>)                                       <span class="comment">' waits one second</span>
-        wait--                                          <span class="comment">' decreases variable incrementally until time's up</span></code></pre>
+<span class="function">waitms</span>(<span class="number">100</span>)
+<span class="keyword">repeat until</span> hand == <span class="number">0</span> <span class="keyword">or</span> wait &lt;= <span class="number">0</span>               <span class="comment">' loops until hand is removed OR 5 seconds pass</span>
+  <span class="function">waitms</span>(<span class="number">1</span>)                                       <span class="comment">' waits one second</span>
+  wait--                                          <span class="comment">' decreases variable incrementally until time's up</span></code></pre>
 
-                    <pre id="code-close" class="hidden-code"><code>      <span class="function">pinlow</span>(<span class="number">5</span>)                                         <span class="comment">' IN2 on (red) - starts CW rotation</span>
-      <span class="keyword">repeat until</span> position == <span class="number">0</span>                        <span class="comment">' repeats until in home position (assuming initialized at 3 o'clock)</span></code></pre>
+    <pre id="code-close" class="hidden-code"><code><span class="function">pinlow</span>(<span class="number">5</span>)                                         <span class="comment">' IN2 on (red) - starts CW rotation</span>
+<span class="keyword">repeat until</span> position == <span class="number">0</span>                        <span class="comment">' repeats until in home position (assuming initialized at 3 o'clock)</span></code></pre>
 
                     <pre id="code-shunt" class="hidden-code"><code><span class="keyword">pub</span> <span class="function">Jammer</span>()
   <span class="keyword">repeat</span>
-    <span class="keyword">if</span> ina.[<span class="number">4</span>] == <span class="number">0</span> <span class="keyword">or</span> ina.[<span class="number">5</span>] == <span class="number">0</span>                     <span class="comment">' only sense when a relay is on (otherwise it will read 0V)</span>
+    <span class="keyword">if</span> ina.[<span class="number">4</span>] == <span class="number">0</span> <span class="keyword">or</span> ina.[<span class="number">5</span>] == <span class="number">0</span>               <span class="comment">' only sense when a relay is on (otherwise it will read 0V)</span>
       jam := <span class="function">pinread</span>(<span class="number">1</span>)
-    <span class="keyword">else</span>                                                <span class="comment">' set to 1 when motor is stopped</span>
+    <span class="keyword">else</span>                                          <span class="comment">' set to 1 when motor is stopped</span>
       jam := <span class="number">1</span>
       <span class="function">waitms</span>(<span class="number">100</span>)
 
 <span class="comment">' Inside Main() Loop:</span>
-      <span class="keyword">if</span> jam == <span class="number">0</span>                                       <span class="comment">' if pin 1 reads 0 = shunt resistor detected jam</span>
-          <span class="function">waitms</span>(<span class="number">500</span>)                                   <span class="comment">' quick wait and double-check (was getting too many false positives)</span>
-          <span class="keyword">if</span> jam == <span class="number">0</span>                                   <span class="comment">' double-check it's a real jam</span>
-            numjams++                                   <span class="comment">' keep track of # of jams</span></code></pre>
+<span class="keyword">if</span> jam == <span class="number">0</span>                                       <span class="comment">' if pin 1 reads 0 = shunt resistor detected jam</span>
+  <span class="function">waitms</span>(<span class="number">500</span>)                                     <span class="comment">' quick wait and double-check (was getting too many false positives)</span>
+  <span class="keyword">if</span> jam == <span class="number">0</span>                                     <span class="comment">' double-check it's a real jam</span>
+    numjams++                                     <span class="comment">' keep track of # of jams</span></code></pre>
 
-                    <pre id="code-retry" class="hidden-code"><code>            <span class="keyword">if</span> numjams == <span class="number">1</span>                               <span class="comment">' if first jam open up and try to close again</span>
-              <span class="function">pinhigh</span>(<span class="number">5</span>)                                  <span class="comment">' IN2 off (red) - stops CW rotation</span>
-              <span class="function">waitms</span>(<span class="number">100</span>)
-              <span class="function">pinlow</span>(<span class="number">4</span>)                                   <span class="comment">' IN1 on (black) - starts CCW rotation</span>
-              <span class="keyword">repeat until</span> position/<span class="number">4</span> == <span class="number">66</span>               <span class="comment">' go back to 495deg</span>
-              <span class="function">pinhigh</span>(<span class="number">4</span>)                                  <span class="comment">' IN1 off (black) - stops rotation</span>
-              <span class="function">waitms</span>(<span class="number">100</span>)
-              <span class="function">pinlow</span>(<span class="number">5</span>)                                   <span class="comment">' IN2 on (red) - starts CW rotation</span>
-              <span class="function">waitms</span>(<span class="number">100</span>)</code></pre>
+<pre id="code-retry" class="hidden-code"><code><span class="keyword">if</span> numjams == <span class="number">1</span>                                   <span class="comment">' if first jam open up and try to close again</span>
+  <span class="function">pinhigh</span>(<span class="number">5</span>)                                      <span class="comment">' IN2 off (red) - stops CW rotation</span>
+  <span class="function">waitms</span>(<span class="number">100</span>)
+  <span class="function">pinlow</span>(<span class="number">4</span>)                                       <span class="comment">' IN1 on (black) - starts CCW rotation</span>
+  <span class="keyword">repeat until</span> position/<span class="number">4</span> == <span class="number">66</span>                   <span class="comment">' go back to 495deg</span>
+  <span class="function">pinhigh</span>(<span class="number">4</span>)                                      <span class="comment">' IN1 off (black) - stops rotation</span>
+  <span class="function">waitms</span>(<span class="number">100</span>)
+  <span class="function">pinlow</span>(<span class="number">5</span>)                                       <span class="comment">' IN2 on (red) - starts CW rotation</span>
+  <span class="function">waitms</span>(<span class="number">100</span>)</code></pre>
 
-                    <pre id="code-normal" class="hidden-code"><code>      <span class="function">pinhigh</span>(<span class="number">5</span>)                                        <span class="comment">' IN2 off (red) - stops CW rotation</span>
-      <span class="keyword">repeat until</span> hand == <span class="number">0</span>                            <span class="comment">' ensure hand is removed before next iteration</span>
-      <span class="function">waitms</span>(<span class="number">100</span>)</code></pre>
+                    <pre id="code-normal" class="hidden-code"><code><span class="function">pinhigh</span>(<span class="number">5</span>)                                        <span class="comment">' IN2 off (red) - stops CW rotation</span>
+<span class="keyword">repeat until</span> hand == <span class="number">0</span>                            <span class="comment">' ensure hand is removed before next iteration</span>
+<span class="function">waitms</span>(<span class="number">100</span>)</code></pre>
 
-                    <pre id="code-fault" class="hidden-code"><code>            <span class="keyword">if</span> numjams == <span class="number">2</span>                               <span class="comment">' second jam stops everything</span>
-              <span class="function">pinhigh</span>(<span class="number">4</span>)                                  <span class="comment">' stop both relays</span>
-              <span class="function">pinhigh</span>(<span class="number">5</span>)                                  <span class="comment">' power off! (both ways)</span>
-              <span class="keyword">repeat</span>                                      <span class="comment">' will cycle forever until entire board powered off</span>
-                <span class="function">pintoggle</span>(<span class="number">56</span>)                             <span class="comment">' Toggle P56 (initially from on to off)</span>
-                <span class="function">pintoggle</span>(<span class="number">57</span>)                             <span class="comment">' Toggle P57 (initially from off to on)</span>
-                <span class="function">waitms</span>(<span class="number">100</span>)</code></pre>
+<pre id="code-fault" class="hidden-code"><code><span class="keyword">if</span> numjams == <span class="number">2</span>                                   <span class="comment">' second jam stops everything</span>
+  <span class="function">pinhigh</span>(<span class="number">4</span>)                                      <span class="comment">' stop both relays</span>
+  <span class="function">pinhigh</span>(<span class="number">5</span>)                                      <span class="comment">' power off! (both ways)</span>
+  <span class="keyword">repeat</span>                                          <span class="comment">' will cycle forever until entire board powered off</span>
+    <span class="function">pintoggle</span>(<span class="number">56</span>)                                 <span class="comment">' Toggle P56 (initially from on to off)</span>
+    <span class="function">pintoggle</span>(<span class="number">57</span>)                                 <span class="comment">' Toggle P57 (initially from off to on)</span>
+    <span class="function">waitms</span>(<span class="number">100</span>)</code></pre>
                 </div>
             </div> 
         </section>
-
+           
+            
         <section id="section-b" class="project-section">
             <h2 class="section-title">CAM PROFILE ACCURACY</h2>
-            
             <div class="text-content" style="margin-bottom: 2rem;">
                 <p>This project isolates a specific engineering problem: which motor type more accurately reproduces a defined, non-linear cam profile, and by how much? By treating the motor type as the independent variable and profile tracking accuracy as the dependent variable, we evaluated both platforms under identical proportional control structures. The stepper motor ultimately produced significantly higher accuracy due to its fundamental step-resolution mechanics and dynamic microstepping capabilities.</p>
             </div>
-
-            <div class="chart-wrapper">
-                <canvas id="camChart"></canvas>
-            </div>
-
-            <div class="dual-text-columns" style="margin-top: 3rem;">
+            
+            <div class="text-content" style="margin-bottom: 3rem;">
+                <h3>KINEMATIC MATH & MICROSTEPPING</h3>
+                <p>To accurately reproduce the piecewise waveform, target velocity (v) was calculated in real-time across four distinct mathematical bounds using Propeller 2 parallel processing. Base speed was dynamically converted into a microstepping <code>WaitTime</code>.</p>
                 
-                <div class="text-column">
-                    <h3>TEST METHODOLOGY & RESULTS</h3>
-                    <div class="text-content">
-                        <p>The target profile was a variable-radius cam designed to produce a non-harmonic stroke. Actual mechanical displacement was recorded using a linear rotary encoder on the follower mechanism.</p>
-                        
-                        <div class="callout-block" style="margin-top: 2rem; padding: 1.5rem; background: var(--color-accent-light); border-left: 4px solid var(--color-accent);">
-                            <strong style="color: var(--color-accent);">Key Finding:</strong> Stepper motor control produced 93% lower profile tracking error (RMS) than servo control, attributed to the stepper's dynamic microstepping and inherent physical position resolution advantage.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="text-column">
-                    <h3>KINEMATIC MATH & MICROSTEPPING</h3>
-                    <div class="text-content">
-                        <p>To accurately reproduce the piecewise waveform, target velocity (v) was calculated in real-time across four distinct mathematical bounds using Propeller 2 parallel processing. Base speed was dynamically converted into a microstepping <code>WaitTime</code>.</p>
-                        
-                        <div class="code-wrapper" style="margin-top: 1rem;">
-                            <div class="code-header">FInalProjectCode1.spin2</div>
-<pre style="padding: 1.25rem;"><code><span class="keyword">pub</span> <span class="function">Math</span>() | y, v, base_speed, temp_val
+                <div class="code-wrapper" style="margin-top: 1rem;">
+                    <div class="code-header">FInalProjectCode1.spin2</div>
+                    <pre style="padding: 1.25rem;"><code><span class="keyword">pub</span> <span class="function">Math</span>() | y, v, base_speed, temp_val
   <span class="keyword">repeat</span>
-    y := <span class="function">float</span>(Position) /. <span class="number">3200.0</span>    <span class="comment">' Get step #</span>
-
-    <span class="keyword">if</span> direction == <span class="number">1</span>                 <span class="comment">' Going up</span>
+    y := <span class="function">float</span>(Position) /. <span class="number">3200.0</span>
+    <span class="keyword">if</span> direction == <span class="number">1</span>
       <span class="keyword">if</span> Position < <span class="number">1440</span>
         v := <span class="number">3.14159</span> *. <span class="function">fsqrt</span>(<span class="number">0.2025</span> -. (y *. y))
       <span class="keyword">elseif</span> Position < <span class="number">1760</span>
@@ -326,15 +311,30 @@
       <span class="keyword">else</span>
         temp := <span class="number">1.0</span> -. ((y -. <span class="number">0.55</span>) /. <span class="number">0.45</span>)
         v := <span class="number">1.4137</span> *. <span class="function">fsqrt</span>(<span class="number">1.0</span> -. (temp *. temp))
-    <span class="keyword">else</span>                              <span class="comment">' Going down</span>
+    <span class="keyword">else</span>
       temp := (<span class="number">2.0</span> *. y) -. <span class="number">1.0</span>
       v := <span class="number">2.35619</span> *. <span class="function">fsqrt</span>(<span class="number">1.0</span> -. (temp *. temp))
-
     WaitTime := <span class="function">trunc</span>(<span class="number">1500</span> /. (<span class="function">max</span>(v, <span class="number">0.1</span>)))</code></pre>
-                        </div>
+                </div>
+            </div>
+
+            <div class="dual-text-columns" style="grid-template-columns: 1.5fr 1fr; gap: 3rem;">
+                
+                
+
+                <div class="chart-column">
+                    <div class="chart-wrapper">
+                        <canvas id="camChart"></canvas>
                     </div>
                 </div>
 
+                <div class="text-column">
+                    <h3>TEST METHODOLOGY & RESULTS</h3>
+                    <p>This project evaluated motor type (Stepper vs. Servo) as the independent variable against profile tracking accuracy. The stepper motor produced 93% lower RMS error.</p>
+                    <div class="callout-block" style="margin-top: 1rem; padding: 1rem; background: var(--color-accent-light); border-left: 4px solid var(--color-accent);">
+                        <strong style="color: var(--color-accent);">Result:</strong> Stepper motor microstepping provided superior non-linear tracking resolution.
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -343,7 +343,7 @@
             <div class="text-content">
                 <p>The Propeller 2 is a multi-core microcontroller featuring eight independent parallel processors. Moving beyond standard single-core embedded applications, this project implemented a "Whack-a-Mole" style game by distributing concurrent hardware input handling, game state logic, and VGA display rendering across separate physical cores. This architecture avoids standard interrupt-driven timing conflicts and introduces complex considerations for inter-core communication and shared memory access.</p>
                 <p>Work was divided efficiently: Core 0 was dedicated exclusively to generating the VGA timing signals, Core 1 maintained the authoritative game state and scoring, and Core 2 acted as an autonomous input driver, reading HID data over I2C and dropping sanitized player coordinates into a shared memory register.</p>
-                <a href="#" class="view-project-btn" target="_blank" style="margin-top: 1rem;">View Code Repository ↗</a>
+                <a href="https://github.com/layjcorn/mechatronics-video-game" class="view-project-btn" target="_blank" style="margin-top: 1rem;">View Code Repository ↗</a>
             </div>
         </section>
 
