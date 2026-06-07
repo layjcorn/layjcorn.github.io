@@ -58,27 +58,6 @@
     </div>
 
     <main class="project-container">
-        
-        <section class="project-section intro-stats">
-            <div class="stat-strip">
-                <div class="stat-box">
-                    <span class="stat-label">LANGUAGES & PLATFORMS</span>
-                    <span class="stat-value">C / P2</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">ACTUATION TYPES</span>
-                    <span class="stat-value">3 Types</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">KEY BEHAVIOR</span>
-                    <span class="stat-value">Auto-Recovery</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">HARDWARE INTERFACES</span>
-                    <span class="stat-value">QRD / HID</span>
-                </div>
-            </div>
-        </section>
 
         <section id="section-a" class="project-section dual-text-columns text-heavy-split align-center">            
             <div class="text-column">
@@ -289,17 +268,22 @@
             
         <section id="section-b" class="project-section">
             <h2 class="section-title">CAM PROFILE ACCURACY</h2>
-            <div class="text-content" style="margin-bottom: 2rem;">
-                <p>This project isolates a specific engineering problem: which motor type more accurately reproduces a defined, non-linear cam profile, and by how much? By treating the motor type as the independent variable and profile tracking accuracy as the dependent variable, we evaluated both platforms under identical proportional control structures. The stepper motor ultimately produced significantly higher accuracy due to its fundamental step-resolution mechanics and dynamic microstepping capabilities.</p>
-            </div>
             
-            <div class="text-content" style="margin-bottom: 3rem;">
-                <h3>KINEMATIC MATH & MICROSTEPPING</h3>
-                <p>To accurately reproduce the piecewise waveform, target velocity (v) was calculated in real-time across four distinct mathematical bounds using Propeller 2 parallel processing. Base speed was dynamically converted into a microstepping <code>WaitTime</code>.</p>
+            <div class="dual-text-columns text-heavy-split align-center" style="margin-bottom: 3rem;">
                 
-                <div class="code-wrapper" style="margin-top: 1rem;">
-                    <div class="code-header">FInalProjectCode1.spin2</div>
-                    <pre style="padding: 1.25rem;"><code><span class="keyword">pub</span> <span class="function">Math</span>() | y, v, base_speed, temp_val
+                <div class="text-column">
+                    <div class="text-content">
+                        <p>This project isolates a specific engineering problem: which motor type more accurately reproduces a defined, non-linear cam profile, and by how much? By treating the motor type as the independent variable and profile tracking accuracy as the dependent variable, we evaluated both platforms under identical proportional control structures. The stepper motor ultimately produced significantly higher accuracy due to its fundamental step-resolution mechanics and dynamic microstepping capabilities.</p>
+
+                        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">KINEMATIC MATH & MICROSTEPPING</h3>
+                        <p>To accurately reproduce the piecewise waveform, target velocity (v) was calculated in real-time across four distinct mathematical bounds using Propeller 2 parallel processing. Base speed was dynamically converted into a microstepping <span class="inline-code">WaitTime</span>.</p>
+                    </div>
+                </div>
+
+                <div class="code-column">
+                    <div class="code-wrapper">
+                        <div class="code-header">FInalProjectCode1.spin2</div>
+                        <pre style="padding: 1.25rem;"><code><span class="keyword">pub</span> <span class="function">Math</span>() | y, v, base_speed, temp_val
   <span class="keyword">repeat</span>
     y := <span class="function">float</span>(Position) /. <span class="number">3200.0</span>
     <span class="keyword">if</span> direction == <span class="number">1</span>
@@ -315,6 +299,7 @@
       temp := (<span class="number">2.0</span> *. y) -. <span class="number">1.0</span>
       v := <span class="number">2.35619</span> *. <span class="function">fsqrt</span>(<span class="number">1.0</span> -. (temp *. temp))
     WaitTime := <span class="function">trunc</span>(<span class="number">1500</span> /. (<span class="function">max</span>(v, <span class="number">0.1</span>)))</code></pre>
+                    </div>
                 </div>
             </div>
 
