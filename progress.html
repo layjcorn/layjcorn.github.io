@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work in Progress | Richard Townsley</title>
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mower.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body class="project-page">
+
+    <div class="hero-container">
+        
+        <nav class="corner top-left">
+            <a href="index.html">← BACK TO PORTFOLIO</a>
+        </nav>
+
+        <nav class="corner top-right">
+            <a href="index.html#projects">PROJECTS</a>
+            <a href="https://www.linkedin.com/in/richard-townsley/" target="_blank">ABOUT</a>
+            <a href="assets/documents/Richard_Townsley_Resume_2026.pdf" target="_blank">RESUME</a>
+        </nav>
+
+        <div class="hero-left-content">
+            <h1>PAGE IN PROGRESS</h1>
+            <p>This project page is currently under construction. Please check back soon!</p>
+        </div>
+
+        <div class="corner bottom-right" id="scroll-indicator">
+            <p style="color: #ccc;">MORE COMING SOON</p>
+        </div>
+
+        <div class="mower-model-wrapper">
+            <model-viewer 
+                class="idle-model"
+                id="hero-model"
+                src="assets/models/stop.glb"
+                tone-mapping="commerce"
+                exposure="0.5"
+                shadow-intensity="0"
+                interaction-prompt="none"
+                camera-controls="false"
+                disable-zoom
+                disable-pan
+                environment-image="neutral"
+                bounds="tight"
+                field-of-view="7.5deg"
+                camera-orbit="-50deg 110deg 100%" 
+                orientation="0deg 0deg 15deg"> 
+            </model-viewer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
