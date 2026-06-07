@@ -58,90 +58,71 @@
                 <p>Highlighting hardware-software integration, structural analysis, and data modeling.</p>
             </div>
 
-            <div class="carousel-container">
-                <button class="carousel-btn prev-btn">&#8592;</button>
+            <div class="featured-projects">
                 
-                <div class="carousel-track">
-                    <div class="carousel-slide">
-                        <div class="slide-model-wrapper">
-                            <model-viewer 
-                                class="idle-model"
-                                src="assets/models/master.glb" 
-                                poster="assets/images/mower-guard-poster.webp"
-                                loading="lazy"
-                                camera-controls  disable-zoom     disable-pan      interaction-prompt="none" 
-                                environment-image="neutral" 
-                                exposure="0.8"
-                                shadow-intensity="0">
-                            </model-viewer>
+                <a href="mower-guard.html" class="featured-card full-width">
+                    <div class="featured-text">
+                        <h3>Radar-Actuated Mower Guard</h3>
+                        <p>Mechatronic safety mechanism retrofit for riding mowers, built with ESP32 microcontrollers to adhere to ANSI safety standards. Response Time: &lt; 100ms.</p>
+                        <div class="tag-row">
+                            <span class="tech-tag">Hardware</span>
+                            <span class="tech-tag">ANSI B71.1</span>
+                            <span class="tech-tag">SolidWorks</span>
                         </div>
-                        <div class="slide-text">
-                            <h3>Radar-Actuated Mower Blade Guard</h3>
-                            <p>ANSI B71.1-compliant retrofit safety mechanism for riding mowers using millimeter-wave radar and solenoid actuation. Response Time: &lt; 100ms.</p>
-                            <div class="tag-row justify-center">
-                                <span class="tech-tag">SolidWorks</span>
+                    </div>
+                    <div class="featured-model">
+                        <model-viewer 
+                            class="idle-model"
+                            src="assets/models/master.glb" 
+                            camera-orbit="45deg 60deg 100%" 
+                            camera-controls="false" disable-zoom disable-pan interaction-prompt="none" 
+                            environment-image="neutral" exposure="0.8" shadow-intensity="0">
+                        </model-viewer>
+                    </div>
+                </a>
+
+                <div class="secondary-projects-grid">
+                    
+                    <a href="mechatronics.html" class="featured-card half-width">
+                        <div class="card-content">
+                            <h3>MECHATRONICS</h3>
+                            <p>Three embedded systems projects including a sensor-actuated valve with fault correction logic.</p>
+                            <div class="tag-row">
                                 <span class="tech-tag">Embedded C</span>
-                                <span class="tech-tag">ANSI B71.1</span>
-                            </div>
-                            
-                            <a href="mower-guard.html" class="view-project-btn">View Project &rarr;</a>
-                        </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <div class="slide-model-wrapper">
-                            <model-viewer 
-                                class="idle-model"
-                                src="assets/models/master.glb" 
-                                poster="assets/images/bracket-fea-poster.webp"
-                                loading="lazy"
-                                camera-controls  disable-zoom     disable-pan      interaction-prompt="none" 
-                                environment-image="neutral" 
-                                exposure="0.8"
-                                shadow-intensity="0">
-                            </model-viewer>
-                        </div>
-                        <div class="slide-text">
-                            <h3>Bracket Topology Optimization</h3>
-                            <p>Load-bearing bracket redesigned via finite element analysis and topology optimization under a 100N static load. Mass Reduction: Up to 50%.</p>
-                            <div class="tag-row justify-center">
-                                <span class="tech-tag">FEA</span>
-                                <span class="tech-tag">MATLAB</span>
-                                <span class="tech-tag">Topology Opt.</span>
+                                <span class="tech-tag">Circuit Design</span>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <div class="slide-model-wrapper">
+                        <div class="card-side-model">
                             <model-viewer 
                                 class="idle-model"
-                                src="assets/models/master.glb" 
-                                camera-controls="false" 
-                                interaction-prompt="none" 
-                                disable-zoom 
-                                disable-pan 
-                                environment-image="neutral" 
-                                exposure="0.8"
-                                shadow-intensity="0">
+                                src="assets/models/stepper.glb"
+                                camera-orbit="140deg 115deg 100%" 
+                                camera-controls="false" disable-zoom disable-pan interaction-prompt="none" 
+                                environment-image="neutral" exposure="0.8" shadow-intensity="0">
                             </model-viewer>
                         </div>
-                        <div class="slide-text">
-                            <h3>UVA Dine Reusable Container Program</h3>
+                    </a>
+
+                    <a href="uva-dine.html" class="featured-card half-width">
+                        <div class="card-content">
+                            <h3>UVA DINE</h3>
                             <p>Managed 5,000+ reusable assets across UVA dining operations; built data models to forecast container utilization.</p>
-                            <div class="tag-row justify-center">
+                            <div class="tag-row">
                                 <span class="tech-tag">Data Modeling</span>
                                 <span class="tech-tag">Julia</span>
-                                <span class="tech-tag">Operations</span>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="card-side-model">
+                            <model-viewer 
+                                class="idle-model"
+                                src="assets/models/can.glb" 
+                                camera-controls="false" disable-zoom disable-pan interaction-prompt="none" 
+                                environment-image="neutral" exposure="0.8" shadow-intensity="0">
+                            </model-viewer>
+                        </div>
+                    </a>
 
-                <button class="carousel-btn next-btn">&#8594;</button>
-                
-                <div class="carousel-dots">
-                    </div>
+                </div>
             </div>
 
             <div class="supporting-grid">
@@ -149,7 +130,6 @@
                     <div class="grid-card-content">
                         <h3 class="card-title">Mechatronics &amp; Embedded Systems</h3>
                         <p class="card-subtitle">Sensor Integration &middot; Motor Control</p>
-                        <p class="card-summary">Three embedded systems projects including a sensor-actuated valve with fault correction logic, and a Propeller 2 controller.</p>
                         <div class="tag-container">
                             <span class="skill-tag">Embedded C</span>
                             <span class="skill-tag">Circuit Design</span>
@@ -162,7 +142,6 @@
                     <div class="grid-card-content">
                         <h3 class="card-title">Orbital Mechanics Simulation</h3>
                         <p class="card-subtitle">Computational Methods &middot; Aerospace</p>
-                        <p class="card-summary">Spacecraft trajectory simulation benchmarking RK4, Newton's method, and cubic splines under sparse data conditions.</p>
                         <div class="tag-container">
                             <span class="skill-tag">MATLAB</span>
                             <span class="skill-tag">Julia</span>
@@ -175,7 +154,6 @@
                     <div class="grid-card-content">
                         <h3 class="card-title">FDM Materials Characterization</h3>
                         <p class="card-subtitle">Testing &middot; Additive Mfg.</p>
-                        <p class="card-summary">Characterizing FDM-printed specimens under tensile and torsional loading across infill percentage and geometry variables.</p>
                         <div class="tag-container">
                             <span class="skill-tag">SolidWorks</span>
                             <span class="skill-tag">Tensile Testing</span>
