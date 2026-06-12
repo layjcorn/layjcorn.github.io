@@ -1,4 +1,4 @@
-# Richard Townsley | Professional Mechanical Engineering Portfolio
+# Richard Townsley's Mechanical Engineering Portfolio
 
 A personal mechanical engineering portfolio highlighting hardware-software integration, mechatronics, and mechanical design. Built from scratch; lightweight, zero-dependencies.
 
